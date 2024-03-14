@@ -47,10 +47,21 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # ENV/APPEARANCE SETTINGS
+  # ENV SETTINGS
 
   fonts.fontconfig = {
     enable = true;
+  };
+
+  xdg.enable = true;
+  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = true;
+    xwayland.enable = true;
+    # extraConfig = ''
+    #   ${builtins.readFile ./hyprland.conf}
+    #   '';
   };
 
   # BEGIN PROGRAMS
@@ -100,9 +111,20 @@
     vimAlias = true;
     vimdiffAlias = true;
   };
+  programs.swaylock.enable = true;
+  programs.waybar = {
+    systemd.enable = true;
+    systemd.target = "hyprland-session.target";
+  };
+  programs.wofi.enable = true;
 
 
   # BEGIN SERVICES
+
+  services.dunst = {
+    enable = true;
+    # waylandDisplay = true;
+  };
 
   services.emacs = {
     enable = true;
@@ -131,6 +153,8 @@
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
-
+  services.swayidle.enable = true;
+  #xdg.portal.enable = true;
+  #xdg.portal.wlr.enable = true;
   #services.nexcloud-client.enable = true;
 }
