@@ -37,7 +37,10 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager = {
+    sddm.enable = true;
+    sessionPackages = [ pkgs.hyprland ];
+  };
   services.xserver.windowManager.i3.enable = true;
 
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
