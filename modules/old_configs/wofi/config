@@ -1,0 +1,14 @@
+term=ghostty
+location=center
+width=26%
+lines=9
+
+
+prompt=Search Applications
+show=drun
+insensitive=true
+allow_images=true
+hide_scroll=true
+
+always_parse_args=true
+show_all=true

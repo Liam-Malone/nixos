@@ -12,14 +12,17 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.htop
-    pkgs.firefox
-    pkgs.thunderbird
-    pkgs.neofetch
-    pkgs.tree
     pkgs.cmake
     pkgs.gcc
+    pkgs.firefox
+    pkgs.htop
     pkgs.libtool
+    pkgs.libreoffice
+    pkgs.neofetch
+    pkgs.swww
+    pkgs.picom
+    pkgs.thunderbird
+    pkgs.tree
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
@@ -54,7 +57,52 @@
   };
 
   xdg.enable = true;
-  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+  xdg.configFile = {
+    "alacritty" = {
+      recursive = true;
+      source = ../../modules/old_configs/alacritty;
+    };
+    "contour" = {
+      recursive = true;
+      source = ../../modules/old_configs/contour;
+    };
+    "emacs" = {
+      recursive = true;
+      source = ../../modules/old_configs/emacs;
+    };
+    "ghostty" = {
+      recursive = true;
+      source = ../../modules/old_configs/ghostty;
+    };
+    "hypr" = {
+      recursive = true;
+      source = ../../modules/old_configs/hypr;
+    };
+    "kitty" = {
+      recursive = true;
+      source = ../../modules/old_configs/kitty;
+    };
+    "nvim" = {
+      recursive = true;
+      source = ../../modules/old_configs/nvim;
+    };
+    "river" = {
+      recursive = true;
+      source = ../../modules/old_configs/river;
+    };
+    "swaylock" = {
+      recursive = true;
+      source = ../../modules/old_configs/swaylock;
+    };
+    "waybar" = {
+      recursive = true;
+      source = ../../modules/old_configs/waybar;
+    };
+    "wofi" = {
+      recursive = true;
+      source = ../../modules/old_configs/wofi;
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -99,6 +147,7 @@
     #   epkgs.magit
     # ];
   };
+  programs.feh.enable = true;
   programs.git = {
     enable = true;
     diff-so-fancy.enable = true;

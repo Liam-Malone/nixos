@@ -1,0 +1,7 @@
+background_opacity 0.8
+font_size 14.0
+
+# BEGIN_KITTY_THEME
+# Rosé Pine Moon
+include current-theme.conf
+# END_KITTY_THEME

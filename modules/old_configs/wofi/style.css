@@ -1,0 +1,56 @@
+* {
+  transition: 0.2s;
+  color: #aaaaaa;
+}
+#window {
+  background-color: #1e1e2e;
+/*  background: linear-gradient(27deg, rgba(249,255,150,1) 0%, rgba(113,181,120,1) 54%, rgba(21,85,165,1) 100%);*/
+/*  background-image: url("file:///home/liamm/pictures/wp-store/dystopian-cyber-city.jpg");*/
+/* background-position: 50% 30%;*/
+  background-size: auto 200%;
+  border: 2.0px solid;
+  border-color: #00ffb2;
+  border-radius: 10px;
+}
+
+#input {
+  border-radius: 20px;
+  margin: 0 20px 20px 20px;
+  padding: 10px 10px;
+  background-color: #292929;
+  font-weight: 400;
+  color: #ffffffff;
+  font-size: 24px;
+}
+
+#outer-box {
+  padding: 20px;
+  color: #000000;
+  font-family: 'Source Code Pro';
+  font-weight: 400;
+  
+  border: 2px;
+  border-color: #00ffb2ff;
+}
+
+#expander {
+  background-color: rgba(69, 29, 50, 0.0);
+  color: #292929;
+}
+
+#entry {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffffff;
+  margin: 10px 0px;
+  padding: 10px 10px;
+  border-radius: 20px;
+}
+
+#entry:selected{
+  background-color:rgba(255,255,255,0.3);
+}
+
+#entry:hover {
+  color: #ffaa34;
+}

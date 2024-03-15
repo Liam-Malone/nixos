@@ -1,0 +1,325 @@
+// vim: ft=jsonc
+{
+  "layer": "top",
+  // "output": [],
+  "position": "right",
+  // "height": 38,
+  // "width": 900,
+  // "margin": "",
+  "margin-top": 2,
+  "margin-bottom": 2,
+  "margin-left": 2,
+  "margin-right": 2,
+  "spacing": 0,
+  "gtk-layer-shell": true,
+  "modules-left": [
+    //"custom/notification",
+    "custom/kernel",
+    "custom/updates",
+    "clock",
+    "disk",
+    "keyboard-state"
+    //"keyboard-state#Num"
+  ],
+  /*
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂚",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "󱅫",
+      "inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰂛"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  */
+  "custom/kernel": {
+      "exec": "uname -r | sed 's/-a.*//p'",
+      "format": "<big> </big>\n{}",
+      "interval": "once"
+  },
+
+  "custom/updates": {
+    // maybe add check to not attempt run when offline
+    "exec": "( checkupdates; paru -Qua ) | wc -l",
+    "interval": 7200,
+    "format": "<big>󰏖</big>\n{}",
+    "on-click": "( checkupdates; paru -Qua ) | wc -l",
+  },
+
+  "clock": {
+    "interval": 1,
+    //"format": "{:<big> 󰥔</big>\n%R\n<big> </big> \n%d/%m}",
+    "format": "{:<big> </big> \n%d/%m\n<big> 󰥔</big>\n%R}",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "disk": {
+    "interval": 30,
+    "format": "<big></big>  {path}:\n{percentage_used}%",
+    "alt-format": "  {path}:{used}\/{total}",
+    "tooltip-format": "  {path}:{used}\/{total}",
+  },
+    "keyboard-state": {
+        "capslock": true,
+        "format": "CAPS\n  {icon}",
+        "format-icons": {"locked": "", "unlocked": ""}
+    },
+    //"keyboard-state#Num": {
+    //    "numlock": true,
+    //    "format": "#lk: {icon}",
+    //    "format-icons": {"locked": "", "unlocked": ""}
+    //},
+
+  "modules-center": [
+    //"hyprland/workspaces",
+    "wlr/taskbar"
+    //"river/tags"
+    //"hyprland/submap",
+    //"hyprland/window"
+  ],
+    "river/tags": {
+        "on-click": "activate",
+        "num-tags": 10,
+        "format": "{icon}",
+        "tag-labels": [
+            "", // tag no. 1
+            "", // tag no. 2
+            "", // tag no. 3
+            "", // tag no. 4
+            "", // tag no. 5
+            "", // tag no. 6
+            "", // tag no. 7
+            "", // tag no. 8
+            "", // tag no. 9
+            ""  // tag no. 10
+        ]
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "on-click": "activate",
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "*": 10,
+        },
+        "format-icons": {
+            "1" : "",
+            "2" : "",
+            "3" : "",
+            "4" : "", 
+            "5" : "",
+            "6" : "",
+            "7" : "",
+            "8" : "",
+            "9" : "",
+            "10" : ""
+        }
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 20,
+        "all-outputs": true,
+        "on-click": "activate",
+        "ignore-list": [
+            "Alacritty",
+            "com.mitchellh.ghostty",
+            "contour",
+        ]
+    },
+ 
+  "hyprland/submap": {
+      "format": "{}",
+      "tooltip": false
+    },
+    "hyprland/window": {
+        "format": "{icon}",
+        //"format": " <span font_desc='Iosevka Raven 12'>{:.40}</span> ",
+        "separate-outputs": false
+    },
+  "modules-right": [
+    "tray",
+    "custom/wofi",
+    // "cpu",
+    // "memory",
+    // "backlight",
+    "pulseaudio#microphone",
+    "pulseaudio#audio",
+    //"bluetooth",
+    "backlight",
+    "network",
+    //"network#wlan0",
+    //"network#enp46s0",
+    "battery"
+  ],
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "custom/wofi" : {
+      "format": "<big></big>",
+      "on-click": "wofi --show drun",
+      "tooltip": false
+  },
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "on-click": "",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "󰍛 {used:0.1f}GB ({percentage}%) / {total:0.1f}GB",
+    "on-click": "",
+    "tooltip": false
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󰃟"
+    ],
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "on-click": "",
+    "tooltip": false
+  },
+  "pulseaudio#audio": {
+    "format": "<big>{icon}</big>",
+    "format-bluetooth": "󰂯{icon}",
+    "format-bluetooth-muted": "󰂯󰖁",
+    "format-muted": "<big>󰖁</big> {volume}%",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "headset": "󰋋",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "on-click-right": "pavucontrol",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "tooltip": true,
+    "tooltip-format": "{icon} {desc} {volume}%"
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 {volume}%",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "max-volume": 100,
+    "tooltip": false
+  },
+  "backlight": {
+      "device": "acpi_video0",
+      "format": "<big>{icon}</big>",
+      "tooltip-format": "{icon} {percent}%",
+      "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+      "on-scroll-up": "brightnessctl set 1%+",
+      "on-scroll-down": "brightnessctl set 1%-"
+  },
+  "network": {
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format-wifi": "<big>{icon}</big>",
+    "format-disconnected": "󰤮",
+    "format-ethernet": "<big>󰈀</big>",
+    "on-click": "nm-connection-editor",
+    "on-click-right": "", // give applet's menu if possible
+    "tooltip": true,
+    "min-length": 9,
+    "tooltip-format": "󰢮 {ifname}\n󰩟 {ipaddr}/{cidr}\n{icon} {essid}\n󱑽 {signalStrength}% {signaldBm} dBm {frequency} MHz\n󰞒 {bandwidthDownBytes}\n󰞕 {bandwidthUpBytes}"
+  },
+  //"network#wlan0": {
+  //  "interval": 1,
+  //  "interface": "wlan0",
+  //  "format-icons": [
+  //    "󰤯",
+  //    "󰤟",
+  //    "󰤢",
+  //    "󰤥",
+  //    "󰤨"
+  //  ],
+  //  "format-wifi": "<big>{icon}</big>",
+  //  "format-disconnected": "󰤮",
+  //  "format-ethernet": "<big>󰈀</big>",
+  //  //"format-disconnected": "",
+  //  // "format-alt": "{icon} {essid} | 󱑽 {signalStrength}% {signaldBm} dBm {frequency} MHz",
+  //  "on-click": "nm-connection-editor",
+  //  "on-click-right": "", // give applet's menu if possible
+  //  "tooltip": true,
+  //  "min-length": 9,
+  //  "tooltip-format": "󰢮 {ifname}\n󰩟 {ipaddr}/{cidr}\n{icon} {essid}\n󱑽 {signalStrength}% {signaldBm} dBm {frequency} MHz\n󰞒 {bandwidthDownBytes}\n󰞕 {bandwidthUpBytes}"
+  //},
+  //"network#enp46s0": {
+  //  "interval": 1,
+  //  "interface": "enp46s0",
+  //  "format-icons": [
+  //    "󰈀"
+  //  ],
+  //  "format-ethernet": "{icon}",
+  //  // "format-disconnected": "{icon}",
+  //  "format-disconnected": "",
+  //  // "format-alt": "{icon} | 󰢮 {ifname} | 󰩟 {ipaddr}/{cidr}",
+  //  "on-click": "",
+  //  "tooltip": true,
+  //  "min-length": 8,
+  //  "tooltip-format": "󰢮 {ifname}\n󰩟 {ipaddr}/{cidr}\n󰞒 {bandwidthDownBytes}\n󰞕 {bandwidthUpBytes}"
+  //},
+  //"bluetooth": {
+  //  "format-disabled": "",
+  //  "format-off": "",
+  //  "format-on": "󰂯",
+  //  "format-connected": "󰂯",
+  //  "format-connected-battery": "󰂯",
+  //  "tooltip-format-connected": "{device_alias} 󰂄{device_battery_percentage}%",
+  //  "on-click": "",
+  //  "tooltip": true
+  //},
+  "battery": {
+    "states": {
+      "good": 90,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<big>{icon}</big> {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󱘖 {capacity}%",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "on-click": "",
+    "on-update": "/home/liamm/.config/waybar/scripts/battery-warn.py 255",
+    "tooltip": true
+  }
+}
