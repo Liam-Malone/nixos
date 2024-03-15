@@ -15,6 +15,7 @@
     pkgs.blueman
     pkgs.cmake
     # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
+    pkgs.emacs-all-the-icons-fonts
     pkgs.firefox
     pkgs.gcc
     pkgs.htop

@@ -8,7 +8,7 @@ lsp.ensure_installed({
     --'lua_ls',
     'rust_analyzer',
     'jdtls',
-    'clangd',
+    --'clangd',
     'zls',
     --'pylsp',
     'ols',
