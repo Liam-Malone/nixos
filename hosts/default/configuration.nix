@@ -11,6 +11,10 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "electron-19.1.9"
+  # ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -74,7 +78,6 @@
   #   ];
   # };
   nix.settings.trusted-users = [ "root" "@wheel" ];
-
   users.users.liamm = {
     isNormalUser = true;
     description = "liamm";

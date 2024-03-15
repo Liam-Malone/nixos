@@ -12,17 +12,22 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.blueman
     pkgs.cmake
-    pkgs.gcc
+    # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
     pkgs.firefox
+    pkgs.gcc
     pkgs.htop
     pkgs.libtool
     pkgs.libreoffice
     pkgs.neofetch
-    pkgs.swww
+    pkgs.networkmanagerapplet
+    pkgs.pavucontrol
     pkgs.picom
+    pkgs.swww
     pkgs.thunderbird
     pkgs.tree
+
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
