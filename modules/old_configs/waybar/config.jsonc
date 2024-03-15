@@ -66,7 +66,8 @@
   },
   "disk": {
     "interval": 30,
-    "format": "<big></big>  {path}:\n{percentage_used}%",
+    "path": "/home",
+    "format": "<big>  </big>\n {path}:\n  {percentage_used}%",
     "alt-format": "  {path}:{used}\/{total}",
     "tooltip-format": "  {path}:{used}\/{total}",
   },

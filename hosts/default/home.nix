@@ -12,15 +12,20 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.blueman
     pkgs.cmake
+    pkgs.contour
     # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
+    # pkgs.discord
     pkgs.emacs-all-the-icons-fonts
+    pkgs.exfatprogs
     pkgs.firefox
     pkgs.gcc
+    pkgs.grimblast
+    pkgs.gnumake
     pkgs.htop
     pkgs.libtool
     pkgs.libreoffice
+    pkgs.gnome.nautilus
     pkgs.neofetch
     pkgs.networkmanagerapplet
     pkgs.pavucontrol
@@ -108,6 +113,8 @@
       recursive = true;
       source = ../../modules/old_configs/wofi;
     };
+    "user-dirs.dirs".source = ../../modules/old_configs/user-dirs.dirs;
+    "user-dirs.locale".source = ../../modules/old_configs/user-dirs.locale;
   };
   wayland.windowManager.hyprland = {
     enable = true;
@@ -168,6 +175,7 @@
   };
   programs.swaylock.enable = true;
   programs.waybar = {
+    enable = true;
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
   };
@@ -176,6 +184,7 @@
 
   # BEGIN SERVICES
 
+  services.blueman-applet.enable = true;
   services.dunst = {
     enable = true;
     # waylandDisplay = true;

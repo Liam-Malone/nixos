@@ -140,7 +140,7 @@ profiles:
         # If nothing is specified, the users' default login shell will be used.
         # But you may as well log in to a remote host.
         # shell: "ssh ubuntu-vm"
-        shell: "/bin/bash"
+        shell: "/run/current-system/sw/bin/bash"
         # arguments: ["some", "optional", "arguments", "for", "the", "shell"]
 
         # If this terminal is being executed from within Flatpak, enforces sandboxing

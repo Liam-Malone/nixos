@@ -597,7 +597,7 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 #+begin_src emacs-lisp
 (use-package vterm
 :config
-(setq shell-file-name "/bin/bash"
+(setq shell-file-name "/run/current-system/sw/bin/bash"
       vterm-max-scrollback 5000))
 #+end_src
 
@@ -741,6 +741,7 @@ Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM,
 
 #+begin_src emacs-lisp
   (use-package zig-mode)
+  (use-package nix-mode)
   ;; (use-package jai-mode)
   (use-package rust-mode)
   (use-package cargo-mode)

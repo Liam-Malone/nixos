@@ -55,6 +55,7 @@
     };
   };
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Configure keymap in X11
 
@@ -77,6 +78,11 @@
   #     tree
   #   ];
   # };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.gc = {
       automatic = true;
@@ -93,7 +99,11 @@
     description = "liamm";
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
   };
-
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -109,6 +119,9 @@
     alacritty
   ];
 
+
+  # System76 Devices
+  hardware.system76.enableAll = true;
 
   zramSwap = {
     enable = true;
