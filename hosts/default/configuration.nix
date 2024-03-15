@@ -78,6 +78,16 @@
   #   ];
   # };
   nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+  };
+  nix.optimise = {
+    automatic = true;
+    dates = [ "00:00" ];
+  };
+
   users.users.liamm = {
     isNormalUser = true;
     description = "liamm";
