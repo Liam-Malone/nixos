@@ -43,7 +43,6 @@
         fcitx5-mozc
         fcitx5-gtk
         fcitx5-chinese-addons
-        # fcitx5-japanese-addons
       ];
     };
   };
@@ -54,20 +53,22 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager = {
-    sddm.enable = true;
-    sessionPackages = [ pkgs.hyprland ];
-  };
-  services.xserver.windowManager.i3.enable = true;
-
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
   services.xserver = {
+    enable = true;
     xkb = {
       layout = "us";
       variant = "";
     };
+    displayManager = {
+      sddm.enable = true;
+      sessionPackages = [ pkgs.hyprland ];
+    };
+    windowManager.i3.enable = true;
+    libinput.enable = true;
   };
+
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
@@ -81,7 +82,6 @@
   hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.alice = {
@@ -156,6 +156,8 @@
     algorithm = "zstd";
   };
 
+  xdg.mime.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -197,5 +199,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

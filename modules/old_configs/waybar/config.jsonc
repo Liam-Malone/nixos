@@ -15,7 +15,7 @@
   "modules-left": [
     //"custom/notification",
     "custom/kernel",
-    "custom/updates",
+    // "custom/updates",
     "clock",
     "disk",
     "keyboard-state"
@@ -45,17 +45,17 @@
   */
   "custom/kernel": {
       "exec": "uname -r | sed 's/-a.*//p'",
-      "format": "<big> </big>\n{}",
+      "format": " <big> </big>\n{}",
       "interval": "once"
   },
 
-  "custom/updates": {
-    // maybe add check to not attempt run when offline
-    "exec": "( checkupdates; paru -Qua ) | wc -l",
-    "interval": 7200,
-    "format": "<big>󰏖</big>\n{}",
-    "on-click": "( checkupdates; paru -Qua ) | wc -l",
-  },
+  // "custom/updates": {
+  //   // maybe add check to not attempt run when offline
+  //   "exec": "( checkupdates; paru -Qua ) | wc -l",
+  //   "interval": 7200,
+  //   "format": "<big>󰏖</big>\n{}",
+  //   "on-click": "( checkupdates; paru -Qua ) | wc -l",
+  // },
 
   "clock": {
     "interval": 1,
@@ -67,7 +67,7 @@
   "disk": {
     "interval": 30,
     "path": "/home",
-    "format": "<big>  </big>\n {path}:\n  {percentage_used}%",
+    "format": "<big>  </big>\n {path}:\n   {percentage_used}%",
     "alt-format": "  {path}:{used}\/{total}",
     "tooltip-format": "  {path}:{used}\/{total}",
   },
