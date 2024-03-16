@@ -11,6 +11,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+
   home.packages = [
     pkgs.cmake
     pkgs.contour
@@ -33,8 +34,6 @@
     pkgs.swww
     pkgs.thunderbird
     pkgs.tree
-
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

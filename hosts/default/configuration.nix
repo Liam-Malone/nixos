@@ -78,6 +78,17 @@
   #     tree
   #   ];
   # };
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-original"
@@ -122,6 +133,9 @@
 
   # System76 Devices
   hardware.system76.enableAll = true;
+
+  services.auto-cpufreq.enable = true;
+  services.thermald.enable = true;
 
   zramSwap = {
     enable = true;

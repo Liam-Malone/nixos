@@ -164,8 +164,8 @@
         "w K" '(evil-window-move-very-top :wk "Move split to top")
         "w L" '(evil-window-move-far-right :wk "Move split to right")
         "w c" '(evil-window-delete :wk "Close window")
-        "w o" '(delete-other-windows :wk "__")
-        "w =" '(balance-windows :wk "__")
+        "w o" '(delete-other-windows :wk "Delete other windows")
+        "w =" '(balance-windows :wk "Balance windows")
         "q k" '(kill-buffer-and-window :wk "Kill buf and window")
         "q q" '(save-buffers-kill-terminal :wk "Save bufs, kill term"))
 
@@ -421,7 +421,7 @@
 
 (use-package vterm
 :config
-(setq shell-file-name "/bin/bash"
+(setq shell-file-name "/run/current-system/sw/bin/bash"
       vterm-max-scrollback 5000))
 
 (use-package vterm-toggle
@@ -520,6 +520,7 @@
                                'ivy-rich-switch-buffer-transformer))
 
 (use-package zig-mode)
+(use-package nix-mode)
 ;; (use-package jai-mode)
 (use-package rust-mode)
 (use-package cargo-mode)

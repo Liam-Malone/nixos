@@ -259,7 +259,7 @@ profiles:
         # Font related configuration (font face, styles, size, rendering mode).
         font:
             # Initial font size in pixels.
-            size: 14
+            size: 16
 
             # DPI scaling factor applied on top of the system configured on (default: 1.0).
             dpi_scale: 1.0
