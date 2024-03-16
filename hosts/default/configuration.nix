@@ -67,31 +67,16 @@
     libinput.enable = true;
   };
 
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Configure keymap in X11
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  
+  services.printing.enable = true; # Enable CUPS to print documents.
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     firefox
-  #     tree
-  #   ];
-  # };
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
