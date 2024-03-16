@@ -31,6 +31,7 @@
     pkgs.networkmanagerapplet
     pkgs.pavucontrol
     pkgs.picom
+    pkgs.signal-desktop
     pkgs.swww
     pkgs.thunderbird
     pkgs.tree
