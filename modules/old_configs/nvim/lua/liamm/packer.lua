@@ -50,6 +50,9 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- screenshot tool
+  use {'mistricky/codesnap.nvim', build='make build_generator'}
+
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end}

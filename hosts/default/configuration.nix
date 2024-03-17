@@ -130,7 +130,7 @@
   users.users.liamm = {
     isNormalUser = true;
     description = "liamm";
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ]; # Enable ‘sudo’ for the user.
   };
 
   programs.dconf.enable = true;
@@ -155,6 +155,7 @@
     discord
     wl-clipboard
     alacritty
+    libnotify
   ];
 
 
