@@ -59,20 +59,36 @@
       layout = "us";
       variant = "";
     };
-    displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ../../modules/themes/sddm-theme.nix { inherit pkgs; }}";
-      sessionPackages = [ pkgs.hyprland ];
-    };
+    # displayManager = {
+    #   sddm.enable = true;
+    #   sddm.theme = "${import ../../modules/themes/sddm-theme.nix { inherit pkgs; }}";
+    #   sessionPackages = [ pkgs.hyprland ];
+    # };
     windowManager.i3.enable = true;
     libinput.enable = true;
   };
+
+
+  services.greetd = {
+    enable = true;
+    restart = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+      };
+    };
+  };
+  environment.etc."greetd/environments".text = ''
+      Hyprland
+      none+i3
+      '';
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
   
   services.printing.enable = true; # Enable CUPS to print documents.
+  security.pam.services.swaylock = {};
 
   # Enable sound.
   sound.enable = true;
