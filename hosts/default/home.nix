@@ -13,18 +13,20 @@
   # environment.
 
   home.packages = [
+    pkgs.brave
     pkgs.brightnessctl
-    pkgs.cmake
+    # pkgs.cmake
     pkgs.contour
     # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
     # pkgs.discord
     pkgs.emacs-all-the-icons-fonts
     pkgs.exfatprogs
     pkgs.firefox
+    # pkgs.flatpak
     pkgs.floorp
-    pkgs.gcc
+    # pkgs.gcc
     pkgs.grimblast
-    pkgs.gnumake
+    # pkgs.gnumake
     pkgs.htop
     pkgs.keepassxc
     pkgs.libtool
@@ -36,6 +38,7 @@
     pkgs.pavucontrol
     pkgs.picom
     pkgs.signal-desktop
+    # pkgs.spotify
     pkgs.swayidle
     pkgs.swww
     pkgs.thunderbird
@@ -66,6 +69,31 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # THEMING
+
+  ## QT SECTION
+  qt.enable = true;
+  qt.platformTheme = "gtk";
+  qt.style.name = "adwaita-dark";
+
+  ## GTK SECTION
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+    theme = {
+      name = "Matera-dark";
+      package = pkgs.materia-theme;
+    };
+    iconTheme = {
+      package = pkgs.arc-icon-theme;
+      name = "arc-icon-theme";
+    };
+  };
+
 
   # ENV SETTINGS
 
@@ -223,8 +251,6 @@
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
-  services.swayidle.enable = true;
-  #xdg.portal.enable = true;
-  #xdg.portal.wlr.enable = true;
   #services.nexcloud-client.enable = true;
+  services.swayidle.enable = true;
 }

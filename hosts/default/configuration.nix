@@ -61,6 +61,7 @@
     };
     displayManager = {
       sddm.enable = true;
+      sdd.theme = "${import ../../modules/themes/sddm-theme.nix { inherit pkgs; }}";
       sessionPackages = [ pkgs.hyprland ];
     };
     windowManager.i3.enable = true;
@@ -89,12 +90,15 @@
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "discord-0.0.44"
-  ];
+# This is my `configuration.nix`
+
+  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #   "steam"
+  #   "steam-original"
+  #   "steam-run"
+  # ];
+
 
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.gc = {
@@ -112,6 +116,8 @@
     description = "liamm";
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
   };
+
+  programs.dconf.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -129,9 +135,10 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    spotify
+    discord
     wl-clipboard
     alacritty
-    discord
   ];
 
 
@@ -139,6 +146,7 @@
   hardware.system76.enableAll = true;
 
   services.auto-cpufreq.enable = true;
+  # services.flatpak.enable = true;
   services.thermald.enable = true;
 
   zramSwap = {
@@ -147,6 +155,10 @@
   };
 
   xdg.mime.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
