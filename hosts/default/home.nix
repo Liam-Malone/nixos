@@ -12,38 +12,33 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
 
-  home.packages = [
-    pkgs.brave
-    pkgs.brightnessctl
-    # pkgs.cmake
-    pkgs.contour
-    # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
-    # pkgs.discord
-    pkgs.emacs-all-the-icons-fonts
-    pkgs.exfatprogs
-    pkgs.firefox
-    # pkgs.flatpak
-    pkgs.floorp
-    # pkgs.gcc
-    pkgs.grimblast
-    # pkgs.gnumake
-    pkgs.htop
-    pkgs.keepassxc
-    pkgs.libtool
-    pkgs.libreoffice
-    pkgs.gnome.nautilus
-    pkgs.neofetch
-    pkgs.networkmanagerapplet
-    pkgs.pamixer
-    pkgs.pavucontrol
-    pkgs.picom
-    pkgs.signal-desktop
-    # pkgs.spotify
-    pkgs.swayidle
-    pkgs.swww
-    pkgs.thunderbird
-    pkgs.tree
-    pkgs.wev
+  home.packages = with pkgs; [
+    brave
+    brightnessctl
+    contour
+    emacs-all-the-icons-fonts
+    exfatprogs
+    firefox
+    floorp
+    gnome.gnome-keyring
+    grimblast
+    htop
+    keepassxc
+    libtool
+    libreoffice
+    gnome.nautilus
+    neofetch
+    networkmanagerapplet
+    pamixer
+    pavucontrol
+    picom
+    signal-desktop
+    swayidle
+    swww
+    thunderbird
+    tree
+    wev
+    # etcher ## Currently Uses Electron-19 -- which is marked EOL
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
