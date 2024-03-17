@@ -170,7 +170,7 @@
       (lm/leader-keys
           "SPC" '(counsel-M-x :wk "Counsel M-x")
           "." '(find-file :wk "Find file")
-          "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
+          "f c" '((lambda () (interactive) (find-file "~/nixos/modules/old_configs/emacs/config.org")) :wk "Edit emacs config")
           "f r" '(counsel-recentf :wk "Find recent files")
           "TAB TAB" '(comment-line :wk "Comment lines"))
 

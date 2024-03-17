@@ -88,11 +88,8 @@
     dina-font
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-  ];
+
+
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.gc = {
       automatic = true;
@@ -126,6 +123,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    wl-clipboard
     alacritty
   ];
 

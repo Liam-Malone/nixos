@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "liamm";
@@ -13,28 +13,34 @@
   # environment.
 
   home.packages = [
+    pkgs.brightnessctl
     pkgs.cmake
     pkgs.contour
     # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
-    # pkgs.discord
+    pkgs.discord
     pkgs.emacs-all-the-icons-fonts
     pkgs.exfatprogs
     pkgs.firefox
+    pkgs.floorp
     pkgs.gcc
     pkgs.grimblast
     pkgs.gnumake
     pkgs.htop
+    pkgs.keepassxc
     pkgs.libtool
     pkgs.libreoffice
     pkgs.gnome.nautilus
     pkgs.neofetch
     pkgs.networkmanagerapplet
+    pkgs.pamixer
     pkgs.pavucontrol
     pkgs.picom
     pkgs.signal-desktop
+    pkgs.swayidle
     pkgs.swww
     pkgs.thunderbird
     pkgs.tree
+    pkgs.wev
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -53,6 +59,12 @@
     NIX_SHELL_PRESERVE_PROMPT = 1;
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+    # "discord-0.0.44"
+  ];
   nix.settings.extra-trusted-substituters = [
     "https://ghostty.cachix.org"
   ];
