@@ -61,7 +61,7 @@
     };
     displayManager = {
       sddm.enable = true;
-      sdd.theme = "${import ../../modules/themes/sddm-theme.nix { inherit pkgs; }}";
+      sddm.theme = "${import ../../modules/themes/sddm-theme.nix { inherit pkgs; }}";
       sessionPackages = [ pkgs.hyprland ];
     };
     windowManager.i3.enable = true;

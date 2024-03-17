@@ -1,11 +1,12 @@
 { pkgs }:
 
 let
-  imgLink = "https://github.com/Liam-Malone/nixos/modules/backgrounds/desert.jpg";
-  image = pkgs.fetchurl {
-    url = imgLink;
-    sha256 = "";
-  };
+  # imgLink = "https://github.com/Liam-Malone/nixos/blob/main/modules/backgrounds/desert.jpg";
+  # image = pkgs.fetchurl {
+  #   url = imgLink;
+  #   sha256 = "1qyra0ps99pi64nhdmn211v8fxh9f6kd5sxpqaz9ab24janmf55c";
+  # };
+  image = ../backgrounds/desert.jpg;
 in
 pkgs.stdenv.mkDerivation {
   name = "sddm-theme";
@@ -18,7 +19,7 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
        mkdir -p $out
        cp -R ./* $out
-       rm Background.jpg
+       # rm Background.jpg
        cp -r ${image} $out/Background.jpg
      '';
 }
