@@ -89,6 +89,12 @@
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+    "discord-0.0.44"
+  ];
 
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.gc = {
@@ -125,6 +131,7 @@
     wget
     wl-clipboard
     alacritty
+    discord
   ];
 
 

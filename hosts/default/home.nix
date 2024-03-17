@@ -17,7 +17,7 @@
     pkgs.cmake
     pkgs.contour
     # pkgs.etcher ## Currently Uses Electron-19 -- which is marked EOL
-    pkgs.discord
+    # pkgs.discord
     pkgs.emacs-all-the-icons-fonts
     pkgs.exfatprogs
     pkgs.firefox
@@ -59,12 +59,6 @@
     NIX_SHELL_PRESERVE_PROMPT = 1;
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-    # "discord-0.0.44"
-  ];
   nix.settings.extra-trusted-substituters = [
     "https://ghostty.cachix.org"
   ];
