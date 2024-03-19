@@ -59,8 +59,7 @@
 
   "clock": {
     "interval": 1,
-    //"format": "{:<big> 󰥔</big>\n%R\n<big> </big> \n%d/%m}",
-    "format": "{:<big> </big> \n%d/%m\n<big> 󰥔</big>\n%R}",
+    "format": "<big> </big> \n{:%d/%m\n<big> 󰥔</big>\n%R}",
     "tooltip": true,
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
