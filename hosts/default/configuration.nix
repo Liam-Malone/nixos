@@ -68,6 +68,10 @@
     libinput.enable = true;
   };
 
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 
   services.greetd = {
     enable = true;
@@ -171,10 +175,12 @@
     algorithm = "zstd";
   };
 
-  xdg.mime.enable = true;
-  xdg.portal = {
+  xdg = {
+    mime.enable = true;
+    portal = {
     enable = true;
     wlr.enable = true;
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are

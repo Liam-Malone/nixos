@@ -21,17 +21,19 @@
     firefox
     floorp
     gnome.gnome-keyring
+    gnome.nautilus
     grimblast
     htop
     keepassxc
     libtool
     libreoffice
-    gnome.nautilus
     neofetch
     networkmanagerapplet
+    openvpn
     pamixer
     pavucontrol
     picom
+    powertop
     signal-desktop
     swayidle
     swww
@@ -80,7 +82,7 @@
       name = "Bibata-Modern-Ice";
     };
     theme = {
-      name = "Matera-dark";
+      name = "Materia-dark";
       package = pkgs.materia-theme;
     };
     iconTheme = {
@@ -161,7 +163,14 @@
     enableCompletion = true;
     enableVteIntegration = true;
     initExtra =''
-      export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+      if [[ -z $ORIG_SHLVL ]]; then
+          export ORIG_SHLVL=$SHLVL
+      fi;
+      if [[ $SHLVL -gt $ORIG_SHLVL ]]; then
+          export PS1='\[\e[1;m\e[1;33m\e[1;m\] ($(($SHLVL - $ORIG_SHLVL))) \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+      else
+          export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
+      fi;
       set -o vi
     '';
     shellAliases = {
