@@ -12,11 +12,13 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
 
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     brave
     brightnessctl
     contour
     emacs-all-the-icons-fonts
+    emacsPackages.pdf-tools
     exfatprogs
     firefox
     floorp
@@ -27,6 +29,7 @@
     keepassxc
     libtool
     libreoffice
+    minecraft
     neofetch
     networkmanagerapplet
     openvpn
@@ -34,9 +37,11 @@
     pavucontrol
     picom
     powertop
+    praat
     signal-desktop
     swayidle
     swww
+    texliveFull
     thunderbird
     tree
     wev
@@ -240,16 +245,17 @@
     startWithUserSession = true;
   };
 
-  services.flameshot = {
-    enable = true;
-    settings = {
-      General = {
-        disabledTrayIcon = true;
-        showStartupLaunchMessage = false;
-      };
-    };
-  };
+  # services.flameshot = {
+  #   enable = true;
+  #   settings = {
+  #     General = {
+  #       disabledTrayIcon = true;
+  #       showStartupLaunchMessage = false;
+  #     };
+  #   };
+  # };
 
+  services.gnome-keyring.enable = true;
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800;

@@ -166,9 +166,11 @@
   # System76 Devices
   hardware.system76.enableAll = true;
 
-  services.auto-cpufreq.enable = true;
+  services = {
+    auto-cpufreq.enable = true;
+    thermald.enable = true;
+  };
   # services.flatpak.enable = true;
-  services.thermald.enable = true;
 
   zramSwap = {
     enable = true;
