@@ -14,6 +14,7 @@
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    android-studio
     brave
     brightnessctl
     contour
@@ -23,8 +24,10 @@
     firefox
     floorp
     gnome.gnome-keyring
+    gnome.gvfs
     gnome.nautilus
     grimblast
+    # gvfs
     htop
     keepassxc
     libtool
@@ -38,6 +41,7 @@
     picom
     powertop
     praat
+    prismlauncher
     signal-desktop
     swayidle
     swww
@@ -216,6 +220,9 @@
     vimAlias = true;
     vimdiffAlias = true;
   };
+  programs.obs-studio = {
+      enable = true;
+  };
   programs.swaylock.enable = true;
   programs.waybar = {
     enable = true;
@@ -261,6 +268,6 @@
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
-  #services.nexcloud-client.enable = true;
+  services.nextcloud-client.enable = true;
   services.swayidle.enable = true;
 }

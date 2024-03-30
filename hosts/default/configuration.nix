@@ -18,6 +18,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.plymouth.enable = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -89,6 +90,15 @@
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  hardware.opengl = {
+    enable = true;
+    # extraPackages = with pkgs; [
+    #   vaapiIntel
+    #   vaapiVdpau
+    #   libvdpau-va-gl
+    # ];
+    # driSupport32Bit = true;
+  };
 
   
   services.printing.enable = true; # Enable CUPS to print documents.
@@ -124,7 +134,7 @@
   nix.gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 20d";
   };
   nix.optimise = {
     automatic = true;
@@ -134,7 +144,7 @@
   users.users.liamm = {
     isNormalUser = true;
     description = "liamm";
-    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "davfs2" "input" ]; # Enable ‘sudo’ for the user.
   };
 
   programs.dconf.enable = true;
@@ -143,6 +153,7 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+  programs.nix-ld.enable = true;
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -160,6 +171,8 @@
     wl-clipboard
     alacritty
     libnotify
+    mesa
+    libdrm
   ];
 
 
@@ -167,6 +180,7 @@
   hardware.system76.enableAll = true;
 
   services = {
+    gvfs.enable = true;
     auto-cpufreq.enable = true;
     thermald.enable = true;
   };
@@ -180,8 +194,10 @@
   xdg = {
     mime.enable = true;
     portal = {
-    enable = true;
-    wlr.enable = true;
+      enable = true;
+      wlr.enable = true;
+      gtkUsePortal = true;
+      extraPortals = with pkgs;[ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
     };
   };
 
