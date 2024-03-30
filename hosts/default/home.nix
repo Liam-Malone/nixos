@@ -19,7 +19,7 @@
     brightnessctl
     contour
     emacs-all-the-icons-fonts
-    emacsPackages.pdf-tools
+    # emacsPackages.pdf-tools
     exfatprogs
     firefox
     floorp
@@ -202,10 +202,12 @@
   };
   programs.emacs = {
     enable = true;
-    # extraPackages = epkgs: [
-    #   epkgs.nix-mode
-    #   epkgs.magit
-    # ];
+    extraPackages = epkgs: [
+      # epkgs.nix-mode
+      # epkgs.magit
+      epkgs.pdf-tools 
+      epkgs.org-pdftools
+    ];
   };
   programs.feh.enable = true;
   programs.git = {
