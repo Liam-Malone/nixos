@@ -73,12 +73,12 @@
     "keyboard-state": {
         "capslock": true,
         "format": "CAPS\n  {icon}",
-        "format-icons": {"locked": "", "unlocked": ""}
+        "format-icons": {"locked": "", "unlocked": ""}
     },
     //"keyboard-state#Num": {
     //    "numlock": true,
     //    "format": "#lk: {icon}",
-    //    "format-icons": {"locked": "", "unlocked": ""}
+    //    "format-icons": {"locked": "", "unlocked": ""}
     //},
 
   "modules-center": [
