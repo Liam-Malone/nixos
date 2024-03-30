@@ -319,7 +319,7 @@
       "󰁹"
     ],
     "on-click": "",
-    "on-update": "/home/liamm/.config/waybar/scripts/battery-warn.py 255",
+    "on-update": "/home/liamm/.config/waybar/scripts/battery-warn.sh 255",
     "tooltip": true
   }
 }
