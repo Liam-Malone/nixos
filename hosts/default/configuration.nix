@@ -11,29 +11,26 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "electron-19.1.9"
-  # ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking = {
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     hostName = "nixos-laptop";
+    firewall.enable = false;
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
   };
 
   # Set your time zone.
   time.timeZone = "Europe/Dublin";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n= {
@@ -47,66 +44,61 @@
       ];
     };
   };
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+      windowManager = {
+        i3.enable = true;
+        dwm.enable = true;
+      };
+      libinput.enable = true;
     };
-    # displayManager = {
-    #   sddm.enable = true;
-    #   sddm.theme = "${import ../../modules/themes/sddm-theme.nix { inherit pkgs; }}";
-    #   sessionPackages = [ pkgs.hyprland ];
-    # };
-    windowManager.i3.enable = true;
-    libinput.enable = true;
+    greetd = {
+      enable = true;
+      restart = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+        };
+      };
+    };
+    blueman.enable = true;
+    printing.enable = true; # Enable CUPS to print documents.
+    gvfs.enable = true;
+    auto-cpufreq.enable = true;
+    thermald.enable = true;
   };
 
   powerManagement = {
     enable = true;
     powertop.enable = true;
   };
-
-  services.greetd = {
-    enable = true;
-    restart = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
-      };
-    };
-  };
   environment.etc."greetd/environments".text = ''
       Hyprland
       none+i3
       '';
 
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  hardware.opengl = {
-    enable = true;
-    # extraPackages = with pkgs; [
-    #   vaapiIntel
-    #   vaapiVdpau
-    #   libvdpau-va-gl
-    # ];
-    # driSupport32Bit = true;
+  hardware = {
+    bluetooth.enable = true;
+    opengl = {
+      enable = true;
+    };
+    pulseaudio.enable = true;
+
+    # System76 Devices
+    system76.enableAll = true;
   };
 
-  
-  services.printing.enable = true; # Enable CUPS to print documents.
   security.pam.services.swaylock = {};
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -120,9 +112,12 @@
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
-# This is my `configuration.nix`
-
   nixpkgs.config.allowUnfree = true;
+nixpkgs.overlays = [
+    (final: prev: {
+      dwm = prev.dwm.overrideAttrs (old: {src = /home/liamm/oss/dwm;});
+    })
+  ];
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   #   "steam"
   #   "steam-original"
@@ -147,13 +142,24 @@
     extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "davfs2" "input" ]; # Enable ‘sudo’ for the user.
   };
 
-  programs.dconf.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+  programs = {
+    dconf.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+
+    nix-ld.enable = true;
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
-  programs.nix-ld.enable = true;
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -175,17 +181,6 @@
     libdrm
   ];
 
-
-  # System76 Devices
-  hardware.system76.enableAll = true;
-
-  services = {
-    gvfs.enable = true;
-    auto-cpufreq.enable = true;
-    thermald.enable = true;
-  };
-  # services.flatpak.enable = true;
-
   zramSwap = {
     enable = true;
     algorithm = "zstd";
@@ -196,17 +191,9 @@
     portal = {
       enable = true;
       wlr.enable = true;
-      gtkUsePortal = true;
+      # gtkUsePortal = true;
       extraPortals = with pkgs;[ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
     };
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-  #   enableSSHSupport = true;
   };
 
   # List services that you want to enable:
@@ -214,29 +201,7 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
+  # This option defines the first version of NixOS you have installed on this particular machine
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
   #
