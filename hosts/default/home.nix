@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, callPackage, ... }:
 
 {
   home.username = "liamm";
@@ -17,6 +17,12 @@
   # environment.
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ 
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      sha256 = "00f028qrz2z0i7ma24993pwxcrx2viay6jygaz3jykj7lrww6ja6";
+    }))
+  ];
   home.packages = with pkgs; [
     android-studio
     brave
@@ -203,6 +209,7 @@
     };
     emacs = {
       enable = true;
+      package = pkgs.emacs-unstable;
       extraPackages = epkgs: [
         epkgs.pdf-tools 
         epkgs.org-pdftools
@@ -239,6 +246,7 @@
     blueman-applet.enable = true;
     emacs = {
       enable = true;
+      package = pkgs.emacs-unstable;
       client = {
         enable = true;
         arguments = [
