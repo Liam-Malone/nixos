@@ -5,10 +5,9 @@
     enable = true;
     settings = {
       font = {
-        normal.family = "Iosevka";
+        normal.family = "FiraCodeNerdFontMono";
         size = 16;
       };
-      shell = "${pkgs.bash}/bin/bash";
       window = {
         lines = 20;
         columns = 200;
