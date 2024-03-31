@@ -3,7 +3,6 @@
 {
   services.dunst = {
     enable = true;
-    iconTheme = pkgs.arc-icon-theme;
     settings = {
       global = {
         width = 300;
