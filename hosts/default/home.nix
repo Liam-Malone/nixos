@@ -17,12 +17,12 @@
   # environment.
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ 
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-      sha256 = "00f028qrz2z0i7ma24993pwxcrx2viay6jygaz3jykj7lrww6ja6";
-    }))
-  ];
+  # nixpkgs.overlays = [ 
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+  #     sha256 = "00f028qrz2z0i7ma24993pwxcrx2viay6jygaz3jykj7lrww6ja6";
+  #   }))
+  # ];
   home.packages = with pkgs; [
     android-studio
     brave
@@ -73,7 +73,7 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "emacs";
+    EDITOR = "emacsclient";
     GIT_EDITOR = "nvim";
     NIX_SHELL_PRESERVE_PROMPT = 1;
   };
@@ -209,7 +209,7 @@
     };
     emacs = {
       enable = true;
-      package = pkgs.emacs-unstable;
+      package = pkgs.emacs-gtk;
       extraPackages = epkgs: [
         epkgs.pdf-tools 
         epkgs.org-pdftools
@@ -246,7 +246,7 @@
     blueman-applet.enable = true;
     emacs = {
       enable = true;
-      package = pkgs.emacs-unstable;
+      package = pkgs.emacs-gtk;
       client = {
         enable = true;
         arguments = [
