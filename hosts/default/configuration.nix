@@ -161,6 +161,7 @@ nixpkgs.overlays = [
   };
 
   home-manager = {
+    useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs; };
     users = {
       "liamm" = import ./home.nix;
@@ -195,6 +196,7 @@ nixpkgs.overlays = [
       extraPortals = with pkgs;[ 
         xdg-desktop-portal-gtk 
         xdg-desktop-portal-wlr
+        xdg-desktop-portal-hyprland
       ];
       config = {
         common = {

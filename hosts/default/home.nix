@@ -7,6 +7,7 @@
   imports = [
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/terminals/alacritty.nix
+    ../../modules/desktop/bluetooth.nix
   ];
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
@@ -36,10 +37,12 @@
     gnome.gnome-keyring
     gnome.gvfs
     gnome.nautilus
+    grim
     grimblast
     # gvfs
     htop
     keepassxc
+    libsForQt5.polkit-kde-agent
     libtool
     libreoffice
     minecraft
@@ -59,6 +62,7 @@
     thunderbird
     tree
     wev
+    xdg-user-dirs
     # etcher ## Currently Uses Electron-19 -- which is marked EOL
   ];
 
@@ -244,6 +248,7 @@
   # BEGIN SERVICES
   services = {
     blueman-applet.enable = true;
+    network-manager-applet.enable = true;
     emacs = {
       enable = true;
       package = pkgs.emacs-gtk;
