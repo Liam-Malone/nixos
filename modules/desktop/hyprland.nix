@@ -1,24 +1,22 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   osConfig,
   ...
 }:
 
-let
-  home = builtins.getEnv "HOME";
-in
 {
   home.packages = with pkgs; [
     hyprpicker
     # hyprlock
     # hypridle
   ];
-  programs.hyprland = {
+  wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     settings = {
       monitor = [
         "eDP-1,1920x1080@60,0x0,1"
@@ -30,6 +28,7 @@ in
         "wl-paste -p --watch wl-copy -p ''"
       ];
       env = [
+        "PATH,PATH:$HOME/.local"
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,24"
         "WLR_NO_HARDWARE_CURSORS,1"
@@ -82,7 +81,7 @@ in
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
-        col.shadow = "rgba(1a1a1aee)";
+        "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -153,8 +152,8 @@ in
       "$screenshotarea" = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
 
       bind = [
-        "$altMod, Return, exec, ${home}/.local/bin/ghostty"
-        "$mainMod, Return, exec, ${home}/.local/bin/ghostty" # for apps that yoink alt- binds
+        "$altMod, Return, exec, $HOME/.local/bin/ghostty"
+        "$mainMod, Return, exec, $HOME/.local/bin/ghostty" # for apps that yoink alt- binds
         "$altMod SHIFT, Return, exec, alacritty"
         "$mainMod SHIFT, D, exec, discord --enable-blink-features=MiddleClickAutoscroll"
         "$mainMod SHIFT, E, exec, emacsclient -c -a 'emacs'"
@@ -252,12 +251,12 @@ in
         "$mainMod, mouse:273, resizewindow"
       ];
 
-        # Screenshots and Submaps
-      extraConfig = ''
+    };
+    extraConfig = ''
         bind = $mainMod, R, submap, resize
         submap = resize
         bind=, escape,submap,reset
-        
+
         binde=, left, resizeactive, -10 0
         bindr=, left, submap, reset
         binde=, right, resizeactive, 10 0
@@ -266,7 +265,7 @@ in
         bindr=, up, submap, reset
         binde=, down, resizeactive, 0 -10
         bindr=, down, submap, reset
-        
+
         binde=, H, resizeactive, -10 0
         bindr=, H, submap, reset
         binde=, J, resizeactive, 0 -10
@@ -275,31 +274,30 @@ in
         bindr=, K, submap, reset
         binde=, L, resizeactive, 10 0
         bindr=, L, submap, reset
-        
+
         submap=reset
 
         bind = $mainMod, B, submap, browser_select
         submap = browser_select
-        
+
         bind =, B, exec, brave --enable-blink-features=MiddleClickAutoscroll
         bind =, B, submap, reset
-        
+
         bind =, F, exec, firefox
         bind =, F, submap, reset
-        
+
         bind=, escape,submap,reset
         submap=reset
-        
+
         bind = $mainMod SHIFT, V, submap, video_stuff
         submap = video_stuff
         bind = , O, exec, obs
         bind = , O, submap, reset
         bind = , V, exec , kdenlive
         bind = , V, submap, reset
-        
+
         bind=, escape,submap,reset
         submap = reset
-      '';
-    };
+        '';
   };
 }

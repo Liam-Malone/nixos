@@ -8,6 +8,7 @@
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/terminals/alacritty.nix
     ../../modules/desktop/bluetooth.nix
+    ../../modules/desktop/hyprland.nix
   ];
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
@@ -135,10 +136,10 @@
       recursive = true;
       source = ../../modules/old_configs/ghostty;
     };
-    "hypr" = {
-      recursive = true;
-      source = ../../modules/old_configs/hypr;
-    };
+    # "hypr" = {
+    #   recursive = true;
+    #   source = ../../modules/old_configs/hypr;
+    # };
     "kitty" = {
       recursive = true;
       source = ../../modules/old_configs/kitty;
@@ -166,15 +167,6 @@
     "user-dirs.dirs".source = ../../modules/old_configs/user-dirs.dirs;
     "user-dirs.locale".source = ../../modules/old_configs/user-dirs.locale;
   };
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = true;
-    xwayland.enable = true;
-    # extraConfig = ''
-    #   ${builtins.readFile ./hyprland.conf}
-    #   '';
-  };
-
   # BEGIN PROGRAMS
 
   programs = {

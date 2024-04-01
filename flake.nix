@@ -9,6 +9,10 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprlan-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
