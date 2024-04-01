@@ -143,6 +143,14 @@ in
         "workspace 10, Minecraft"
       ];
 
+      "$mainMod" = "SUPER";
+      "$altMod" = "ALT";
+      "$ctrlMod" = "CTRL";
+
+
+      # used for screenshots
+      "$screenshotarea" = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
+
       bind = [
         "$altMod, Return, exec, ${home}/.local/bin/ghostty"
         "$mainMod, Return, exec, ${home}/.local/bin/ghostty" # for apps that yoink alt- binds
@@ -160,6 +168,10 @@ in
         "$mainMod, V, togglefloating, "
         "$mainMod SHIFT, S, togglesplit," # dwindle
         "$mainMod, F, fullscreen,"
+
+        # Screenshot
+        ", Print, exec, $screenshotarea"
+        "SHIFT, Print, exec, grimblast --notify --cursor copy output"
 
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
@@ -241,10 +253,6 @@ in
 
         # Screenshots and Submaps
       extraConfig = ''
-        $screenshotarea = hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copy area; hyprctl keyword animation "fadeOut,1,4,default"
-        bind = , Print, exec, $screenshotarea
-        bind = SHIFT, Print, exec, grimblast --notify --cursor copy output
-
         bind = $mainMod, R, submap, resize
         submap = resize
         bind=, escape,submap,reset
