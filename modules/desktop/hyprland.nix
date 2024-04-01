@@ -32,6 +32,7 @@ in
       env = [
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,24"
+        "WLR_NO_HARDWARE_CURSORS,1"
       ];
       input = {
         kb_layout = "us";
