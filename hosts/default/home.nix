@@ -33,6 +33,7 @@
     emacs-all-the-icons-fonts
     # emacsPackages.pdf-tools
     exfatprogs
+    filezilla
     firefox
     floorp
     gnome.gnome-keyring

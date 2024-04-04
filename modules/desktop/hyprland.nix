@@ -8,10 +8,16 @@
 }:
 
 {
+  imports = with inputs; [
+    hypridle.homeManagerModules.default
+    hyprlock.homeManagerModules.default
+    #hyprpaper.homeManagerModules.default
+  ];
   home.packages = with pkgs; [
     hyprpicker
     # hyprlock
     # hypridle
+
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -28,7 +34,6 @@
         "wl-paste -p --watch wl-copy -p ''"
       ];
       env = [
-        "PATH,PATH:$HOME/.local"
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,24"
         "WLR_NO_HARDWARE_CURSORS,1"
@@ -300,4 +305,15 @@
         submap = reset
         '';
   };
+  # programs.hyprlock = {
+  #   enable = true;
+  #   general = { };
+  #   backgrounds = [
+  #     {
+  #       path = "$HOME/pictures/wallpapers/desert.jpg";
+  #     }
+  #   ];
+  # };
+  # programs.hypridle = {
+  # };
 }
