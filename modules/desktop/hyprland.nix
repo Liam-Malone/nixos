@@ -305,15 +305,69 @@
         submap = reset
         '';
   };
-  # programs.hyprlock = {
-  #   enable = true;
-  #   general = { };
-  #   backgrounds = [
-  #     {
-  #       path = "$HOME/pictures/wallpapers/desert.jpg";
-  #     }
-  #   ];
-  # };
-  # programs.hypridle = {
-  # };
+  lib.inputMethod.fcitx5.waylandFrontend = true;
+  programs.hyprlock = {
+    enable = true;
+    general = { };
+    backgrounds = [
+      {
+        path = "/home/liamm/pictures/desert.png";
+      }
+    ];
+    input-fields = [
+      {
+        outline_thickness = 2;
+        outer_color = "#fe0b00";
+        inner_color = "#0c0c0c";
+        font_color = "#efefef";
+        check_color = "#0eff0d";
+        fail_color = "#ff009e";
+        capslock_color = "#bb00ee";
+        placeholder_text = "<i>Input Password...</i>";
+        fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+      }
+    ];
+    labels = [
+      {
+        text = "$TIME";
+        color = "";
+        font_size = 28;
+        font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+      }
+    ];
+  };
+
+  services = {
+    hypridle = {
+      enable = true;
+      lockCmd = "${pkgs.procps}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple sessions
+      beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session"; # lock before suspend.
+      afterSleepCmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to hit key twice to turn on display
+      listeners = [
+        {
+          timeout = 120;
+          onTimeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+          onResume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restor.
+        }
+        {
+          timeout = 120;
+          onTimeout = "${pkgs.brightnessctl}/bin/brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
+          onResume = "${pkgs.brightnessctl}/bin/brightnessctl -rd rgb:kbd_backlight"; # turn on keyboard backlight.
+        }
+        {
+          timeout = 180;
+          onTimeout = "${pkgs.systemd}/bin/loginctl lock-session"; # lock screen when timeout has passed
+        }
+        {
+          timeout = 300;
+          onTimeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off"; # screen off when timeout has passed
+          onResume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+        }
+        {
+          timeout = 300;
+          onTimeout = "${pkgs.systemd}/bin/systemctl suspend"; # suspend pc
+        }
+      ];
+    };
+  };
 }
