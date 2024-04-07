@@ -17,12 +17,21 @@
     hyprpicker
     # hyprlock
     # hypridle
-
   ];
   wayland.windowManager.hyprland = {
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
     xwayland.enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      variables = [
+        "--all"
+      ];
+    };
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # hyprland-plugins.packages.${pkgs.system}.hyprbars
+    ];
     settings = {
       monitor = [
         "eDP-1,1920x1080@60,0x0,1"
@@ -32,6 +41,7 @@
       exec-once = [
         "wl-clipboard-history -t"
         "wl-paste -p --watch wl-copy -p ''"
+        "swww init"
       ];
       env = [
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
@@ -157,6 +167,7 @@
       "$screenshotarea" = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
 
       bind = [
+        "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
         "$altMod, Return, exec, $HOME/.local/bin/ghostty"
         "$mainMod, Return, exec, $HOME/.local/bin/ghostty" # for apps that yoink alt- binds
         "$altMod SHIFT, Return, exec, alacritty"
@@ -303,6 +314,16 @@
 
         bind=, escape,submap,reset
         submap = reset
+        plugin {
+          hyprexpo {
+            columns = 3
+            gapSize = 4
+            workspace_method = "center current"
+            enable_gesture = true
+            gesture_distance = 300
+            gesture_negative = true
+          }
+        }
         '';
   };
   lib.inputMethod.fcitx5.waylandFrontend = true;
