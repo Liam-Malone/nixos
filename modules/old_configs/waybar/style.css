@@ -293,7 +293,7 @@ tooltip label {
 
 #tray {
   background-color: transparent;
-  padding: 1px 8px;
+  padding: 1px 6px;
 }
 #tray > .passive {
   -gtk-icon-effect: dim;
