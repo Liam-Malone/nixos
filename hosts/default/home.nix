@@ -27,6 +27,7 @@
   # ];
   home.packages = with pkgs; [
     android-studio
+    audacity
     brave
     brightnessctl
     contour
@@ -37,6 +38,7 @@
     firefox
     floorp
     gnome.gnome-keyring
+    gnome.gnome-sound-recorder
     gnome.gvfs
     gnome.nautilus
     grim
@@ -48,6 +50,7 @@
     libtool
     libreoffice
     minecraft
+    mpv
     neofetch
     networkmanagerapplet
     openvpn

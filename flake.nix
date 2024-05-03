@@ -21,9 +21,12 @@
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+        url = "git+ssh://git@github.com/mitchellh/ghostty";
+    };
   };
 
-  outputs = { self, nixpkgs, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, ghostty, hyprland, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -35,6 +38,11 @@
           modules = [
             hyprland.nixosModules.default
             ./hosts/default/configuration.nix
+            {
+              environment.systemPackages = [
+                ghostty.packages.x86_64-linux.default
+              ];
+            }
           ];
         };
 	gamemachine = nixpkgs.lib.nixosSystem {

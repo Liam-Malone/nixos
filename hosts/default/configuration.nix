@@ -98,7 +98,8 @@
     system76.enableAll = true;
   };
 
-  security.pam.services.swaylock = {};
+  # security.pam.services.swaylock = {};
+  security.pam.services.hyprlock = {};
 
   # Enable sound.
   sound.enable = true;

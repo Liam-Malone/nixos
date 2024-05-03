@@ -29,8 +29,7 @@
       ];
     };
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      # hyprland-plugins.packages.${pkgs.system}.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     settings = {
       monitor = [
@@ -167,7 +166,7 @@
       "$screenshotarea" = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
 
       bind = [
-        "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
+        # "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
         "$altMod, Return, exec, $HOME/.local/bin/ghostty"
         "$mainMod, Return, exec, $HOME/.local/bin/ghostty" # for apps that yoink alt- binds
         "$altMod SHIFT, Return, exec, alacritty"
@@ -314,17 +313,17 @@
 
         bind=, escape,submap,reset
         submap = reset
-        plugin {
-          hyprexpo {
-            columns = 3
-            gapSize = 4
-            workspace_method = "center current"
-            enable_gesture = true
-            gesture_distance = 300
-            gesture_negative = true
-          }
-        }
         '';
+#        plugin {
+#          hyprexpo {
+#            columns = 3
+#            gapSize = 4
+#            workspace_method = "center current"
+#            enable_gesture = true
+#            gesture_distance = 300
+#            gesture_negative = true
+#          }
+#        }
   };
   lib.inputMethod.fcitx5.waylandFrontend = true;
   programs.hyprlock = {
