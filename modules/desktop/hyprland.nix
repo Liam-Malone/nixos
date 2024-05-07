@@ -128,9 +128,10 @@
 
       windowrule = [
         "idleinhibit fullscreen, firefox"
-        "idleinhibit focus, firefox"
         "idleinhibit fullscreen, floorp"
         "idleinhibit fullscreen, ghostty"
+        "idleinhibit focus, firefox"
+        "idleinhibit focus, floorp"
         "idleinhibit focus, mpv"
         "idleinhibit focus, ^(emacs)$"
         "idleinhibit focus, ^(Emacs)$"
