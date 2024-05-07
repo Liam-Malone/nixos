@@ -218,6 +218,7 @@
     feh.enable = true;
     git = {
       enable = true;
+      lfs.enable = true;
       diff-so-fancy.enable = true;
       userEmail = "maloneliam@proton.me";
       userName = "Liam Malone";
