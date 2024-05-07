@@ -60,8 +60,8 @@
         i3.enable = true;
         dwm.enable = true;
       };
-      libinput.enable = true;
     };
+    libinput.enable = true;
     greetd = {
       enable = true;
       restart = true;
