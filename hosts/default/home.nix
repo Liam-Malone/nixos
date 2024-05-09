@@ -207,6 +207,7 @@
         ".." = "cd ..";
         set-github-var = "export GITHUB=$(sed -n 2p ~/documents/.git_keys)";
         set-gitlab-var = "export GITLAB=$(sed -n 4p ~/documents/.git_keys)";
+        work = "nix develop --impure";
       };
     };
     emacs = {
