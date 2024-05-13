@@ -6,6 +6,7 @@
 
   imports = [
     ../../modules/home-manager/dunst.nix
+    ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/terminals/alacritty.nix
     ../../modules/desktop/bluetooth.nix
     ../../modules/desktop/hyprland.nix

@@ -123,7 +123,6 @@
 
       gestures = {
         workspace_swipe = true;
-        workspace_swipe_numbered = true;
       };
 
       windowrule = [
@@ -168,8 +167,8 @@
 
       bind = [
         # "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
-        "$altMod, Return, exec, $HOME/.local/bin/ghostty"
-        "$mainMod, Return, exec, $HOME/.local/bin/ghostty" # for apps that yoink alt- binds
+        "$altMod, Return, exec, ghostty"
+        "$mainMod, Return, exec, ghostty" # for apps that yoink alt- binds
         "$altMod SHIFT, Return, exec, alacritty"
         "$mainMod SHIFT, D, exec, discord --enable-blink-features=MiddleClickAutoscroll"
         "$mainMod SHIFT, E, exec, emacsclient -c -a 'emacs'"
