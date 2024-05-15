@@ -298,8 +298,14 @@
         bind =, B, exec, brave --enable-blink-features=MiddleClickAutoscroll
         bind =, B, submap, reset
 
-        bind =, F, exec, firefox
+        bind = SHIFT, F, exec, firefox
+        bind = SHIFT, F, submap, reset
+
+        bind =, F, exec, floorp
         bind =, F, submap, reset
+
+        bind =, C, exec, floorp -p limalone -no-remote
+        bind =, C, submap, reset
 
         bind=, escape,submap,reset
         submap=reset
