@@ -17,9 +17,19 @@
   boot.plymouth.enable = true;
 
   networking = {
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager = {
+      enable = true;  # Easiest to use and most distros use this by default.
+      wifi.backend = "iwd";
+    };
     hostName = "nixos-laptop";
     firewall.enable = false;
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        IPv6.Enabled = true;
+        Settings.Autoconnect = true;
+      };
+    };
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
