@@ -46,6 +46,10 @@
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,24"
         "WLR_NO_HARDWARE_CURSORS,1"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "QT_QPA_PLATFORM,Hyprland"
       ];
       input = {
         kb_layout = "us";
@@ -136,6 +140,7 @@
         "idleinhibit focus, ^(Emacs)$"
         "idleinhibit focus, ^(discord)$"
         "idleinhibit focus, ^(Discord)$"
+        "idleinhibit focus, ^(spotify)$"
         "float, polkit-kde-authentication-agent-1"
         "float, ^(praat)$"
         "float, ^(network)$"

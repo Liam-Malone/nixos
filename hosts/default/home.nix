@@ -52,7 +52,7 @@
     libreoffice
     minecraft
     mpv
-    neofetch
+    fastfetch
     networkmanagerapplet
     openvpn
     pamixer
@@ -61,6 +61,7 @@
     powertop
     praat
     prismlauncher
+    qbittorrent
     signal-desktop
     swayidle
     swww

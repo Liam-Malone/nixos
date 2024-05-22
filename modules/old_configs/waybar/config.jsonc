@@ -168,7 +168,7 @@
   },
   "custom/wofi" : {
       "format": "<big></big>",
-      "on-click": "wofi --show drun",
+      "on-click": "pkill wofi || wofi --show drun",
       "tooltip": false
   },
   "cpu": {
