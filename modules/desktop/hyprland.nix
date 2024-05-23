@@ -9,14 +9,14 @@
 
 {
   imports = with inputs; [
-    hypridle.homeManagerModules.default
-    hyprlock.homeManagerModules.default
-    #hyprpaper.homeManagerModules.default
+    # hypridle.homeManagerModules.default
+    # hyprlock.homeManagerModules.default
+    # hyprpaper.homeManagerModules.default
   ];
   home.packages = with pkgs; [
     hyprpicker
-    # hyprlock
-    # hypridle
+    hyprlock
+    hypridle
   ];
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -34,7 +34,7 @@
     settings = {
       monitor = [
         "eDP-1,1920x1080@60,0x0,1"
-        "HDMI-A-1,1920x1080@60,auto,1,mirror, eDP-1 "
+        "HDMI-A-1,2550x1440@144,auto,1,mirror,eDP-1 "
         ",preferred,auto,1,mirror,eDP-1"
       ];
       exec-once = [
@@ -49,7 +49,7 @@
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_QPA_PLATFORM,Hyprland"
+        "QT_QPA_PLATFORM,Hyprland;xcb"
       ];
       input = {
         kb_layout = "us";
@@ -169,6 +169,8 @@
 
       # used for screenshots
       "$screenshotarea" = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
+      # for locking screen
+      "$lock" = "${pkgs.systemd}/bin/loginctl lock-session;${pkgs.hyprlock}/bin/hyprlock";
 
       bind = [
         # "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
@@ -339,64 +341,77 @@
   lib.inputMethod.fcitx5.waylandFrontend = true;
   programs.hyprlock = {
     enable = true;
-    general = { };
-    backgrounds = [
+    settings = {
+      general = { 
+        disable_loading_bar = true;
+        hide_cursor = true;
+        no_fade_in = false;
+        grace = 10;
+      };
+      background = [
+        {
+          path = "/home/liamm/pictures/desert.png";
+          blur_passes = 2;
+          blur_size = 8;
+        }
+      ];
+      input-field = [
       {
-        path = "/home/liamm/pictures/desert.png";
+          # size = "200, 50";
+          outline_thickness = 3;
+          outer_color = "#fe0b00";
+          inner_color = "#0c0c0c";
+          font_color = "#efefef";
+          check_color = "#0eff0d";
+          fail_color = "#ff009e";
+          capslock_color = "#bb00ee";
+          placeholder_text = "<i>Input Password...</i>";
+          fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
       }
-    ];
-    input-fields = [
-      {
-        outline_thickness = 2;
-        outer_color = "#fe0b00";
-        inner_color = "#0c0c0c";
-        font_color = "#efefef";
-        check_color = "#0eff0d";
-        fail_color = "#ff009e";
-        capslock_color = "#bb00ee";
-        placeholder_text = "<i>Input Password...</i>";
-        fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-      }
-    ];
-    labels = [
-      {
-        text = "$TIME";
-        color = "";
-        font_size = 28;
-        font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
-      }
-    ];
+      ];
+      label = [
+        {
+          text = "$TIME";
+          text_align = "center";
+          color = "";
+          font_size = 28;
+          font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+        }
+      ];
+    };
   };
 
-  services = {
-    hypridle = {
-      enable = true;
-      lockCmd = "${pkgs.procps}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple sessions
-      beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session"; # lock before suspend.
-      afterSleepCmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to hit key twice to turn on display
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple sessions
+        before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session"; # lock before suspend.
+        after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to hit key twice to turn on display
+      };
       listeners = [
         {
           timeout = 120;
-          onTimeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-          onResume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restor.
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restor.
         }
         {
           timeout = 120;
-          onTimeout = "${pkgs.brightnessctl}/bin/brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
-          onResume = "${pkgs.brightnessctl}/bin/brightnessctl -rd rgb:kbd_backlight"; # turn on keyboard backlight.
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -rd rgb:kbd_backlight"; # turn on keyboard backlight.
         }
         {
           timeout = 180;
-          onTimeout = "${pkgs.systemd}/bin/loginctl lock-session"; # lock screen when timeout has passed
+          on-timeout = "${pkgs.systemd}/bin/loginctl lock-session"; # lock screen when timeout has passed
         }
         {
           timeout = 300;
-          onTimeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off"; # screen off when timeout has passed
-          onResume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off"; # screen off when timeout has passed
+          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
         }
         {
           timeout = 300;
-          onTimeout = "${pkgs.systemd}/bin/systemctl suspend"; # suspend pc
+          on-timeout = "${pkgs.systemd}/bin/systemctl suspend"; # suspend pc
         }
       ];
     };

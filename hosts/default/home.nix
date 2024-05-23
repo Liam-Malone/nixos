@@ -50,7 +50,6 @@
     libsForQt5.polkit-kde-agent
     libtool
     libreoffice
-    minecraft
     mpv
     fastfetch
     networkmanagerapplet
@@ -63,12 +62,14 @@
     prismlauncher
     qbittorrent
     signal-desktop
-    swayidle
     swww
     texliveFull
     thunderbird
     tree
     wev
+    wl-clipboard
+    wl-copy
+    wl-paste
     xdg-user-dirs
     # etcher ## Currently Uses Electron-19 -- which is marked EOL
   ];
@@ -160,10 +161,10 @@
       recursive = true;
       source = ../../modules/old_configs/river;
     };
-    "swaylock" = {
-      recursive = true;
-      source = ../../modules/old_configs/swaylock;
-    };
+    # "swaylock" = {
+    #   recursive = true;
+    #   source = ../../modules/old_configs/swaylock;
+    # };
     "waybar" = {
       recursive = true;
       source = ../../modules/old_configs/waybar;
@@ -237,7 +238,7 @@
     obs-studio = {
       enable = true;
     };
-    swaylock.enable = true;
+    # swaylock.enable = true;
     waybar = {
       enable = true;
       systemd.enable = true;
@@ -270,6 +271,6 @@
       enableSshSupport = true;
     };
     nextcloud-client.enable = true;
-    swayidle.enable = true;
+    # swayidle.enable = true;
   };
 }
