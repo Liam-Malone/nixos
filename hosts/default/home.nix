@@ -68,8 +68,6 @@
     tree
     wev
     wl-clipboard
-    wl-copy
-    wl-paste
     xdg-user-dirs
     # etcher ## Currently Uses Electron-19 -- which is marked EOL
   ];
