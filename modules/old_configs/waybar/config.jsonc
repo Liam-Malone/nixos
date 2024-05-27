@@ -128,12 +128,11 @@
     },
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 20,
+        "icon-size": 24,
         "all-outputs": true,
         "on-click": "activate",
         "ignore-list": [
             "Alacritty",
-            "com.mitchellh.ghostty",
             "contour",
         ]
     },

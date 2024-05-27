@@ -45,6 +45,8 @@
       env = [
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,24"
+        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        "XCURSOR_SIZE,24"
         "WLR_NO_HARDWARE_CURSORS,1"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
@@ -77,6 +79,10 @@
         "col.active_border" = "rgba(00ffb2ff) rgba(00ff66ff) 90deg";
         "col.inactive_border" = "rgba(595959ff)";
         layout = "dwindle";
+      };
+
+      debug = {
+        disable_logs = false;
       };
 
       misc = {
@@ -170,7 +176,7 @@
       # used for screenshots
       "$screenshotarea" = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
       # for locking screen
-      "$lock" = "${pkgs.systemd}/bin/loginctl lock-session;${pkgs.hyprlock}/bin/hyprlock";
+      "$lock" = "hyprlock";
 
       bind = [
         # "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
@@ -346,7 +352,6 @@
         disable_loading_bar = true;
         hide_cursor = true;
         no_fade_in = false;
-        grace = 10;
       };
       background = [
         {
@@ -357,11 +362,16 @@
       ];
       input-field = [
       {
-          # size = "200, 50";
+          monitor = "";
+          size = "300, 50";
           outline_thickness = 3;
+          dots_size = 0.33;
+          dots_spacing = 0.15;
+          dots_center = false;
           outer_color = "#fe0b00";
           inner_color = "#0c0c0c";
           font_color = "#efefef";
+          fade_on_empty = true;
           check_color = "#0eff0d";
           fail_color = "#ff009e";
           capslock_color = "#bb00ee";
@@ -371,11 +381,28 @@
       ];
       label = [
         {
+          monitor = "";
           text = "$TIME";
           text_align = "center";
-          color = "";
+          color = "#ffffee";
           font_size = 28;
           font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+
+          position = "0, 80";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          monitor = "";
+          text = "cmd[update:1000] echo \"        <span foreground='##ffffee'>$(date +'%A, %b %d %Y')</span>\"";
+          text_align = "center";
+          color = "#ffffee";
+          font_size = 18;
+          font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+
+          position = "80, 80";
+          halign = "left";
+          valign = "bottom";
         }
       ];
     };

@@ -35,9 +35,11 @@
     emacs-all-the-icons-fonts
     # emacsPackages.pdf-tools
     exfatprogs
+    fastfetch
     filezilla
     firefox
     floorp
+    genymotion
     gnome.gnome-keyring
     gnome.gnome-sound-recorder
     gnome.gvfs
@@ -51,8 +53,8 @@
     libtool
     libreoffice
     mpv
-    fastfetch
     networkmanagerapplet
+    nwg-look
     openvpn
     pamixer
     pavucontrol
