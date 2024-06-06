@@ -43,15 +43,15 @@
         "swww init"
       ];
       env = [
+        "WLR_NO_HARDWARE_CURSORS,1"
         "HYPRCURSOR_THEME,${config.gtk.cursorTheme.name}"
         "HYPRCURSOR_SIZE,24"
-        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
-        "XCURSOR_SIZE,24"
-        "WLR_NO_HARDWARE_CURSORS,1"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_QPA_PLATFORM,Hyprland;xcb"
+        "QT_QPA_PLATFORM,xcb;Hyprland"
+        # "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        # "XCURSOR_SIZE,24"
       ];
       input = {
         kb_layout = "us";
@@ -363,7 +363,7 @@
       input-field = [
       {
           monitor = "";
-          size = "300, 50";
+          size = "300, 20";
           outline_thickness = 3;
           dots_size = 0.33;
           dots_spacing = 0.15;

@@ -71,6 +71,11 @@
         dwm.enable = true;
       };
     };
+    # displayManager.sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    # };
+    desktopManager.plasma6.enable = true;
     libinput.enable = true;
     greetd = {
       enable = true;
@@ -95,6 +100,7 @@
   environment.etc."greetd/environments".text = ''
       Hyprland
       none+i3
+      non+dwm
       '';
 
   hardware = {
@@ -127,9 +133,15 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-nixpkgs.overlays = [
+  nixpkgs.overlays = [
     (final: prev: {
       dwm = prev.dwm.overrideAttrs (old: {src = /home/liamm/oss/dwm;});
+    })
+    (final: prev: {
+      dmenu = prev.dmenu.overrideAttrs (old: {src = /home/liamm/oss/dmenu;});
+    })
+    (final: prev: {
+      slstatus = prev.slstatus.overrideAttrs (old: {src = /home/liamm/oss/slstatus;});
     })
   ];
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
