@@ -67,6 +67,7 @@
           disable_while_typing = true;
           natural_scroll = true;
           middle_button_emulation = true;
+          scroll_factor = 0.5;
           drag_lock = false;
           tap-to-click = true;
         };
@@ -363,7 +364,7 @@
       input-field = [
       {
           monitor = "";
-          size = "300, 20";
+          size = "200, 30";
           outline_thickness = 3;
           dots_size = 0.33;
           dots_spacing = 0.15;
@@ -402,6 +403,18 @@
 
           position = "80, 80";
           halign = "left";
+          valign = "bottom";
+        }
+        {
+          monitor = "";
+          text = "cmd[update:1000] echo \"<span foreground='##feffee'>󰁿$(cat /sys/class/power_supply/BAT0/capacity)</span>\"";
+          text_align = "center";
+          color = "#ffffee";
+          font_size = 18;
+          font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+
+          position = "80, 80";
+          halign = "right";
           valign = "bottom";
         }
       ];
