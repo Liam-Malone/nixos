@@ -41,10 +41,10 @@
     firefox
     floorp
     genymotion
-    gnome.gnome-keyring
+    gnome-keyring
     gnome.gnome-sound-recorder
     gnome.gvfs
-    gnome.nautilus
+    nautilus
     grim
     grimblast
     # gvfs
@@ -67,6 +67,7 @@
     signal-desktop
     slstatus
     swww
+    teams-for-linux
     texliveFull
     thunderbird
     tree
@@ -213,6 +214,7 @@
         set-github-var = "export GITHUB=$(sed -n 2p ~/documents/.git_keys)";
         set-gitlab-var = "export GITLAB=$(sed -n 4p ~/documents/.git_keys)";
         work = "nix develop --impure";
+        build = "./build.sh";
       };
     };
     emacs = {

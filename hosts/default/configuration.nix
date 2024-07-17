@@ -46,7 +46,9 @@
   i18n= {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      enabled = "fcitx5";
+      #enabled = "fcitx5";
+      type = "fcitx5";
+      enable = true;
       fcitx5 = {
         # waylandFrontend = true;
         addons = with pkgs; [
@@ -89,7 +91,7 @@
     blueman.enable = true;
     printing.enable = true; # Enable CUPS to print documents.
     gvfs.enable = true;
-    auto-cpufreq.enable = true;
+    # auto-cpufreq.enable = true;
     thermald.enable = true;
   };
 
@@ -105,9 +107,7 @@
 
   hardware = {
     bluetooth.enable = true;
-    opengl = {
-      enable = true;
-    };
+    graphics.enable = true;
     pulseaudio.enable = true;
 
     # System76 Devices
@@ -116,9 +116,6 @@
 
   # security.pam.services.swaylock = {};
   security.pam.services.hyprlock = {};
-
-  # Enable sound.
-  sound.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
