@@ -30,7 +30,6 @@
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
-    fastfetch
     filezilla
     firefox
     floorp
@@ -42,6 +41,7 @@
     grim
     grimblast
     htop
+    imagemagick
     keepassxc
     libsForQt5.polkit-kde-agent
     libtool
@@ -207,6 +207,55 @@
         epkgs.pdf-tools 
         epkgs.org-pdftools
       ];
+    };
+    fastfetch = {
+      enable = true;
+      settings = {
+        logo = {
+          source = "~/pictures/smol-penguin.png";
+          type = "kitty-direct";
+          width = 18;
+          height = 9;
+          padding = { 
+            top = 2;
+            left = 1;
+            right = 3;
+          };
+        };
+        display = {
+          separator = " -> ";
+        };
+        modules = [
+          "title"
+          {
+            type = "custom";
+            format = "────────── Env ──────────";
+          }
+          {
+            type = "os";
+            key = "OS ";
+          }
+          {
+            type = "wm";
+            key = "WM ";
+          }
+          "editor"
+          "break"
+          {
+            type = "custom";
+            format = "────────── Sys ──────────";
+          }
+          "cpu"
+          "gpu"
+          {
+            type = "memory";
+            key = "MEM";
+          }
+          "vulkan"
+          "disk"
+          "battery"
+        ];
+      };
     };
     feh.enable = true;
     git = {
