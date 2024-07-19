@@ -38,6 +38,7 @@
     firefox
     floorp
     genymotion
+    gimp
     gnome-keyring
     gnome.gnome-sound-recorder
     gnome.gvfs
@@ -183,6 +184,7 @@
             export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
         fi;
         set -o vi
+        fastfetch
       '';
       shellAliases = {
         ls = "ls --color=auto";
