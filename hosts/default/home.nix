@@ -20,12 +20,6 @@
   # environment.
 
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.overlays = [ 
-  #   (import (builtins.fetchTarball {
-  #     url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-  #     sha256 = "00f028qrz2z0i7ma24993pwxcrx2viay6jygaz3jykj7lrww6ja6";
-  #   }))
-  # ];
   home.packages = with pkgs; [
     android-studio
     audacity
@@ -34,7 +28,7 @@
     contour
     dmenu
     emacs-all-the-icons-fonts
-    # emacsPackages.pdf-tools
+    emacsPackages.pdf-tools
     exfatprogs
     fastfetch
     filezilla
@@ -47,7 +41,6 @@
     nautilus
     grim
     grimblast
-    # gvfs
     htop
     keepassxc
     libsForQt5.polkit-kde-agent
@@ -60,7 +53,6 @@
     pamixer
     pavucontrol
     picom
-    powertop
     praat
     prismlauncher
     qbittorrent
@@ -74,7 +66,6 @@
     wev
     wl-clipboard
     xdg-user-dirs
-    # etcher ## Currently Uses Electron-19 -- which is marked EOL
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -148,10 +139,6 @@
       recursive = true;
       source = ../../modules/old_configs/ghostty;
     };
-    # "hypr" = {
-    #   recursive = true;
-    #   source = ../../modules/old_configs/hypr;
-    # };
     "kitty" = {
       recursive = true;
       source = ../../modules/old_configs/kitty;
@@ -164,10 +151,6 @@
       recursive = true;
       source = ../../modules/old_configs/river;
     };
-    # "swaylock" = {
-    #   recursive = true;
-    #   source = ../../modules/old_configs/swaylock;
-    # };
     "waybar" = {
       recursive = true;
       source = ../../modules/old_configs/waybar;
@@ -275,6 +258,5 @@
       enableSshSupport = true;
     };
     nextcloud-client.enable = true;
-    # swayidle.enable = true;
   };
 }

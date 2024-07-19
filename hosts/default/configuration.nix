@@ -40,7 +40,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Europe/Dublin";
+  time.timeZone = "America/New_York";
 
   # Select internationalisation properties.
   i18n= {
@@ -91,14 +91,16 @@
     blueman.enable = true;
     printing.enable = true; # Enable CUPS to print documents.
     gvfs.enable = true;
-    # auto-cpufreq.enable = true;
+    auto-cpufreq.enable = true;
     thermald.enable = true;
   };
 
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
+  # powerManagement = {
+  #   enable = true;
+  #   powertop.enable = true;
+  # };
+  services.power-profiles-daemon.enable = false;
+
   environment.etc."greetd/environments".text = ''
       Hyprland
       none+i3
