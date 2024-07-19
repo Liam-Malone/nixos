@@ -5,9 +5,13 @@
   home.homeDirectory = "/home/liamm";
 
   imports = [
+    # home-manager
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
+    ../../modules/home-manager/fastfetch.nix
     ../../modules/home-manager/terminals/alacritty.nix
+
+    # desktop
     ../../modules/desktop/bluetooth.nix
     ../../modules/desktop/hyprland.nix
   ];
@@ -207,55 +211,6 @@
         epkgs.pdf-tools 
         epkgs.org-pdftools
       ];
-    };
-    fastfetch = {
-      enable = true;
-      settings = {
-        logo = {
-          source = "~/pictures/smol-penguin.png";
-          type = "kitty-direct";
-          width = 18;
-          height = 9;
-          padding = { 
-            top = 2;
-            left = 1;
-            right = 3;
-          };
-        };
-        display = {
-          separator = " -> ";
-        };
-        modules = [
-          "title"
-          {
-            type = "custom";
-            format = "────────── Env ──────────";
-          }
-          {
-            type = "os";
-            key = "OS ";
-          }
-          {
-            type = "wm";
-            key = "WM ";
-          }
-          "editor"
-          "break"
-          {
-            type = "custom";
-            format = "────────── Sys ──────────";
-          }
-          "cpu"
-          "gpu"
-          {
-            type = "memory";
-            key = "MEM";
-          }
-          "vulkan"
-          "disk"
-          "battery"
-        ];
-      };
     };
     feh.enable = true;
     git = {
