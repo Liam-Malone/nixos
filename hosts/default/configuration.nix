@@ -40,7 +40,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "Europe/Madrid";
 
   # Select internationalisation properties.
   i18n= {
@@ -73,12 +73,16 @@
         dwm.enable = true;
       };
     };
+
     # displayManager.sddm = {
     #   enable = true;
     #   wayland.enable = true;
     # };
-    desktopManager.plasma6.enable = true;
+
+    # desktopManager.plasma6.enable = true;
+
     libinput.enable = true;
+
     greetd = {
       enable = true;
       restart = true;
@@ -88,18 +92,30 @@
         };
       };
     };
+
     blueman.enable = true;
+
     printing.enable = true; # Enable CUPS to print documents.
     gvfs.enable = true;
+
     auto-cpufreq.enable = true;
     thermald.enable = true;
+
+    power-profiles-daemon.enable = false;
+
+    ## enable/disable camera
+    # pipewire.wireplumber.extraConfig = {
+    #   "10-enable-camera" = {
+    #     "wireplumber.profiles" = {
+    #       main = {
+    #         "monitor.libcamera" = "enabled";
+    #       };
+    #     };
+    #   };
+    # };
   };
 
-  # powerManagement = {
-  #   enable = true;
-  #   powertop.enable = true;
-  # };
-  services.power-profiles-daemon.enable = false;
+  security.pam.services.hyprlock = {};
 
   environment.etc."greetd/environments".text = ''
       Hyprland
@@ -109,15 +125,18 @@
 
   hardware = {
     bluetooth.enable = true;
-    graphics.enable = true;
-    pulseaudio.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs;[
+        intel-compute-runtime
+        intel-media-driver
+      ];
+    };
+    pulseaudio.enable = false;
 
     # System76 Devices
     system76.enableAll = true;
   };
-
-  # security.pam.services.swaylock = {};
-  security.pam.services.hyprlock = {};
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -206,6 +225,7 @@
     file
     ripgrep
     wget
+    glib
     spotify
     discord
     wl-clipboard

@@ -8,15 +8,11 @@
 }:
 
 {
-  imports = with inputs; [
-    # hypridle.homeManagerModules.default
-    # hyprlock.homeManagerModules.default
-    # hyprpaper.homeManagerModules.default
-  ];
   home.packages = with pkgs; [
     hyprpicker
     hyprlock
     hypridle
+    hyprpaper
   ];
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -29,7 +25,7 @@
       ];
     };
     plugins = [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     settings = {
       monitor = [
@@ -40,7 +36,7 @@
       exec-once = [
         "wl-clipboard-history -t"
         "wl-paste -p --watch wl-copy -p ''"
-        "swww init"
+        # "ags"
       ];
       env = [
         "WLR_NO_HARDWARE_CURSORS,1"
@@ -49,9 +45,10 @@
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
+        "GTK_THEME,${config.gtk.theme.name}"
         "QT_QPA_PLATFORM,xcb;Hyprland"
-        # "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
-        # "XCURSOR_SIZE,24"
+        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        "XCURSOR_SIZE,24"
       ];
       input = {
         kb_layout = "us";
@@ -130,6 +127,7 @@
 
       gestures = {
         workspace_swipe = true;
+        workspace_swipe_forever = true;
       };
 
       windowrule = [
@@ -178,7 +176,7 @@
       bind = [
         # "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
         "$altMod, Return, exec, ghostty"
-        "$mainMod, Return, exec, ghostty" # for apps that yoink alt- binds
+        "$mainMod, Return, exec, GDK_BACKEND=x11 ghostty" # Until NixOS Fixes EGL Drivers
         "$altMod SHIFT, Return, exec, alacritty"
         "$mainMod SHIFT, D, exec, discord --enable-blink-features=MiddleClickAutoscroll"
         "$mainMod SHIFT, E, exec, emacsclient -c -a 'emacs'"
@@ -352,7 +350,7 @@
       };
       background = [
         {
-          path = "/home/liamm/pictures/desert.png";
+          path = "/home/liamm/pictures/.wallpapers/bloody_snow.jpg";
           blur_passes = 2;
           blur_size = 8;
         }
@@ -417,39 +415,55 @@
     };
   };
 
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-        lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple sessions
-        before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session"; # lock before suspend.
-        after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to hit key twice to turn on display
+  services = {
+    hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
+        splash = false;
+        preload = [
+          "~/pictures/desert.png"
+          "~/pictures/.wallpapers/bloody_snow.jpg"
+        ];
+        wallpaper = [
+          "eDP-1,~/pictures/.wallpapers/bloody_snow.jpg"
+        ];
       };
-      listeners = [
-        {
-          timeout = 120;
-          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restor.
-        }
-        {
-          timeout = 120;
-          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
-          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -rd rgb:kbd_backlight"; # turn on keyboard backlight.
-        }
-        {
-          timeout = 180;
-          on-timeout = "${pkgs.systemd}/bin/loginctl lock-session"; # lock screen when timeout has passed
-        }
-        {
-          timeout = 300;
-          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off"; # screen off when timeout has passed
-          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
-        }
-        {
-          timeout = 300;
-          on-timeout = "${pkgs.systemd}/bin/systemctl suspend"; # suspend pc
-        }
-      ];
+    };
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple sessions
+          before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session"; # lock before suspend.
+          after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # to avoid having to hit key twice to turn on display
+        };
+        listeners = [
+          {
+            timeout = 120;
+            on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+            on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r"; # monitor backlight restor.
+          }
+          {
+            timeout = 120;
+            on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
+            on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -rd rgb:kbd_backlight"; # turn on keyboard backlight.
+          }
+          {
+            timeout = 180;
+            on-timeout = "${pkgs.systemd}/bin/loginctl lock-session"; # lock screen when timeout has passed
+          }
+          {
+            timeout = 300;
+            on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off"; # screen off when timeout has passed
+            on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+          }
+          {
+            timeout = 300;
+            on-timeout = "${pkgs.systemd}/bin/systemctl suspend"; # suspend pc
+          }
+        ];
+      };
     };
   };
 }

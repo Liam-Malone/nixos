@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       logo = {
-        source = "~/pictures/smol-penguin.png";
+        source = "~/pictures/lil-penguin.png";
         type = "kitty-direct";
         width = 18;
         height = 9;
@@ -47,6 +47,8 @@
         "vulkan"
         "disk"
         "battery"
+        "break"
+        "colors"
       ];
     };
   };

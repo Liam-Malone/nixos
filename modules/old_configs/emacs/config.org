@@ -31,7 +31,6 @@
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
   - [[#eshell][Eshell]]
   - [[#vterm][Vterm]]
-  - [[#vterm-toggle][Vterm-Toggle]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#theme][THEME]]
 - [[#transparency][TRANSPARENCY]]
@@ -188,7 +187,6 @@
       (lm/leader-keys
           "t" '(:ignore t :wk "Toggle")
           "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
-          "t v" '(vterm-toggle :wk "Toggle Vterm")
           "t i" '(org-toggle-inline-images :wk "Toggle inline images")
           "t t" '(visual-line-mode :wk "Toggle truncated lines"))
 
@@ -224,6 +222,10 @@
           "w J" '(evil-window-move-very-bottom :wk "Move split to bottom")
           "w K" '(evil-window-move-very-top :wk "Move split to top")
           "w L" '(evil-window-move-far-right :wk "Move split to right")
+          "w >" '(evil-window-increase-width :wk "Increase window width")
+          "w ." '(evil-window-increase-width :wk "Increase window width")
+          "w <" '(evil-window-decrease-width :wk "Increase window width")
+          "w ," '(evil-window-decrease-width :wk "Increase window width")
           "w c" '(evil-window-delete :wk "Close window")
           "w o" '(delete-other-windows :wk "Delete other windows")
           "w =" '(balance-windows :wk "Balance windows")
@@ -295,15 +297,11 @@
         (setq dashboard-set-file-icons t)
         (setq dashboard-banner-logo-title "Welcome to Emacs!")
         (setq dashboard-startup-banner 'logo) ;; default logo
-        ;; (setq dashboard-startup-banner "~/pictures/vsmol-penguin.png")
         (setq dashboard-center-content t)
         (setq dashboard-items '((recents . 5)
                                 (agenda . 5)
                                 (bookmarks . 3)
-                                ;; (registers . 3)
                                 (projects . 3)))
-  ;; (dashboard-modify-heading-icons '((recents . "file-text")
-                                    ;; (bookmarks . "book")))  
         :config
         (dashboard-setup-startup-hook))
 
@@ -599,31 +597,6 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 :config
 (setq shell-file-name "/run/current-system/sw/bin/bash"
       vterm-max-scrollback 5000))
-#+end_src
-
-** Vterm-Toggle
-Vterm-Toggle toggles between vterm buffer and whatever you're editing
-#+begin_src emacs-lisp
-  (use-package vterm-toggle
-      :after vterm
-      :config
-      (setq vterm-toggle-fullscreen-p nil)
-      (setq vterm-toggle-scope 'project)
-    (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                     (let ((buffer (get-buffer buffer-or-name)))
-                       (with-current-buffer buffer
-                         (or (equal major-mode 'vterm-mode)
-                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                  (display-buffer-reuse-window display-buffer-at-bottom)
-                  ;;(display-buffer-reuse-window display-buffer-in-direction)
-                  ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                  ;;(direction . bottom)
-                  ;;(dedicated . t) ;dedicated is supported in emacs27
-                  (reusable-frames . visible)
-                  (window-height . 0.3))))
-
-
 #+end_src
 
 * SUDO EDIT

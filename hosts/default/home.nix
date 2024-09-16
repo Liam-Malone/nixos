@@ -1,4 +1,4 @@
-{ config, pkgs, lib, callPackage, ... }:
+{ config, pkgs, lib, callPackage, inputs, ... }:
 
 {
   home.username = "liamm";
@@ -6,6 +6,7 @@
 
   imports = [
     # home-manager
+    inputs.ags.homeManagerModules.default
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/fastfetch.nix
@@ -40,24 +41,27 @@
     genymotion
     gimp
     gnome-keyring
-    gnome.gnome-sound-recorder
-    gnome.gvfs
-    nautilus
+    gnome-sound-recorder
+    gtk4
+    gvfs
     grim
     grimblast
     htop
     imagemagick
+    imhex
     keepassxc
     libsForQt5.polkit-kde-agent
     libtool
     libreoffice
     mpv
+    nautilus
     networkmanagerapplet
     nwg-look
     openvpn
     pamixer
     pavucontrol
     picom
+    powertop
     praat
     prismlauncher
     qbittorrent
@@ -170,6 +174,10 @@
   # BEGIN PROGRAMS
 
   programs = {
+    ags = {
+      enable = true;
+      configDir = ../../modules/home-manager/ags;
+    };
     bash = {
       enable = true;
       enableCompletion = true;

@@ -12,7 +12,6 @@ keybind = ctrl+shift+n=new_window
 
 # window stuff
 background-opacity=0.9
-#background-opacity=1
 unfocused-split-opacity = 0.9
 confirm-close-surface = false
 window-theme = dark
@@ -22,7 +21,7 @@ window-decoration = false
 gtk-wide-tabs = true
 
 # macos specific
-macos-non-native-fullscreen = true
+#macos-non-native-fullscreen = true
 
 # font
 font-size = 12

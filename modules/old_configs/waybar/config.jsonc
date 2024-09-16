@@ -13,7 +13,7 @@
   "spacing": 0,
   "gtk-layer-shell": true,
   "modules-left": [
-    //"custom/notification",
+    "custom/notification",
     "custom/kernel",
     // "custom/updates",
     "clock",
@@ -49,44 +49,27 @@
       "interval": "once"
   },
 
-  // "custom/updates": {
-  //   // maybe add check to not attempt run when offline
-  //   "exec": "( checkupdates; paru -Qua ) | wc -l",
-  //   "interval": 7200,
-  //   "format": "<big>󰏖</big>\n{}",
-  //   "on-click": "( checkupdates; paru -Qua ) | wc -l",
-  // },
-
   "clock": {
     "interval": 1,
-    "format": "<big> </big> \n{:%d/%m\n<big> 󰥔</big>\n%R}",
+    "format": "<big> </big>\n{:%d/%m\n<big> 󰥔 </big>\n %R}",
     "tooltip": true,
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<big>{:%Y %B}</big> <tt><small>{calendar}</small></tt>"
   },
   "disk": {
     "interval": 30,
     "path": "/home",
-    "format": "<big>  </big>\n {path}:\n   {percentage_used}%",
+    "format": "<big> </big>\n {path}\n {percentage_used}%",
     "alt-format": "  {path}:{used}\/{total}",
     "tooltip-format": "  {path}:{used}\/{total}",
   },
     "keyboard-state": {
         "capslock": true,
-        "format": "CAPS\n  {icon}",
+        "format": "CAPS\n {icon}",
         "format-icons": {"locked": "", "unlocked": ""}
     },
-    //"keyboard-state#Num": {
-    //    "numlock": true,
-    //    "format": "#lk: {icon}",
-    //    "format-icons": {"locked": "", "unlocked": ""}
-    //},
 
   "modules-center": [
-    //"hyprland/workspaces",
     "wlr/taskbar"
-    //"river/tags"
-    //"hyprland/submap",
-    //"hyprland/window"
   ],
     "river/tags": {
         "on-click": "activate",
@@ -143,22 +126,15 @@
     },
     "hyprland/window": {
         "format": "{icon}",
-        //"format": " <span font_desc='Iosevka Raven 12'>{:.40}</span> ",
         "separate-outputs": false
     },
   "modules-right": [
     "tray",
     "custom/wofi",
-    // "cpu",
-    // "memory",
-    // "backlight",
     "pulseaudio#microphone",
     "pulseaudio#audio",
-    //"bluetooth",
     "backlight",
     "network",
-    //"network#wlan0",
-    //"network#enp46s0",
     "battery"
   ],
   "tray": {
