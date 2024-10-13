@@ -5,8 +5,9 @@
     enable = true;
     settings = {
       logo = {
-        source = "~/pictures/lil-penguin.png";
-        type = "kitty-direct";
+        source = "nixos_small";
+        # source = "~/pictures/lil-penguin.png";
+        # type = "kitty";
         width = 18;
         height = 9;
         padding = { 
@@ -47,9 +48,12 @@
         "vulkan"
         "disk"
         "battery"
+        {
+            type = "custom";
+            format = "─────────────────────────";
+        }
         "break"
         "colors"
-        "break"
         "break"
       ];
     };
