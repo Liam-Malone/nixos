@@ -51,14 +51,14 @@
 
   "clock": {
     "interval": 1,
-    "format": "<big> </big>\n{:%d/%m\n<big> 󰥔 </big>\n %R}",
+    "format": "<big> </big>\n{:%d/%m\n<big> 󰥔 </big>\n%R}",
     "tooltip": true,
     "tooltip-format": "<big>{:%Y %B}</big> <tt><small>{calendar}</small></tt>"
   },
   "disk": {
     "interval": 30,
     "path": "/home",
-    "format": "<big> </big>\n {path}\n {percentage_used}%",
+    "format": "<big> </big>\n {path}\n  {percentage_used}%",
     "alt-format": "  {path}:{used}\/{total}",
     "tooltip-format": "  {path}:{used}\/{total}",
   },

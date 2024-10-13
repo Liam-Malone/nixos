@@ -95,7 +95,7 @@
 
     blueman.enable = true;
 
-    printing.enable = true; # Enable CUPS to print documents.
+    # printing.enable = true; # Enable CUPS to print documents.
     gvfs.enable = true;
 
     auto-cpufreq.enable = true;

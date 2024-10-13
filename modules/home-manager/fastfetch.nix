@@ -49,6 +49,8 @@
         "battery"
         "break"
         "colors"
+        "break"
+        "break"
       ];
     };
   };

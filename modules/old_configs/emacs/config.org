@@ -26,6 +26,8 @@
 - [[#markdown-mode][MARKDOWN MODE]]
 - [[#org-download][ORG DOWNLOAD]]
 - [[#pulse][PULSE]]
+- [[#pdf-tools][PDF TOOLS]]
+- [[#projectile][PROJECTILE]]
 - [[#rainbow-mode][RAINBOW MODE]]
 - [[#reload-emacs][RELOAD EMACS]]
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
@@ -497,20 +499,18 @@ Enable zoom in/out with C-=/- and also for C-scrl-up/down
 * ORG DOWNLOAD
 #+begin_src emacs-lisp
 
-    ;; inspired by https://zzamboni.org/post/how-to-insert-screenshots-in-org-documents-on-macos/
-
   (use-package org-download
     :after org
     :defer nil
     :custom
     (org-download-method 'directory)
-    (org-download-image-dir "~/emacs/")
+    (org-download-image-dir "~/emacs/images/")
     (org-download-heading-lvl 0)
     (org-download-timestamp "org_%Y%m%d-%H%M%S_")
-    ;; (org-image-actual-width 400)
-    (org-download-screenshot-method "wl-paste -t image/png > '%s'")
+    (org-image-actual-width 400)
+    (org-download-screenshot-method "WAYLAND_DISPLAY=wayland-1 wl-paste -t image/png > '%s'.png")
     :bind
-    ("C-M-y" . org-download-screenshot)
+    ("C-M-y" . org-download-screenshot file)
     :config
     (require 'org-download))
 #+end_src
@@ -539,7 +539,13 @@ Pulse highlight a line on certain actions
 #     (advice-add command :after #'pulse-line)))
 # #+end_src
 
-# * PROJECTILE
+* PDF TOOLS
+#+begin_src emacs-lisp
+  (use-package pdf-tools)
+#+end_src
+
+
+* PROJECTILE
 [[https://github.com/bbatsov/projectile][Projectile]] is a project interaction library for Emacs.
 
 #+begin_src emacs-lisp

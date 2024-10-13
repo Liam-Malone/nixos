@@ -36,7 +36,7 @@
       exec-once = [
         "wl-clipboard-history -t"
         "wl-paste -p --watch wl-copy -p ''"
-        # "ags"
+        "fcitx5 -d"
       ];
       env = [
         "WLR_NO_HARDWARE_CURSORS,1"
