@@ -21,7 +21,11 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
 
+<<<<<<< HEAD
 -- put nvim to background 
+=======
+-- put to background 
+>>>>>>> main
 vim.keymap.set("n", "<leader>bg", "<C-z>")
 
 -- BUILD SCRIPT INVOKATIONS
