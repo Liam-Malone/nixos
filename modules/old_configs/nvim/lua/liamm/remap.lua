@@ -22,11 +22,30 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
 
 -- put nvim to background 
-vim.keymap.set("n", "<leader>z", "<C-z>")
+vim.keymap.set("n", "<leader>bg", "<C-z>")
+
+
+-- invoke build scripts
+-- `build.sh`
+vim.keymap.set("n", "<leader>bo",  ":!./build.sh ") -- Interactive for adding flags/options
+vim.keymap.set("n", "<leader>bb",  ":!./build.sh <CR>")
+vim.keymap.set("n", "<leader>br",  ":!./build.sh run<CR>")
+vim.keymap.set("n", "<leader>bR",  ":!./build.sh release<CR>")
+vim.keymap.set("n", "<leader>bRr", ":!./build.sh release run<CR>")
+
+-- zig build
+vim.keymap.set("n", "<leader>zbo",  ":!zig build -D") -- Interactive for adding flags/options
+vim.keymap.set("n", "<leader>zbb",  ":!zig build <CR>")
+vim.keymap.set("n", "<leader>zbr",  ":!zig build run<CR>")
+vim.keymap.set("n", "<leader>zbR",  ":!zig build -Doptimize=ReleaseSafe <CR>")
+vim.keymap.set("n", "<leader>zbRr", ":!zig build -Doptimize=ReleaseSafe run<CR>")
+vim.keymap.set("n", "<leader>zbt",  ":!zig build -Dtarget=") -- Interactive to add target/other flags
+vim.keymap.set("n", "<leader>zbtR", ":!zig build -Doptimize=ReleaseSafe -Dtarget=") -- Interactive to add target/other flags
+
 
 -- emacs-inspired binds
  -- all <C-w> can be done w spacebar-w
 vim.keymap.set("n", "<leader>w", "<C-w>")
 vim.keymap.set("n", "<leader>qq", ":x<CR>")
 nnoremap("<leader>.", ":find ~/")
-nnoremap("<leader>fc", ":find ~/.config/nvim/lua/liamm/remap.lua<CR>")
+nnoremap("<leader>fc", ":find ~/personal/nixos/modules/old_configs/nvim/lua/liamm/remap.lua<CR>")

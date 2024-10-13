@@ -1,37 +1,10 @@
-local lsp = require('lsp-zero')
+local lsp_zero = require('lsp-zero')
 
-lsp.preset('recommended')
-
-lsp.ensure_installed({
-    --'eslint',
-    --'html',
-    --'lua_ls',
-    'rust_analyzer',
-    'jdtls',
-    --'clangd',
-    'zls',
-    --'pylsp',
-    'ols',
-})
-
-local cmp = require('cmp')
-local cmp_select = {behaviour = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-})
-
-lsp.set_preferences({
-    sign_icons = { }
-})
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.on_attach(function(client, bufnr)
+local lsp_attach = function(client, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    -- lsp_zero.default_keymaps({buffer = bufnr})
+    --
     local opts = {buffer = bufnr, remap = false}
 
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -45,23 +18,189 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end)
+end
 
-require('lspconfig').lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim', 'turtle' },
-            },
-        },
+lsp_zero.extend_lspconfig({
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    lsp_attach = lsp_attach,
+    float_border = 'rounded',
+    sign_text = true,
+})
+
+local lspconfig = require('lspconfig')
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+      'lua_ls',
+      'jdtls',
+      'clangd',
+      'zls',
+  },
+  handlers = {
+      function(server_name)
+          require('lspconfig')[server_name].setup({})
+      end,
+
+      -- noop is an empty function that doesn't do anything
+      clangd = function()
+          lspconfig.clangd.setup({
+              cmd = {
+                  'clangd',
+                  '--background-index',
+                  '--clang-tidy',
+                  '--log=verbose',
+                  '--header-interpolation=false', -- clangd doesn't find the files, annoying and unnecessary noise as a result
+              },
+              init_options = {
+                  fallbackFlags = {
+                      '-std=c23',
+                      '-std=c++20'
+                  },
+              },
+          })
+      end,
+      jdtls  = function()
+          lspconfig.jdtls.setup({
+              cmd = {
+                  "java",
+                  "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+                  "-Dosgi.bundles.defaultStartLevel=4",
+                  "-Declipse.product=org.eclipse.jdt.ls.core.product",
+                  "-Dlog.protocol=true",
+                  "-Dlog.level=ALL",
+                  "-Xms1g",
+                  "--add-modules=ALL-SYSTEM",
+                  "--add-opens",
+                  "java.base/java.util=ALL-UNNAMED",
+                  "--add-opens",
+                  "java.base/java.lang=ALL-UNNAMED",
+                  --
+              },
+              single_file_support = true,
+              settings = {
+                  java = {
+                      signatureHelp = {enabled = true},
+                      import = {enabled = true},
+                      rename = {enabled = true}
+                  }
+              },
+              flags = {
+                  debounce_text_changes = 150,
+              },
+              init_options = {
+                  bundles = {},
+              },
+          })
+      end,
+      zls    = lsp_zero.noop,
+      lua_ls = function()
+          lspconfig.lua_ls.setup({
+              on_init = function(client)
+                  if client.workspace_folders then
+                      local path = client.workspace_folders[1].name
+                      if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+                          return
+                      end
+                  end
+          
+                  client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                      runtime = {
+                       -- Tell the language server which version of Lua you're using
+                       -- (most likely LuaJIT in the case of Neovim)
+                           
+                          version = 'LuaJIT'
+                      },
+                      -- Make the server aware of Neovim runtime files
+                      workspace = {
+                          checkThirdParty = false,
+                          library = {
+                              vim.env.VIMRUNTIME
+                          }
+                      }
+                  })
+              end,
+              settings = {
+                  Lua = {
+                      diagnostics = {
+                          globals = { 'turtle' },
+                      },
+                  },
+              },
+          })
+      end,
+      ols    = function()
+          lspconfig.ols.setup({
+              single_file_support = true,
+              on_attach = function (client, buffer)
+                 print('reached ols')
+              end
+          })
+      end,
+  }
+})
+
+
+local cmp = require('cmp')
+local cmp_select = {behaviour = cmp.SelectBehavior.Select}
+cmp.setup({
+    sources = {
+      { name = 'nvim_lsp' },
     },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }),
+    formatting = lsp_zero.cmp_format(),
 })
 
-require('lspconfig').ols.setup({
-    single_file_support = true,
-    on_attach = function (client, buffer)
-       print('reached ols')
-    end
-})
+-- lsp_zero.set_preferences({
+--     sign_icons = { }
+-- })
+-- 
+-- lsp_zero.setup_nvim_cmp({
+--     mapping = cmp_mappings
+-- })
 
-lsp.setup()
+
+-- require('lspconfig').lua_ls.setup({
+--     on_init = function(client)
+--         if client.workspace_folders then
+--             local path = client.workspace_folders[1].name
+--             if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+--                 return
+--             end
+--         end
+-- 
+--         client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+--             -- runtime = {
+--                 -- Tell the language server which version of Lua you're using
+--                 -- (most likely LuaJIT in the case of Neovim)
+--             --     version = 'LuaJIT'
+--             -- },
+--             -- Make the server aware of Neovim runtime files
+--             workspace = {
+--                 checkThirdParty = false,
+--                 library = {
+--                     vim.env.VIMRUNTIME
+--                 }
+--             }
+--         })
+--     end,
+--     settings = {
+--         Lua = {
+--             diagnostics = {
+--                 globals = { 'turtle' },
+--             },
+--         },
+--     },
+-- })
+
+-- lsp_zero.setup()
