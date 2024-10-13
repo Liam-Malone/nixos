@@ -42,6 +42,8 @@
     gimp
     gnome-keyring
     gnome-sound-recorder
+    gnome-disk-utility
+    gparted
     gtk4
     gvfs
     grim
@@ -49,6 +51,7 @@
     htop
     imagemagick
     imhex
+    kdenlive
     keepassxc
     libsForQt5.polkit-kde-agent
     libtool
@@ -64,6 +67,8 @@
     powertop
     praat
     prismlauncher
+    protonvpn-cli
+    protonvpn-gui
     qbittorrent
     signal-desktop
     slstatus
@@ -72,9 +77,12 @@
     texliveFull
     thunderbird
     tree
+    unzip
     wev
     wl-clipboard
+    xclip
     xdg-user-dirs
+    zip
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -253,6 +261,7 @@
   services = {
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
+
     emacs = {
       enable = true;
       package = pkgs.emacs-gtk;
@@ -263,14 +272,17 @@
 	        "-a emacs"
         ];
       };
-      startWithUserSession = true;
+      startWithUserSession = "graphical";
     };
+
     gnome-keyring.enable = true;
+
     gpg-agent = {
       enable = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
     };
+
     nextcloud-client.enable = true;
   };
 }

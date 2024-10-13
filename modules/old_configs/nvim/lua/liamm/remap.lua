@@ -24,23 +24,44 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
 -- put nvim to background 
 vim.keymap.set("n", "<leader>bg", "<C-z>")
 
+-- BUILD SCRIPT INVOKATIONS
 
--- invoke build scripts
--- `build.sh`
-vim.keymap.set("n", "<leader>bo",  ":!./build.sh ") -- Interactive for adding flags/options
-vim.keymap.set("n", "<leader>bb",  ":!./build.sh <CR>")
-vim.keymap.set("n", "<leader>br",  ":!./build.sh run<CR>")
-vim.keymap.set("n", "<leader>bR",  ":!./build.sh release<CR>")
-vim.keymap.set("n", "<leader>bRr", ":!./build.sh release run<CR>")
+-- `build.sh` script binds
+-- non-interactive binds
+vim.keymap.set("n", "<leader>bb"  , "<cmd>./build.sh <CR>")
+vim.keymap.set("n", "<leader>br"  , "<cmd>./build.sh run <CR>")
+vim.keymap.set("n", "<leader>bRb" , "<cmd>./build.sh release <CR>")
+vim.keymap.set("n", "<leader>bRr" , "<cmd>./build.sh release run <CR>")
+vim.keymap.set("n", "<leader>bRr" , "<cmd>./build.sh release run <CR>")
 
--- zig build
-vim.keymap.set("n", "<leader>zbo",  ":!zig build -D") -- Interactive for adding flags/options
-vim.keymap.set("n", "<leader>zbb",  ":!zig build <CR>")
-vim.keymap.set("n", "<leader>zbr",  ":!zig build run<CR>")
-vim.keymap.set("n", "<leader>zbR",  ":!zig build -Doptimize=ReleaseSafe <CR>")
-vim.keymap.set("n", "<leader>zbRr", ":!zig build -Doptimize=ReleaseSafe run<CR>")
-vim.keymap.set("n", "<leader>zbt",  ":!zig build -Dtarget=") -- Interactive to add target/other flags
-vim.keymap.set("n", "<leader>zbtR", ":!zig build -Doptimize=ReleaseSafe -Dtarget=") -- Interactive to add target/other flags
+-- interactive binds
+vim.keymap.set("n", "<leader>bo"  , "<cmd>./build.sh ") -- allow for adding extra flags/options
+vim.keymap.set("n", "<leader>bor" , "<cmd>./build.sh run") -- allow for adding extra flags/options
+vim.keymap.set("n", "<leader>bRo" , "<cmd>./build.sh release ")
+vim.keymap.set("n", "<leader>bRor", "<cmd>./build.sh release run ")
+
+-- `build.zig` script binds
+-- non-interactive binds
+vim.keymap.set("n", "<leader>zbb"  , "<cmd>zig build <CR>")
+vim.keymap.set("n", "<leader>zbr"  , "<cmd>zig build run <CR>")
+vim.keymap.set("n", "<leader>zbt"  , "<cmd>zig build test <CR>")
+vim.keymap.set("n", "<leader>zbR"  , "<cmd>zig build -Doptimize=ReleaseSafe <CR>")
+vim.keymap.set("n", "<leader>zbRs" , "<cmd>zig build -Doptimize=ReleaseSmall <CR>")
+vim.keymap.set("n", "<leader>zbRf" , "<cmd>zig build -Doptimize=ReleaseFast <CR>")
+vim.keymap.set("n", "<leader>zbRr" , "<cmd>zig build run -Doptimize=ReleaseSafe <CR>")
+vim.keymap.set("n", "<leader>zbRsr", "<cmd>zig build run -Doptimize=ReleaseSmall <CR>")
+vim.keymap.set("n", "<leader>zbRfr", "<cmd>zig build run -Doptimize=ReleaseFast <CR>")
+
+-- interactive binds
+vim.keymap.set("n", "<leader>zbob"  , "<cmd>zig build ")
+vim.keymap.set("n", "<leader>zbor"  , "<cmd>zig build run ")
+vim.keymap.set("n", "<leader>zbot"  , "<cmd>zig build test ")
+vim.keymap.set("n", "<leader>zboR"  , "<cmd>zig build -Doptimize=ReleaseSafe ")
+vim.keymap.set("n", "<leader>zboRs" , "<cmd>zig build -Doptimize=ReleaseSmall ")
+vim.keymap.set("n", "<leader>zboRf" , "<cmd>zig build -Doptimize=ReleaseFast ")
+vim.keymap.set("n", "<leader>zboRr" , "<cmd>zig build run -Doptimize=ReleaseSafe ")
+vim.keymap.set("n", "<leader>zboRsr", "<cmd>zig build run -Doptimize=ReleaseSmall ")
+vim.keymap.set("n", "<leader>zboRfr", "<cmd>zig build run -Doptimize=ReleaseFast ")
 
 
 -- emacs-inspired binds
