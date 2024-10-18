@@ -10,6 +10,10 @@
         # type = "kitty";
         width = 18;
         height = 9;
+        color = {
+            "1" = "white";
+            "2" = "magenta";
+        };
         padding = { 
           top = 2;
           left = 1;
@@ -18,12 +22,16 @@
       };
       display = {
         separator = " -> ";
+        color = {
+            keys = "magenta";
+        };
       };
       modules = [
         "title"
         {
           type = "custom";
           format = "────────── Env ──────────";
+          color = "magenta";
         }
         {
           type = "os";

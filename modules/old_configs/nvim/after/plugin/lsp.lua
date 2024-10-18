@@ -93,7 +93,9 @@ require('mason-lspconfig').setup({
               },
           })
       end,
-      zls    = lsp_zero.noop,
+      zls    = function()
+          lspconfig.zls.setup({})
+      end,
       lua_ls = function()
           lspconfig.lua_ls.setup({
               on_init = function(client)

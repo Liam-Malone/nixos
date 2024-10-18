@@ -3,11 +3,12 @@
 @define-color text       #BECBCB;
 @define-color lightgray  #686868;
 @define-color darkgray   #353535;
-@define-color red        #F38BA8;
+@define-color red        #C50F1F;
 @define-color blue       #00FFB2;
 @define-color lightgreen #a6e3a1;
 @define-color magenta    #f5c2e7;
 @define-color archbtw    #1793d1;
+@define-color purple     #881798;
 
 @define-color black-transparent-1 rgba(0, 0, 0, 0.1);
 @define-color black-transparent-2 rgba(0, 0, 0, 0.2);
@@ -40,7 +41,7 @@ window#waybar {
   background-color: @black-transparent-8;
   color: @text;
   border-radius: 7px;
-  border: 2px solid @blue;
+  border: 2px solid @purple;
   /* border: 1px solid rgba(0, 0, 0, 0.0); */
 }
 

@@ -11,8 +11,7 @@ keybind = ctrl+shift+tab=previous_tab
 keybind = ctrl+shift+n=new_window
 
 # window stuff
-background-opacity=0.9
-unfocused-split-opacity = 0.9
+background-opacity=0.8
 confirm-close-surface = false
 window-theme = dark
 window-decoration = false
@@ -24,37 +23,39 @@ gtk-wide-tabs = true
 #macos-non-native-fullscreen = true
 
 # font
-font-size = 12
+font-size = 14
 
 # cursor and mouse
 cursor-style = block
 cursor-color = #ffffff
 mouse-hide-while-typing = true
 
+theme = Bright Lights
+
 # Colors can be changed by setting the 16 colors of `palette`, which each color
 # being defined as regular and bold.
 #
 # black
-palette = 0=#0c0c0c
-palette = 8=#767676
-# red
-palette = 1=#c50f1f
-palette = 9=#e74856
-# green
-palette = 2=#13a10e
-palette = 10=#16c60c
-# yellow
-palette = 3=#c19c00
-palette = 11=#f9f1a5
-# blue
-palette = 4=#0037da
-palette = 12=#3b78ff
-# purple
-palette = 5=#881798
-palette = 13=#b4009e
-# aqua
-palette = 6=#3a96dd
-palette = 14=#61d6d6
-# white
-palette = 7=#cccccc
-palette = 15=#f2f2f2
+# palette = 0=#0c0c0c
+# palette = 8=#767676
+# # red
+# palette = 1=#c50f1f
+# palette = 9=#e74856
+# # green
+# palette = 2=#13a10e
+# palette = 10=#16c60c
+# # yellow
+# palette = 3=#c19c00
+# palette = 11=#f9f1a5
+# # blue
+# palette = 4=#0037da
+# palette = 12=#3b78ff
+# # purple
+# palette = 5=#881798
+# palette = 13=#b4009e
+# # aqua
+# palette = 6=#3a96dd
+# palette = 14=#61d6d6
+# # white
+# palette = 7=#cccccc
+# palette = 15=#f2f2f2

@@ -13,7 +13,10 @@
     hyprlock
     hypridle
     hyprpaper
+    hyprland-protocols
+    # hyprpolkit -- not in nixpkgs yet
   ];
+
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
@@ -25,7 +28,7 @@
       ];
     };
     plugins = [
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     settings = {
       monitor = [
@@ -74,8 +77,8 @@
         gaps_in = 2;
         gaps_out = 4;
         border_size = 2;
-        "col.active_border" = "rgba(00ffb2ff) rgba(00ff66ff) 90deg";
-        "col.inactive_border" = "rgba(595959ff)";
+        "col.active_border" = "rgba(881798FF)";
+        "col.inactive_border" = "rgba(471520FF)";
         layout = "dwindle";
       };
 
@@ -174,7 +177,8 @@
       "$lock" = "hyprlock";
 
       bind = [
-        # "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
+        # Program binds
+        "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
         "$altMod, Return, exec, ghostty"
         "$mainMod, Return, exec, GDK_BACKEND=x11 ghostty" # Until NixOS Fixes EGL Drivers
         "$altMod SHIFT, Return, exec, alacritty"
@@ -184,7 +188,14 @@
         "$mainMod, SPACE, exec, pkill wofi || wofi"
         "$mainMod, E, exec, nautilus"
         "$mainMod, S, exec, spotify"
-        "$mainMod, P, pseudo," # dwindle
+        "$mainMod, P, exec, hyprpicker -a -f hex"
+
+        # Screenshot
+        ", Print, exec, $screenshotarea"
+        "SHIFT, Print, exec, grimblast --notify --cursor copy output"
+
+        # WM management binds
+        "$mainMod SHIFT, P, pseudo," # dwindle
         "$mainMod, C, killactive,"
         "$mainMod control, Q, exec, $lock"
         "$mainMod, F4, exit,"
@@ -192,9 +203,6 @@
         "$mainMod SHIFT, S, togglesplit," # dwindle
         "$mainMod, F, fullscreen,"
 
-        # Screenshot
-        ", Print, exec, $screenshotarea"
-        "SHIFT, Print, exec, grimblast --notify --cursor copy output"
 
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
@@ -327,17 +335,18 @@
 
         bind=, escape,submap,reset
         submap = reset
+
+        plugin {
+            hyprexpo {
+                columns = 3
+                    gapSize = 4
+                    workspace_method = "center current"
+                    enable_gesture = true
+                    gesture_distance = 300
+                    gesture_negative = true
+            }
+        }
         '';
-#        plugin {
-#          hyprexpo {
-#            columns = 3
-#            gapSize = 4
-#            workspace_method = "center current"
-#            enable_gesture = true
-#            gesture_distance = 300
-#            gesture_negative = true
-#          }
-#        }
   };
   lib.inputMethod.fcitx5.waylandFrontend = true;
   programs.hyprlock = {
@@ -422,11 +431,10 @@
         ipc = "on";
         splash = false;
         preload = [
-          "~/pictures/desert.png"
-          "~/pictures/.wallpapers/bloody_snow.jpg"
+          "~/pictures/.wallpapers/skyline-view.png"
         ];
         wallpaper = [
-          "eDP-1,~/pictures/.wallpapers/bloody_snow.jpg"
+          "eDP-1,~/pictures/.wallpapers/skyline-view.png"
         ];
       };
     };

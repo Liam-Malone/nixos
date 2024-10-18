@@ -1,3 +1,5 @@
+@define-color purple     #881798;
+
 * {
   transition: 0.2s;
   color: #aaaaaa;
@@ -9,7 +11,8 @@
 /* background-position: 50% 30%;*/
   background-size: auto 200%;
   border: 2.0px solid;
-  border-color: #00ffb2;
+  border-color: @purple;
+  border-color: @darkpurple;
   border-radius: 10px;
 }
 
