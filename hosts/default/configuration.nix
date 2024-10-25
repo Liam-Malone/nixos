@@ -30,6 +30,7 @@
         Settings.Autoconnect = true;
       };
     };
+
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -46,11 +47,10 @@
   i18n= {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      #enabled = "fcitx5";
-      type = "fcitx5";
       enable = true;
+      type = "fcitx5";
       fcitx5 = {
-        # waylandFrontend = true;
+        waylandFrontend = true;
         addons = with pkgs; [
           fcitx5-mozc
           fcitx5-gtk
@@ -62,24 +62,17 @@
 
   # Enable the X11 windowing system.
   services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-      windowManager = {
-        i3.enable = true;
-        dwm.enable = true;
-      };
-    };
-
-    # displayManager.sddm = {
+    # xserver = {
     #   enable = true;
-    #   wayland.enable = true;
+    #   xkb = {
+    #     layout = "us";
+    #     variant = "";
+    #   };
+    #   windowManager = {
+    #     i3.enable = true;
+    #     dwm.enable = true;
+    #   };
     # };
-
-    # desktopManager.plasma6.enable = true;
 
     libinput.enable = true;
 
@@ -102,25 +95,12 @@
     thermald.enable = true;
 
     power-profiles-daemon.enable = false;
-
-    ## enable/disable camera
-    # pipewire.wireplumber.extraConfig = {
-    #   "10-enable-camera" = {
-    #     "wireplumber.profiles" = {
-    #       main = {
-    #         "monitor.libcamera" = "enabled";
-    #       };
-    #     };
-    #   };
-    # };
   };
 
   security.pam.services.hyprlock = {};
 
   environment.etc."greetd/environments".text = ''
       Hyprland
-      none+i3
-      non+dwm
       '';
 
   hardware = {
@@ -140,7 +120,8 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-emoji
     liberation_ttf
     fira-code
@@ -153,13 +134,13 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     (final: prev: {
-      dwm = prev.dwm.overrideAttrs (old: {src = /home/liamm/oss/dwm;});
+      dwm = prev.dwm.overrideAttrs (old: {url = "github:Liam-Malone/dwm";});
     })
     (final: prev: {
-      dmenu = prev.dmenu.overrideAttrs (old: {src = /home/liamm/oss/dmenu;});
+      dmenu = prev.dmenu.overrideAttrs (old: {url = "github:Liam-Malone/dmenu";});
     })
     (final: prev: {
-      slstatus = prev.slstatus.overrideAttrs (old: {src = /home/liamm/oss/slstatus;});
+      slstatus = prev.slstatus.overrideAttrs (old: {url = "github:Liam-Malone/slstatus";});
     })
   ];
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

@@ -348,6 +348,7 @@
         }
         '';
   };
+
   lib.inputMethod.fcitx5.waylandFrontend = true;
   programs.hyprlock = {
     enable = true;
@@ -359,7 +360,7 @@
       };
       background = [
         {
-          path = "/home/liamm/pictures/.wallpapers/bloody_snow.jpg";
+          path = "~/pictures/.wallpapers/bloody_snow.jpg";
           blur_passes = 2;
           blur_size = 8;
         }
