@@ -15,7 +15,7 @@
             "2" = "magenta";
         };
         padding = { 
-          top = 2;
+          top = 0; # put this on 2 for picture source
           left = 1;
           right = 3;
         };
