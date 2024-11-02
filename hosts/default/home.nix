@@ -189,7 +189,6 @@
       enableCompletion = true;
       enableVteIntegration = true;
       initExtra =''
-        export SHELL=/run/current-system/sw/bin/bash
         if [[ -z $ORIG_SHLVL ]]; then
             export ORIG_SHLVL=$SHLVL
         fi;
