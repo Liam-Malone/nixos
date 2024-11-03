@@ -201,23 +201,25 @@
         fastfetch
       '';
       shellAliases = {
+        build = "./build.sh";
+        emacsd = "emacs --daemon";
+        emacsc = "emacsclient -c -a 'emacs'";
+        gap = "git add -p";
+        gcp = "git commit -p";
+        kpx = "keepassxc-cli open";
         ls = "ls --color=auto";
         ll = "ls -l";
         la = "ls -lA";
-        ping = "ping -c 5";
-        kpx = "keepassxc-cli open";
         nixbuild = "sudo nixos-rebuild switch --flake";
         nixtest = "sudo nixos-rebuild test --flake";
-        vi = "\vim";
-        emacsd = "emacs --daemon";
-        emacsc = "emacsclient -c -a 'emacs'";
         new = "source $HOME/.bashrc";
         newbar = "pkill waybar; waybar &disown";
-        ".." = "cd ..";
+        ping = "ping -c 5";
         set-github-var = "export GITHUB=$(sed -n 2p ~/documents/.git_keys)";
         set-gitlab-var = "export GITLAB=$(sed -n 4p ~/documents/.git_keys)";
+        vi = "\\vim";
         work = "nix develop --impure";
-        build = "./build.sh";
+        ".." = "cd ..";
       };
     };
     emacs = {
