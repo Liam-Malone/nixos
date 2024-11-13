@@ -14,6 +14,8 @@
     hypridle
     hyprpaper
     hyprland-protocols
+    inputs.hyprsunset
+    # inputs.hyprsysteminfo
     # hyprpolkit -- not in nixpkgs yet
   ];
 
@@ -350,78 +352,81 @@
   };
 
   lib.inputMethod.fcitx5.waylandFrontend = true;
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = { 
-        disable_loading_bar = true;
-        hide_cursor = true;
-        no_fade_in = false;
+
+  programs = {
+    hyprlock = {
+      enable = true;
+      settings = {
+        general = { 
+          disable_loading_bar = true;
+          hide_cursor = true;
+          no_fade_in = false;
+        };
+        background = [
+          {
+            path = "~/pictures/.wallpapers/bloody_snow.jpg";
+            blur_passes = 2;
+            blur_size = 8;
+          }
+        ];
+        input-field = [
+        {
+            monitor = "";
+            size = "200, 30";
+            outline_thickness = 3;
+            dots_size = 0.33;
+            dots_spacing = 0.15;
+            dots_center = false;
+            outer_color = "#fe0b00";
+            inner_color = "#0c0c0c";
+            font_color = "#efefef";
+            fade_on_empty = true;
+            check_color = "#0eff0d";
+            fail_color = "#ff009e";
+            capslock_color = "#bb00ee";
+            placeholder_text = "<i>Input Password...</i>";
+            fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+        }
+        ];
+        label = [
+          {
+            monitor = "";
+            text = "$TIME";
+            text_align = "center";
+            color = "#ffffee";
+            font_size = 28;
+            font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+
+            position = "0, 80";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            monitor = "";
+            text = "cmd[update:1000] echo \"        <span foreground='##ffffee'>$(date +'%A, %b %d %Y')</span>\"";
+            text_align = "center";
+            color = "#ffffee";
+            font_size = 18;
+            font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+
+            position = "80, 80";
+            halign = "left";
+            valign = "bottom";
+          }
+          {
+            monitor = "";
+            text = "cmd[update:1000] echo \"<span foreground='##feffee'>󰁿$(cat /sys/class/power_supply/BAT0/capacity)</span>\"";
+            text_align = "center";
+            color = "#ffffee";
+            font_size = 18;
+            font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
+
+            position = "80, 80";
+            halign = "right";
+            valign = "bottom";
+          }
+        ];
       };
-      background = [
-        {
-          path = "~/pictures/.wallpapers/bloody_snow.jpg";
-          blur_passes = 2;
-          blur_size = 8;
-        }
-      ];
-      input-field = [
-      {
-          monitor = "";
-          size = "200, 30";
-          outline_thickness = 3;
-          dots_size = 0.33;
-          dots_spacing = 0.15;
-          dots_center = false;
-          outer_color = "#fe0b00";
-          inner_color = "#0c0c0c";
-          font_color = "#efefef";
-          fade_on_empty = true;
-          check_color = "#0eff0d";
-          fail_color = "#ff009e";
-          capslock_color = "#bb00ee";
-          placeholder_text = "<i>Input Password...</i>";
-          fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-      }
-      ];
-      label = [
-        {
-          monitor = "";
-          text = "$TIME";
-          text_align = "center";
-          color = "#ffffee";
-          font_size = 28;
-          font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
-
-          position = "0, 80";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          text = "cmd[update:1000] echo \"        <span foreground='##ffffee'>$(date +'%A, %b %d %Y')</span>\"";
-          text_align = "center";
-          color = "#ffffee";
-          font_size = 18;
-          font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
-
-          position = "80, 80";
-          halign = "left";
-          valign = "bottom";
-        }
-        {
-          monitor = "";
-          text = "cmd[update:1000] echo \"<span foreground='##feffee'>󰁿$(cat /sys/class/power_supply/BAT0/capacity)</span>\"";
-          text_align = "center";
-          color = "#ffffee";
-          font_size = 18;
-          font_family = builtins.head osConfig.fonts.fontconfig.defaultFonts.sansSerif;
-
-          position = "80, 80";
-          halign = "right";
-          valign = "bottom";
-        }
-      ];
     };
   };
 

@@ -25,6 +25,58 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
 vim.keymap.set("n", "<leader>bg", "<C-z>")
 
 -- BUILD SCRIPT INVOKATIONS
+-- generic build function
+local function set(list)
+    local _set = {}
+    for _, l in ipairs(list) do
+        _set[l] = true
+    end
+    return _set
+end
+
+-- TODO: add support for passing flags
+function Build()
+    local out_buf = vim.api.nvim_create_buf(false, true)
+
+    local build_scripts = set(vim.fs.find({ "build.sh", "build.zig", "build.bat" }, { upward = true, type = "file", path = "." }))
+    local output = "[No Build Output]"
+
+    if build_scripts['build.zig'] then
+        vim.cmd('echo "Running build.zig"')
+        output = vim.fn.system({ 'zig', 'build' })
+    else
+        if jit.os == 'Windows' and build_scripts['build.bat'] then
+            output = vim.fn.system({ 'build', '' })
+        elseif build_scripts['build.sh'] then
+            output = vim.fn.system({ './build.sh', '' })
+        else
+        end
+    end
+    vim.api.nvim_buf_set_lines(out_buf, -1, -1, true, {"[ Build Output ]"})
+    vim.api.nvim_buf_set_lines(out_buf, -1, -1, true, vim.split(output, '\n'))
+
+    local window = vim.api.nvim_open_win(out_buf, false, {
+        split = 'right',
+        win   = 0,
+        width = math.floor(vim.o.columns * 0.35),
+        style = 'minimal',
+    })
+    vim.api.nvim_set_current_win(window)
+
+    -- Keybind to close the window on pressing Enter
+    vim.api.nvim_buf_set_keymap(out_buf, 'n', '<CR>', '', {
+        noremap = true,
+        silent = true,
+        callback = function()
+            vim.api.nvim_win_close(window, true)
+        end
+    })
+end
+
+-- TODO: add support for passing flags
+vim.keymap.set("n", "<leader>bs", ":lua Build()<CR>")
+
+-- specific build scipt options
 
 -- `build.sh` script binds
 -- non-interactive binds
@@ -62,7 +114,6 @@ vim.keymap.set("n", "<leader>zboRf" , ":!zig build -Doptimize=ReleaseFast ")
 vim.keymap.set("n", "<leader>zboRr" , ":!zig build run -Doptimize=ReleaseSafe ")
 vim.keymap.set("n", "<leader>zboRsr", ":!zig build run -Doptimize=ReleaseSmall ")
 vim.keymap.set("n", "<leader>zboRfr", ":!zig build run -Doptimize=ReleaseFast ")
-
 
 -- emacs-inspired binds
  -- all <C-w> can be done w spacebar-w

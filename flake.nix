@@ -15,13 +15,13 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
+    hyprsunset = {
+        url = "github:hyprwm/hyprsunset";
+        inputs.nixpkgs.follows = "hyprland";
     };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
+    hyprsysteminfo = {
+        url = "github:hyprwm/hyprsysteminfo";
+        inputs.nixpkgs.follows = "hyprland";
     };
     ghostty = {
       inputs = {
