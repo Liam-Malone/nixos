@@ -128,7 +128,7 @@
     fira-code-symbols
     mplus-outline-fonts.githubRelease
     dina-font
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    fira-code-nerdfont
   ];
 
   nixpkgs.config.allowUnfree = true;
