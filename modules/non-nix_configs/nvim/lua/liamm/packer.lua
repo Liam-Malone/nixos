@@ -1,5 +1,4 @@
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   use({ 'rose-pine/neovim', as = 'rose-pine' })
@@ -12,7 +11,13 @@ return require('packer').startup(function(use)
   use 'mbbill/undotree'
   use 'theprimeagen/harpoon'
   use 'nvim-lualine/lualine.nvim'
-  use 'mfussenegger/nvim-dap' -- debugger integration
+  use {
+      'mfussenegger/nvim-dap', -- debugger integration
+      requires = {
+          'rcarriga/nvim-dap-ui',
+          'nvim-neotest/nvim-nio' -- dep of dap-ui
+      }
+  }
   use 'tpope/vim-fugitive' -- git integration
   --LSP CONFIG
   --

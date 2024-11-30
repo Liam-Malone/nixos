@@ -1,0 +1,46 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+[colors.bright]
+black = "#767676"
+blue = "#3b78ff"
+cyan = "#61d6d6"
+green = "#16c60c"
+magenta = "#b4009e"
+red = "#e74856"
+white = "#f2f2f2"
+yellow = "#f9f1a5"
+
+[colors.normal]
+black = "#0c0c0c"
+blue = "#0037da"
+cyan = "#3a96dd"
+green = "#13a10e"
+magenta = "#881798"
+red = "#c50f1f"
+white = "#cccccc"
+yellow = "#c19c00"
+
+[colors.primary]
+background = "#0c0c0c"
+foreground = "#cccccc"
+
+[font]
+size = 16
+[font.normal]
+family = "FiraCodeNerdFontMono"
+
+[window]
+blur = true
+decorations = "None"
+opacity = 0.8
+
+[window.dimensions]
+columns = 200
+lines = 20
+
+[window.padding]
+x = 8
+y = 8
+
+[general]
+live_config_reload = false

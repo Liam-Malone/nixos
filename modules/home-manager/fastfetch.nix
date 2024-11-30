@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       logo = {
-        source = "nixos_small";
+        source = "nixos";
         # source = "~/pictures/lil-penguin.png";
         # type = "kitty";
         width = 18;

@@ -1,4 +1,22 @@
+local dapui = require('dapui')
 local dap = require("dap")
+
+-- DAP UI setup
+dapui.setup()
+
+-- Basic DAP UI event listeners
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+
+-- DAP for C
+
 dap.adapters.gdb = {
   type = "executable",
   command = "gdb",
@@ -14,7 +32,8 @@ dap.configurations.c = {
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     cwd = "${workspaceFolder}",
-    stopAtBeginningOfMainSubprogram = false,
+    stopOnEntry = true,
+    -- stopAtBeginningOfMainSubprogram = false,
   },
   {
     name = "Select and attach to process",
@@ -30,6 +49,15 @@ dap.configurations.c = {
     cwd = '${workspaceFolder}'
   },
   {
+    name = 'Attach to process',
+    type = 'gdb',
+    request = 'attach',
+    pid = function ()
+        return vim.fn.input('Enter PID: ')
+    end,
+    args = {},
+  },
+  {
     name = 'Attach to gdbserver :1234',
     type = 'gdb',
     request = 'attach',
@@ -40,3 +68,4 @@ dap.configurations.c = {
     cwd = '${workspaceFolder}'
   },
 }
+

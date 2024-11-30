@@ -144,38 +144,38 @@
   xdg.configFile = {
     "contour" = {
       recursive = true;
-      source = ../../modules/old_configs/contour;
+      source = ../../modules/non-nix_configs/contour;
     };
     "emacs" = {
       recursive = true;
-      source = ../../modules/old_configs/emacs;
+      source = ../../modules/non-nix_configs/emacs;
     };
     "ghostty" = {
       recursive = true;
-      source = ../../modules/old_configs/ghostty;
+      source = ../../modules/non-nix_configs/ghostty;
     };
     "kitty" = {
       recursive = true;
-      source = ../../modules/old_configs/kitty;
+      source = ../../modules/non-nix_configs/kitty;
     };
     "nvim" = {
       recursive = true;
-      source = ../../modules/old_configs/nvim;
+      source = ../../modules/non-nix_configs/nvim;
     };
     "river" = {
       recursive = true;
-      source = ../../modules/old_configs/river;
+      source = ../../modules/non-nix_configs/river;
     };
     "waybar" = {
       recursive = true;
-      source = ../../modules/old_configs/waybar;
+      source = ../../modules/non-nix_configs/waybar;
     };
     "wofi" = {
       recursive = true;
-      source = ../../modules/old_configs/wofi;
+      source = ../../modules/non-nix_configs/wofi;
     };
-    "user-dirs.dirs".source = ../../modules/old_configs/user-dirs.dirs;
-    "user-dirs.locale".source = ../../modules/old_configs/user-dirs.locale;
+    "user-dirs.dirs".source = ../../modules/non-nix_configs/user-dirs.dirs;
+    "user-dirs.locale".source = ../../modules/non-nix_configs/user-dirs.locale;
   };
   # BEGIN PROGRAMS
 
