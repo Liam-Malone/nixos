@@ -124,11 +124,11 @@
     noto-fonts-cjk-serif
     noto-fonts-emoji
     liberation_ttf
-    fira-code
     fira-code-symbols
     mplus-outline-fonts.githubRelease
     dina-font
-    fira-code-nerdfont
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
   ];
 
   nixpkgs.config.allowUnfree = true;
