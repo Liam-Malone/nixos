@@ -19,6 +19,9 @@
     # hyprpolkit -- not in nixpkgs yet
   ];
 
+  imports = [
+    ./waybar.nix
+  ];
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;

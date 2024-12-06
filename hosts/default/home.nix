@@ -152,10 +152,10 @@
       recursive = true;
       source = ../../modules/non-nix_configs/river;
     };
-    "waybar" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/waybar;
-    };
+    # "waybar" = {
+    #   recursive = true;
+    #   source = ../../modules/non-nix_configs/waybar;
+    # };
     "wofi" = {
       recursive = true;
       source = ../../modules/non-nix_configs/wofi;
@@ -229,11 +229,11 @@
     obs-studio = {
       enable = true;
     };
-    waybar = {
-      enable = true;
-      systemd.enable = true;
-      systemd.target = "hyprland-session.target";
-    };
+    # waybar = {
+    #   enable = true;
+    #   systemd.enable = true;
+    #   systemd.target = "hyprland-session.target";
+    # };
     wofi.enable = true;
   };
 
