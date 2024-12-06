@@ -12,7 +12,7 @@
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
     style = ''
-      ${builtins.readFile ../waybar.css}
+      ${builtins.readFile ./waybar.css}
     '';
     settings = {
       mainBar = {
@@ -152,7 +152,7 @@
 
         "clock" = {
             interval = 1;
-            format = "<big></big> {:%d/%m} :: <big>󰥔</big> {:%R}"
+            format = "<big></big> {:%d/%m} :: <big>󰥔</big> {:%R}";
          };
       };
     };
