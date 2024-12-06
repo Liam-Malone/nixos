@@ -30,7 +30,6 @@
     audacity
     brave
     brightnessctl
-    dmenu
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
