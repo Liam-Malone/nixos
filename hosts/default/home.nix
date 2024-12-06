@@ -71,7 +71,6 @@
     swww
     teams-for-linux
     texliveFull
-    thunderbird
     tree
     unzip
     wev
