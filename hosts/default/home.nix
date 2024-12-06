@@ -5,9 +5,6 @@
   home.homeDirectory = "/home/liamm";
 
   imports = [
-    # home-manager
-    inputs.ags.homeManagerModules.default
-
     # general modules
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
@@ -169,10 +166,6 @@
 
   # BEGIN PROGRAMS
   programs = {
-    ags = {
-      enable = true;
-      configDir = ../../modules/home-manager/ags;
-    };
     bash = {
       enable = true;
       enableCompletion = true;
