@@ -1,24 +1,18 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
 
   networking = {
     networkmanager = {
-      enable = true;  # Easiest to use and most distros use this by default.
+      enable = true;
       wifi.backend = "iwd";
     };
     hostName = "nixos-laptop";
@@ -40,10 +34,8 @@
     # networking.firewall.allowedUDPPorts = [ ... ];
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Madrid";
 
-  # Select internationalisation properties.
   i18n= {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
@@ -60,20 +52,7 @@
     };
   };
 
-  # Enable the X11 windowing system.
   services = {
-    # xserver = {
-    #   enable = true;
-    #   xkb = {
-    #     layout = "us";
-    #     variant = "";
-    #   };
-    #   windowManager = {
-    #     i3.enable = true;
-    #     dwm.enable = true;
-    #   };
-    # };
-
     libinput.enable = true;
 
     greetd = {
@@ -87,10 +66,8 @@
     };
 
     blueman.enable = true;
-
-    # printing.enable = true; # Enable CUPS to print documents.
+    # printing.enable = true; # CUPS
     gvfs.enable = true;
-
     auto-cpufreq.enable = true;
     thermald.enable = true;
 
@@ -113,8 +90,6 @@
       ];
     };
     pulseaudio.enable = false;
-
-    # System76 Devices
     system76.enableAll = true;
   };
 
@@ -132,23 +107,6 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [
-    (final: prev: {
-      dwm = prev.dwm.overrideAttrs (old: {url = "github:Liam-Malone/dwm";});
-    })
-    (final: prev: {
-      dmenu = prev.dmenu.overrideAttrs (old: {url = "github:Liam-Malone/dmenu";});
-    })
-    (final: prev: {
-      slstatus = prev.slstatus.overrideAttrs (old: {url = "github:Liam-Malone/slstatus";});
-    })
-  ];
-  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #   "steam"
-  #   "steam-original"
-  #   "steam-run"
-  # ];
-
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -159,7 +117,7 @@
   nix.gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 20d";
+      options = "--delete-older-than 10d";
   };
   nix.optimise = {
     automatic = true;
@@ -169,7 +127,7 @@
   users.users.liamm = {
     isNormalUser = true;
     description = "liamm";
-    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "davfs2" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "davfs2" "input" ];
   };
 
   programs = {
@@ -181,8 +139,6 @@
     };
 
     nix-ld.enable = true;
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
     mtr.enable = true;
     gnupg.agent = {
       enable = true;
@@ -198,10 +154,8 @@
     };
   };
  
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     fd
     file
     ripgrep
@@ -226,7 +180,6 @@
     portal = {
       enable = true;
       wlr.enable = true;
-      # gtkUsePortal = true;
       extraPortals = with pkgs;[ 
         xdg-desktop-portal-gtk 
         xdg-desktop-portal-wlr
@@ -240,9 +193,6 @@
     };
   };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine

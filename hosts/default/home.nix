@@ -7,6 +7,8 @@
   imports = [
     # home-manager
     inputs.ags.homeManagerModules.default
+
+    # general modules
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/fastfetch.nix
@@ -16,13 +18,11 @@
     ../../modules/desktop/bluetooth.nix
     ../../modules/desktop/hyprland.nix
   ];
+
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -68,7 +68,6 @@
     protonvpn-gui
     qbittorrent
     signal-desktop
-    slstatus
     swww
     teams-for-linux
     texliveFull
@@ -82,15 +81,7 @@
     zoom-us
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-  };
+  home.file = {};
 
   home.sessionVariables = {
     EDITOR = "emacsclient";
@@ -176,8 +167,8 @@
     "user-dirs.dirs".source = ../../modules/non-nix_configs/user-dirs.dirs;
     "user-dirs.locale".source = ../../modules/non-nix_configs/user-dirs.locale;
   };
-  # BEGIN PROGRAMS
 
+  # BEGIN PROGRAMS
   programs = {
     ags = {
       enable = true;
@@ -246,7 +237,6 @@
     obs-studio = {
       enable = true;
     };
-    # swaylock.enable = true;
     waybar = {
       enable = true;
       systemd.enable = true;
@@ -268,7 +258,7 @@
         enable = true;
         arguments = [
           "-c"
-	        "-a emacs"
+	      "-a emacs"
         ];
       };
       startWithUserSession = "graphical";
