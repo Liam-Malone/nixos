@@ -49,13 +49,6 @@
             }
           ];
         };
-	gamemachine = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [
-            ./hosts/gamemachine/configuration.nix
-            ./modules/nvidia.nix
-          ];
-        };
       };
     };
 }
