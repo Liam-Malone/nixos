@@ -4,6 +4,7 @@
 @define-color lightgray  #686868;
 @define-color darkgray   #353535;
 @define-color red        #C50F1F;
+@define-color orange     #FFC251;
 @define-color blue       #00FFB2;
 @define-color lightgreen #a6e3a1;
 @define-color magenta    #f5c2e7;
@@ -25,6 +26,8 @@
   font-family: Iosevka, Material Design Icons Desktop;
   font-weight: bold;
   font-size: 16px;
+  border: none;
+  border-radius: 0;
 }
 /*
 * {
@@ -37,22 +40,54 @@
 }
  */
 
+#window {
+  background-color: @black-transparent-4;
+  padding: 0px;
+  border-radius: 6px;
+  border: none;
+}
+
 window#waybar {
-  background-color: @black-transparent-6;
+  background: transparent;
   color: @text;
   border-radius: 7px;
-  border: 2px solid @purple;
-  /* border: 1px solid rgba(0, 0, 0, 0.0); */
+  border: none;
 }
+
+window#waybar.empty {
+  background-color: transparent;
+  padding: 0px;
+  border-radius: 0px;
+  border: none;
+}
+
 
 tooltip {
   background: @black-transparent-9;
-  border: 1px solid @darkgray;
+  border: 1px solid @purple;
   border-radius: 7px;
 }
 
 tooltip label {
   color: @text;
+}
+
+.modules-left {
+  background: @black-transparent-8;
+  border-radius: 8px;
+  border: 2px solid @purple;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 2px 4px;
+}
+
+.modules-right {
+  background: @black-transparent-8;
+  border-radius: 8px;
+  border: 2px solid @purple;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 2px 4px;
 }
 
 #tags {
@@ -88,12 +123,6 @@ tooltip label {
   animation: colored-gradient 10s ease infinite;
 }
 
-/* #workspaces button.focused:hover,
-#workspaces button.active:hover {
-  background-color: @white;
-  transition: all 1s ease;
-} */
-
 #tags button.urgent {
   background-color: @red;
   color: @black;
@@ -112,9 +141,8 @@ tooltip label {
 }
 
 #workspaces button {
-  background-color: transparent;
   color: @lightgray;
-  padding: 0;
+  padding: 0px 3px;
   /* margin: 0; */
   margin-top: 3px;
   margin-bottom: 3px;
@@ -142,11 +170,11 @@ tooltip label {
   animation: colored-gradient 10s ease infinite;
 }
 
-/* #workspaces button.focused:hover,
+#workspaces button.focused:hover,
 #workspaces button.active:hover {
-  background-color: @white;
+  background-color: @darkgray;
   transition: all 1s ease;
-} */
+}
 
 #workspaces button.urgent {
   background-color: @red;
@@ -166,9 +194,9 @@ tooltip label {
 
 #taskbar button { 
   color: @text;
-  padding: 1px 8px;
-  margin-left: 1px;
-  margin-right: 1px;
+  padding: 4px 8px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #taskbar button:hover {
@@ -190,69 +218,87 @@ tooltip label {
   animation: colored-gradient 10s ease infinite;
 }
 
-/* #taskbar button.fullscreen {} */
+#custom-kernel {
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+  color: @magenta;
+}
 
-/* -------------------------------------------------------------------------------- */
+#custom-wofi {
+  color: @archbtw;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 0px 4px;
+}
 
-#custom-wofi,
-#custom-kernel,
-#keyboard-state,
-/* #window, */
-#submap,
-#mode,
-#tray,
-#cpu,
-#memory,
-#backlight,
-#pulseaudio.audio,
-#pulseaudio.microphone,
-#network,
-#network.enp46s0,
-#bluetooth,
-#battery,
-#clock,
-#custom-updates,
-#custom-powermenu,
-#custom-notification {
-  background-color: transparent;
-  color: @text;
-  padding: 1px 8px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+#keyboard-state {
+  padding: 0px 3px;
   margin-left: 2px;
   margin-right: 2px;
-  /* border: 1px solid @darkgray; */
-  border-radius: 20px;
-  transition: all 0.3s ease;
 }
 
-#submap {
-  border: 0;
+#tray {
+  background-color: @black-transparent-6;
+  padding: 0px 0px;
+  margin-right: 6px;
+  border-radius: 8px;
+  border: 2px solid @black;
 }
 
-/* -------------------------------------------------------------------------------- */
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
 
-/* #custom-launcher {
-  background-color: @darkgray;
-  color: @black;
-} */
-
-/* #custom-launcher:hover {
-  color: @white;
-} */
-
-/* #custom-powermenu {
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
   background-color: @red;
-  color: @black;
 }
 
-#custom-powermenu:hover {
+#battery.charging {
+  color: @lightgreen;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 4px 4px;
+}
+
+#battery.discharging.good {
   color: @white;
-} */
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 4px 4px;
+}
+
+#battery.discharging.warning {
+  color: @orange;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 4px 4px;
+}
+
+#battery.discharging.critical {
+  color: @red;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 4px 4px;
+}
+
+#pulseaudio.audio {
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 4px 4px;
+}
+
+#clock  {
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 4px 4px;
+}
 
 /* -------------------------------------------------------------------------------- */
-
 /* If workspaces is the leftmost module, omit left margin */
+
 .modules-left > widget:first-child > #workspaces button,
 .modules-left > widget:first-child > #taskbar button,
 .modules-left > widget:first-child > #custom-launcher,
@@ -267,9 +313,8 @@ tooltip label {
 .modules-left > widget:first-child > #bluetooth,
 .modules-left > widget:first-child > #battery,
 .modules-left > widget:first-child > #clock,
-.modules-left > widget:first-child > #custom-powermenu,
 .modules-left > widget:first-child > #custom-notification {
-  margin-top: 10px;
+  margin-left: 8px;
 }
 
 .modules-right > widget:last-child > #workspaces button,
@@ -286,43 +331,8 @@ tooltip label {
 .modules-right > widget:last-child > #bluetooth,
 .modules-right > widget:last-child > #battery,
 .modules-right > widget:last-child > #clock,
-.modules-right > widget:last-child > #custom-powermenu,
 .modules-right > widget:last-child > #custom-notification {
-  margin-bottom: 10px;
+  margin-right: 8px;
 }
 
 /* -------------------------------------------------------------------------------- */
-
-#tray {
-  background-color: transparent;
-  padding: 1px 6px;
-}
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: @red;
-}
-#battery {
-    color: @lightgreen;
-    border-right: 0px;
-    border-left: 0px;
-}
-#custom-updates {
-    color: @magenta;
-}
-#custom-kernel {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    color: @magenta;
-}
-#custom-wofi {
-    color: @archbtw;
-}
-#keyboard-state {
-    margin-top: 8px;
-}
-#clock {
-}
-

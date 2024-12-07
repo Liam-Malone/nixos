@@ -42,7 +42,7 @@
 
         "custom/kernel" = {
           exec = "uname -r | sed 's/-a.*//p'";
-          format = "<big></big>{}";
+          format = "<big></big> {}";
           interval = "once";
         };
 
@@ -85,16 +85,11 @@
 
         "hyprland/window" = {
             format = "{}";
-            rewrite = [
-              {
-                "(.*) — Mozilla Firefox" =  "🌎 $1";
-              }
-            ];
             separate-outputs = false;
          };
 
         "tray" = {
-          icon-size = 14;
+          icon-size = 18;
           spacing = 8;
         };
 
@@ -104,9 +99,9 @@
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-plugged = "󱘖 {capacity}%";
+          format = "| {icon} {capacity}%";
+          format-charging = "| 󰂄 {capacity}%";
+          format-plugged = "| 󱘖 {capacity}%";
           format-icons = [
             "󰁺"
             "󰁻"
@@ -152,7 +147,8 @@
 
         "clock" = {
             interval = 1;
-            format = "<big></big> {:%d/%m} :: <big>󰥔</big> {:%R}";
+            format = "<big></big> {:%d/%m, <big>󰥔</big> %R}";
+            tooltip-format = "<big>{:%Y %B}</big><tt><small>\n{calendar}</small></tt>";
          };
       };
     };
