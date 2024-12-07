@@ -4,7 +4,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      live_config_reload = false;
+      general.live_config_reload = false;
       font = {
         normal.family = "FiraCodeNerdFontMono";
         size = 16;
