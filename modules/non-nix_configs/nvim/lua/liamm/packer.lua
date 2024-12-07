@@ -2,6 +2,9 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use({ 'folke/tokyonight.nvim', as = 'tokyonight' })
+  use({ 'karoliskoncevicius/sacredforest-vim', as = 'sacredforest' })
+  use({ 'EdenEast/nightfox.nvim', as = 'nightfox' })
 
   use 'nvim-telescope/telescope.nvim'
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
