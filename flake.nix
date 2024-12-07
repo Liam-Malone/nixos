@@ -23,8 +23,8 @@
     };
     ghostty = {
       inputs = {
-        nixpkgs-stable.follows = "nixpkgs";
-        nixpkgs-unstable.follows = "nixpkgs";
+        # nixpkgs-stable.follows = "nixpkgs";
+        # nixpkgs-unstable.follows = "nixpkgs";
       };
       url = "git+ssh://git@github.com/ghostty-org/ghostty";
     };
