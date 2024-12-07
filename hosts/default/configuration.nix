@@ -66,7 +66,6 @@
     };
 
     blueman.enable = true;
-    # printing.enable = true; # CUPS
     gvfs.enable = true;
     auto-cpufreq.enable = true;
     thermald.enable = true;
@@ -77,8 +76,8 @@
   security.pam.services.hyprlock = {};
 
   environment.etc."greetd/environments".text = ''
-      Hyprland
-      '';
+    Hyprland
+  '';
 
   hardware = {
     bluetooth.enable = true;

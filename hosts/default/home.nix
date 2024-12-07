@@ -23,9 +23,7 @@
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    android-studio
     audacity
-    brave
     brightnessctl
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
@@ -36,21 +34,14 @@
     genymotion
     gimp
     gnome-keyring
-    gnome-sound-recorder
-    gnome-disk-utility
-    gparted
     gtk4
     gvfs
     grim
     grimblast
     htop
     imagemagick
-    imhex
-    kdenlive
     keepassxc
     libsForQt5.polkit-kde-agent
-    libtool
-    libreoffice
     mpv
     nautilus
     networkmanagerapplet
@@ -66,7 +57,6 @@
     qbittorrent
     signal-desktop
     swww
-    teams-for-linux
     texliveFull
     tree
     unzip
@@ -148,14 +138,6 @@
       recursive = true;
       source = ../../modules/non-nix_configs/nvim;
     };
-    "river" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/river;
-    };
-    # "waybar" = {
-    #   recursive = true;
-    #   source = ../../modules/non-nix_configs/waybar;
-    # };
     "wofi" = {
       recursive = true;
       source = ../../modules/non-nix_configs/wofi;
@@ -229,11 +211,6 @@
     obs-studio = {
       enable = true;
     };
-    # waybar = {
-    #   enable = true;
-    #   systemd.enable = true;
-    #   systemd.target = "hyprland-session.target";
-    # };
     wofi.enable = true;
   };
 
