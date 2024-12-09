@@ -21,6 +21,8 @@ return require('packer').startup(function(use)
           'nvim-neotest/nvim-nio' -- dep of dap-ui
       }
   }
+  use 'mfussenegger/nvim-jdtls' -- Java LSP Support
+
   use 'tpope/vim-fugitive' -- git integration
   --LSP CONFIG
   --

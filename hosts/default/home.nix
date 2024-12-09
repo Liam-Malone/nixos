@@ -118,10 +118,6 @@
 
   xdg.enable = true;
   xdg.configFile = {
-    "contour" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/contour;
-    };
     "emacs" = {
       recursive = true;
       source = ../../modules/non-nix_configs/emacs;
@@ -174,6 +170,7 @@
         ls = "ls --color=auto";
         ll = "ls -l";
         la = "ls -lA";
+        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#default && sudo nixos-rebuild switch --flake ~/personal/nixos#default";
         nixbuild = "sudo nixos-rebuild switch --flake";
         nixtest = "sudo nixos-rebuild test --flake";
         new = "source $HOME/.bashrc";

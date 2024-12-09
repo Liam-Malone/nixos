@@ -30,6 +30,7 @@ lsp_zero.extend_lspconfig({
 local lspconfig = require('lspconfig')
 
 require('mason').setup({})
+
 require('mason-lspconfig').setup({
   ensure_installed = {
       'lua_ls',
@@ -61,37 +62,7 @@ require('mason-lspconfig').setup({
           })
       end,
       jdtls  = function()
-          lspconfig.jdtls.setup({
-              cmd = {
-                  "java",
-                  "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-                  "-Dosgi.bundles.defaultStartLevel=4",
-                  "-Declipse.product=org.eclipse.jdt.ls.core.product",
-                  "-Dlog.protocol=true",
-                  "-Dlog.level=ALL",
-                  "-Xms1g",
-                  "--add-modules=ALL-SYSTEM",
-                  "--add-opens",
-                  "java.base/java.util=ALL-UNNAMED",
-                  "--add-opens",
-                  "java.base/java.lang=ALL-UNNAMED",
-                  --
-              },
-              single_file_support = true,
-              settings = {
-                  java = {
-                      signatureHelp = {enabled = true},
-                      import = {enabled = true},
-                      rename = {enabled = true}
-                  }
-              },
-              flags = {
-                  debounce_text_changes = 150,
-              },
-              init_options = {
-                  bundles = {},
-              },
-          })
+          lspconfig.jdtls.setup{}
       end,
       zls    = function()
           lspconfig.zls.setup({})
@@ -105,12 +76,12 @@ require('mason-lspconfig').setup({
                           return
                       end
                   end
-          
+
                   client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
                       runtime = {
                        -- Tell the language server which version of Lua you're using
                        -- (most likely LuaJIT in the case of Neovim)
-                           
+
                           version = 'LuaJIT'
                       },
                       -- Make the server aware of Neovim runtime files
