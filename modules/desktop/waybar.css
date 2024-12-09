@@ -42,9 +42,11 @@
 
 #window {
   background-color: @black-transparent-4;
-  padding: 0px;
+  padding: 2px 2px;
   border-radius: 6px;
   border: none;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 window#waybar {
@@ -56,6 +58,7 @@ window#waybar {
 
 window#waybar.empty {
   background-color: transparent;
+  color: transparent;
   padding: 0px;
   border-radius: 0px;
   border: none;
@@ -234,6 +237,7 @@ tooltip label {
 }
 
 #keyboard-state {
+  color: @text;
   padding: 0px 3px;
   margin-left: 2px;
   margin-right: 2px;
@@ -254,6 +258,10 @@ tooltip label {
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @red;
+}
+
+#battery {
+    color: @text;
 }
 
 #battery.charging {
@@ -285,12 +293,14 @@ tooltip label {
 }
 
 #pulseaudio.audio {
+  color: @text;
   margin-left: 2px;
   margin-right: 2px;
   padding: 4px 4px;
 }
 
 #clock  {
+  color: @text;
   margin-left: 2px;
   margin-right: 2px;
   padding: 4px 4px;
