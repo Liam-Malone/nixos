@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [ "$(dunstctl history | grep 255)" == "" ];
-then
-    echo "absent"
-else
-    echo "present"
-fi
