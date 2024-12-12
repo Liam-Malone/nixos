@@ -24,16 +24,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
 -- put to background 
 vim.keymap.set("n", "<leader>bg", "<C-z>")
 
--- DAP debugger
-local dap = require('dap')
-
-vim.keymap.set('n', '<F5>', function() dap.continue() end)
-vim.keymap.set('n', '<F10>', function() dap.step_over() end)
-vim.keymap.set('n', '<F11>', function() dap.step_into() end)
-vim.keymap.set('n', '<F12>', function() dap.step_out() end)
-vim.keymap.set('n', '<Leader>bp', function() dap.toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
-
 -- BUILD SCRIPT INVOKATIONS
 -- generic build function
 local function set(list)

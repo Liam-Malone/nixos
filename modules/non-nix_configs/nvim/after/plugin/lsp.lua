@@ -45,21 +45,21 @@ require('mason-lspconfig').setup({
 
       -- noop is an empty function that doesn't do anything
       clangd = function()
-          lspconfig.clangd.setup({
-              cmd = {
-                  'clangd',
-                  '--background-index',
-                  '--clang-tidy',
-                  '--log=verbose',
-                  '--header-interpolation=false', -- clangd doesn't find the files, annoying and unnecessary noise as a result
-              },
-              init_options = {
-                  fallbackFlags = {
-                      '-std=c23',
-                      '-std=c++20'
-                  },
-              },
-          })
+          -- lspconfig.clangd.setup({
+          --     cmd = {
+          --         'clangd',
+          --         '--background-index',
+          --         '--clang-tidy',
+          --         '--log=verbose',
+          --         '--header-interpolation=false', -- clangd doesn't find the files, annoying and unnecessary noise as a result
+          --     },
+          --     init_options = {
+          --         fallbackFlags = {
+          --             '-std=c23',
+          --             '-std=c++20'
+          --         },
+          --     },
+          -- })
       end,
       jdtls  = function()
           lspconfig.jdtls.setup{}
@@ -133,47 +133,3 @@ cmp.setup({
     }),
     formatting = lsp_zero.cmp_format(),
 })
-
--- lsp_zero.set_preferences({
---     sign_icons = { }
--- })
--- 
--- lsp_zero.setup_nvim_cmp({
---     mapping = cmp_mappings
--- })
-
-
--- require('lspconfig').lua_ls.setup({
---     on_init = function(client)
---         if client.workspace_folders then
---             local path = client.workspace_folders[1].name
---             if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
---                 return
---             end
---         end
--- 
---         client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
---             -- runtime = {
---                 -- Tell the language server which version of Lua you're using
---                 -- (most likely LuaJIT in the case of Neovim)
---             --     version = 'LuaJIT'
---             -- },
---             -- Make the server aware of Neovim runtime files
---             workspace = {
---                 checkThirdParty = false,
---                 library = {
---                     vim.env.VIMRUNTIME
---                 }
---             }
---         })
---     end,
---     settings = {
---         Lua = {
---             diagnostics = {
---                 globals = { 'turtle' },
---             },
---         },
---     },
--- })
-
--- lsp_zero.setup()
