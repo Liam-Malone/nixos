@@ -24,6 +24,7 @@
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     audacity
+    android-studio
     brightnessctl
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
@@ -54,6 +55,7 @@
     prismlauncher
     protonvpn-cli
     protonvpn-gui
+    pspp
     qbittorrent
     signal-desktop
     swww
