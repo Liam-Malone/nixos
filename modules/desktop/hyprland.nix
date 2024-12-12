@@ -443,9 +443,10 @@
         splash = false;
         preload = [
           "~/pictures/.wallpapers/skyline-view.png"
+          "~/pictures/.wallpapers/iceland-winter-mountains.jpg"
         ];
         wallpaper = [
-          "eDP-1,~/pictures/.wallpapers/skyline-view.png"
+          "eDP-1,~/pictures/.wallpapers/iceland-winter-mountains.jpg"
         ];
       };
     };
