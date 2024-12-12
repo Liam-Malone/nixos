@@ -139,10 +139,10 @@
                   "󰕾"
                 ];
             };
-            on-click = "pamixer -t";
+            on-click = "pamixer -t && exec ${../scripts/progress-notify.sh} mute";
             on-click-right = "pavucontrol";
-            on-scroll-down = "pamixer -d 5";
-            on-scroll-up = "pamixer -i 5";
+            on-scroll-down = "pamixer -d 5 && exec ${../scripts/progress-notify.sh} audio";
+            on-scroll-up = "pamixer -i 5 && exec ${../scripts/progress-notify.sh} audio";
             tooltip = true;
             tooltip-format = "{icon} {desc} {volume}%";
          };

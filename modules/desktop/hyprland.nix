@@ -22,6 +22,7 @@
   imports = [
     ./waybar.nix
   ];
+
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
@@ -273,14 +274,14 @@
       ];
 
       bindel = [
-        ", XF86AudioRaiseVolume, exec, pamixer -i 5"
-        ", XF86AudioLowerVolume, exec, pamixer -d 5"
-        ", XF86AudioMute, exec, pamixer -t"
+        ", XF86AudioRaiseVolume, exec, pamixer -i 5 && ${../scripts/progress-notify.sh} audio"
+        ", XF86AudioLowerVolume, exec, pamixer -d 5 && ${../scripts/progress-notify.sh} audio"
+        ", XF86AudioMute, exec, pamixer -t && ${../scripts/progress-notify.sh} mute"
       ];
 
       binde = [
-        ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-        ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"      
+        ", XF86MonBrightnessDown, exec, brightnessctl set 10%- && ${../scripts/progress-notify.sh} brightness"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 10%+ && ${../scripts/progress-notify.sh} brightness"      
       ];
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
