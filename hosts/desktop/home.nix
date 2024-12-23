@@ -13,13 +13,13 @@
 
     # desktop
     ../../modules/desktop/bluetooth.nix
-    ../../modules/desktop/hyprland.nix
+    ../../modules/desktop/hyprland-desktop.nix
   ];
 
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -47,6 +47,7 @@
     nautilus
     netbeans
     networkmanagerapplet
+    nvtop
     nwg-look
     openvpn
     pamixer
@@ -173,7 +174,7 @@
         ls = "ls --color=auto";
         ll = "ls -l";
         la = "ls -lA";
-        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#default && sudo nixos-rebuild switch --flake ~/personal/nixos#default";
+        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#desktop && sudo nixos-rebuild switch --flake ~/personal/nixos#desktop";
         nixbuild = "sudo nixos-rebuild switch --flake";
         nixtest = "sudo nixos-rebuild test --flake";
         new = "source $HOME/.bashrc";

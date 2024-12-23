@@ -173,7 +173,7 @@
         ls = "ls --color=auto";
         ll = "ls -l";
         la = "ls -lA";
-        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#default && sudo nixos-rebuild switch --flake ~/personal/nixos#default";
+        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#darp8 && sudo nixos-rebuild switch --flake ~/personal/nixos#darp8";
         nixbuild = "sudo nixos-rebuild switch --flake";
         nixtest = "sudo nixos-rebuild test --flake";
         new = "source $HOME/.bashrc";

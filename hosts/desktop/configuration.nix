@@ -63,13 +63,14 @@
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
         };
       };
+      
     };
-
+    
+    xserver.videoDrivers = [ "nvidia" ];
     blueman.enable = true;
     gvfs.enable = true;
     auto-cpufreq.enable = true;
     thermald.enable = true;
-
     power-profiles-daemon.enable = false;
   };
 
@@ -84,12 +85,15 @@
     graphics = {
       enable = true;
       extraPackages = with pkgs;[
-        intel-compute-runtime
-        intel-media-driver
       ];
     };
     pulseaudio.enable = false;
-    system76.enableAll = true;
+    nvidia = {
+    	modesetting.enable = true;
+    	powerManagement.enable = true;
+    	open = false;
+    	nvidiaSettings = true;
+    };
   };
 
   fonts.packages = with pkgs; [
@@ -200,5 +204,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
