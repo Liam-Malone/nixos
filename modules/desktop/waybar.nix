@@ -96,6 +96,7 @@
         };
 
         "battery" = {
+          interval = 1;
           states = {
             good = 90;
             warning = 30;

@@ -28,4 +28,5 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 
+vim.g.netrw_keepdir = 0
 vim.g.mapleader = " "
