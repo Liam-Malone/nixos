@@ -22,10 +22,6 @@
         inputs.nixpkgs.follows = "hyprland";
     };
     ghostty = {
-      inputs = {
-        # nixpkgs-stable.follows = "nixpkgs";
-        # nixpkgs-unstable.follows = "nixpkgs";
-      };
       url = "git+ssh://git@github.com/ghostty-org/ghostty";
     };
   };
@@ -37,11 +33,23 @@
     in
     {
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
+        darp8 = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [
             hyprland.nixosModules.default
-            ./hosts/default/configuration.nix
+            ./hosts/darp8/configuration.nix
+            {
+              environment.systemPackages = [
+                ghostty.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            hyprland.nixosModules.default
+            ./hosts/desktop/configuration.nix
             {
               environment.systemPackages = [
                 ghostty.packages.x86_64-linux.default

@@ -45,6 +45,7 @@
     libsForQt5.polkit-kde-agent
     mpv
     nautilus
+    netbeans
     networkmanagerapplet
     nwg-look
     openvpn
