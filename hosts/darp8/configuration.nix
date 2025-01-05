@@ -71,6 +71,7 @@
     thermald.enable = true;
 
     power-profiles-daemon.enable = false;
+    pulseaudio.enable = false;
   };
 
   security.pam.services.hyprlock = {};
@@ -88,7 +89,6 @@
         intel-media-driver
       ];
     };
-    pulseaudio.enable = false;
     system76.enableAll = true;
   };
 

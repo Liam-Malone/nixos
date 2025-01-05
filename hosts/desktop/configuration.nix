@@ -72,6 +72,7 @@
     auto-cpufreq.enable = true;
     thermald.enable = true;
     power-profiles-daemon.enable = false;
+    pulseaudio.enable = false;
   };
 
   security.pam.services.hyprlock = {};
@@ -87,7 +88,6 @@
       extraPackages = with pkgs;[
       ];
     };
-    pulseaudio.enable = false;
     nvidia = {
     	modesetting.enable = true;
     	powerManagement.enable = true;
