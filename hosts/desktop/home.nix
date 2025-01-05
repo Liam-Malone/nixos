@@ -33,6 +33,7 @@
     firefox
     floorp
     genymotion
+    ghostty
     gimp
     gnome-keyring
     gtk4

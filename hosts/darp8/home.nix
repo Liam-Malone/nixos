@@ -33,6 +33,7 @@
     firefox
     floorp
     genymotion
+    ghostty
     gimp
     gnome-keyring
     gtk4
@@ -41,6 +42,7 @@
     grimblast
     htop
     imagemagick
+    kdePackages.kdenlive
     keepassxc
     libsForQt5.polkit-kde-agent
     mpv

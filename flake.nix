@@ -21,12 +21,9 @@
         url = "github:hyprwm/hyprsysteminfo";
         inputs.nixpkgs.follows = "hyprland";
     };
-    ghostty = {
-      url = "git+ssh://git@github.com/ghostty-org/ghostty";
-    };
   };
 
-  outputs = { self, nixpkgs, ghostty, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, hyprland, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -40,7 +37,6 @@
             ./hosts/darp8/configuration.nix
             {
               environment.systemPackages = [
-                ghostty.packages.x86_64-linux.default
               ];
             }
           ];
@@ -52,7 +48,6 @@
             ./hosts/desktop/configuration.nix
             {
               environment.systemPackages = [
-                ghostty.packages.x86_64-linux.default
               ];
             }
           ];
