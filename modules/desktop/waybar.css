@@ -260,6 +260,10 @@ tooltip label {
   background-color: @red;
 }
 
+#custom.separator {
+  color: @text;
+}
+
 #battery {
     color: @text;
 }
