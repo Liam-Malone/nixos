@@ -77,7 +77,6 @@
   };
 
   security.pam.services.hyprlock = {};
-
   environment.etc."greetd/environments".text = ''
     Hyprland
   '';

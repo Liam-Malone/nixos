@@ -26,6 +26,7 @@
     audacity
     android-studio
     brightnessctl
+    btop
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
@@ -69,7 +70,6 @@
     wl-clipboard
     xdg-user-dirs
     zip
-    zoom-us
   ];
 
   home.file = {};

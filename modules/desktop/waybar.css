@@ -56,14 +56,6 @@ window#waybar {
   border: none;
 }
 
-window#waybar.empty {
-  background-color: transparent;
-  color: transparent;
-  padding: 0px;
-  border-radius: 0px;
-  border: none;
-}
-
 
 tooltip {
   background: @black-transparent-9;

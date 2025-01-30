@@ -33,9 +33,6 @@
         "--all"
       ];
     };
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-    ];
     settings = {
       monitor = [
         "eDP-1,1920x1080@60,0x0,1"
@@ -186,9 +183,7 @@
 
       bind = [
         # Program binds
-        "$mainMod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
         "$altMod, Return, exec, ghostty"
-        "$mainMod, Return, exec, GDK_BACKEND=x11 ghostty" # Until NixOS Fixes EGL Drivers
         "$altMod SHIFT, Return, exec, alacritty"
         "$mainMod SHIFT, D, exec, discord --enable-blink-features=MiddleClickAutoscroll"
         "$mainMod SHIFT, E, exec, emacsclient -c -a 'emacs'"
@@ -343,17 +338,6 @@
 
         bind=, escape,submap,reset
         submap = reset
-
-        plugin {
-            hyprexpo {
-                columns = 3
-                    gapSize = 4
-                    workspace_method = "center current"
-                    enable_gesture = true
-                    gesture_distance = 300
-                    gesture_negative = true
-            }
-        }
         '';
   };
 

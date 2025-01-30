@@ -22,14 +22,15 @@ gtk-wide-tabs = true
 # Font
 font-size = 14
 
-# Cursor And Mouse
-cursor-style = block
-cursor-color = #ffffff
-mouse-hide-while-typing = true
-
 # Theme
 # theme = Grape
 # theme = Bright Lights
 theme = tokyonight
 # theme = Purple Rain
 # theme = Mariana
+
+# Cursor And Mouse
+cursor-style = block
+cursor-color = #ffffff
+mouse-hide-while-typing = true
+
