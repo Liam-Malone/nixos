@@ -67,7 +67,7 @@
         numlock_by_default = true;
 
         touchpad = {
-          disable_while_typing = true;
+          disable_while_typing = false;
           natural_scroll = true;
           middle_button_emulation = true;
           scroll_factor = 0.5;
@@ -314,7 +314,7 @@
         bind = $mainMod, B, submap, browser_select
         submap = browser_select
 
-        bind =, B, exec, brave --enable-blink-features=MiddleClickAutoscroll
+        bind =, B, exec, brave
         bind =, B, submap, reset
 
         bind = SHIFT, F, exec, firefox

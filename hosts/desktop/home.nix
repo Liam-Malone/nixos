@@ -25,7 +25,9 @@
   home.packages = with pkgs; [
     audacity
     android-studio
+    brave
     brightnessctl
+    btop
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
@@ -42,11 +44,12 @@
     grimblast
     htop
     imagemagick
+    kdePackages.kdenlive
     keepassxc
     libsForQt5.polkit-kde-agent
+    localsend
     mpv
     nautilus
-    netbeans
     networkmanagerapplet
     nvtop
     nwg-look
@@ -58,7 +61,6 @@
     prismlauncher
     protonvpn-cli
     protonvpn-gui
-    pspp
     qbittorrent
     signal-desktop
     swww
@@ -181,8 +183,6 @@
         new = "source $HOME/.bashrc";
         newbar = "pkill waybar; waybar &disown";
         ping = "ping -c 5";
-        set-github-var = "export GITHUB=$(sed -n 2p ~/documents/.git_keys)";
-        set-gitlab-var = "export GITLAB=$(sed -n 4p ~/documents/.git_keys)";
         vi = "\\vim";
         work = "nix develop --impure";
         ".." = "cd ..";
