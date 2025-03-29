@@ -21,7 +21,6 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     audacity
     android-studio
@@ -49,6 +48,7 @@
     libsForQt5.polkit-kde-agent
     localsend
     mpv
+    mupdf
     nautilus
     netbeans
     networkmanagerapplet

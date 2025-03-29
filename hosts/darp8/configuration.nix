@@ -57,6 +57,15 @@
   services = {
     libinput.enable = true;
 
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      publish = {
+        enable = true;
+        userServices = true;
+      };
+    };
+
     greetd = {
       enable = true;
       restart = true;
@@ -164,6 +173,7 @@
     glib
     spotify
     discord
+    uxplay
     wl-clipboard
     alacritty
     libnotify
