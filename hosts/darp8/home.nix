@@ -31,7 +31,6 @@
     emacsPackages.pdf-tools
     exfatprogs
     filezilla
-    firefox
     floorp
     genymotion
     ghostty
@@ -50,7 +49,6 @@
     mpv
     mupdf
     nautilus
-    netbeans
     networkmanagerapplet
     nwg-look
     openvpn

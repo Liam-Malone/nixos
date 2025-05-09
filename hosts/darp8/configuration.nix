@@ -13,12 +13,32 @@
   };
 
   networking = {
+    hostName = "darp8";
+
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
     };
-    hostName = "nixos-laptop";
-    firewall.enable = false;
+
+    firewall = {
+      enable = true;
+
+      # Open ports in the firewall.
+      allowedTCPPorts = [ 21 22 80 443 4070 ];
+      allowedUDPPorts = [ 4070 ];
+
+      allowedTCPPortRanges = [
+        { from = 8000; to = 8010; }
+        { from = 27031; to = 27036; }
+      ];
+      allowedUDPPortRanges = [
+        { from = 27000; to = 27036; }
+        { from = 5001; to = 65535; }
+      ];
+
+      allowPing = true;
+    };
+
     wireless.iwd = {
       enable = true;
       settings = {
@@ -30,10 +50,6 @@
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
   };
 
   time.timeZone = "Europe/Madrid";

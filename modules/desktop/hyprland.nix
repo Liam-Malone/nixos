@@ -67,7 +67,7 @@
         numlock_by_default = true;
 
         touchpad = {
-          disable_while_typing = false;
+          disable_while_typing = true;
           natural_scroll = true;
           middle_button_emulation = true;
           scroll_factor = 0.5;
@@ -94,6 +94,15 @@
         disable_splash_rendering = false;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
+      };
+
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
+
+      experimental = {
+        xx_color_management_v4 = true;
       };
 
       decoration = {
@@ -139,36 +148,36 @@
       };
 
       windowrule = [
-        "idleinhibit fullscreen, firefox"
-        "idleinhibit fullscreen, floorp"
-        "idleinhibit fullscreen, ghostty"
-        "idleinhibit focus, firefox"
-        "idleinhibit focus, floorp"
-        "idleinhibit focus, mpv"
-        "idleinhibit focus, ^(emacs)$"
-        "idleinhibit focus, ^(Emacs)$"
-        "idleinhibit focus, ^(discord)$"
-        "idleinhibit focus, ^(Discord)$"
-        "idleinhibit focus, ^(spotify)$"
-        "float, polkit-kde-authentication-agent-1"
-        "float, ^(praat)$"
-        "float, ^(network)$"
-        "float, ^(nm-)$"
-        "float, ^(Network)$"
-        "float, Rofi"
-        "float, Gimp"
-        "float, Nautilus"
-        "float, notification"
-        "float, ^(launcher)$"
-        "tile, Spotify"
-        "tile, Minecraft"
-        "workspace 2, KeePassXC"
-        "workspace 3, firefox"
-        "workspace 3, floorp"
-        "workspace 4, Spotify"
-        "workspace 6, discord"
-        "workspace 6, Signal"
-        "workspace 10, Minecraft"
+        "idleinhibit fullscreen, class:firefox"
+        "idleinhibit fullscreen, class:floorp"
+        "idleinhibit fullscreen, class:ghostty"
+        "idleinhibit focus, class:firefox"
+        "idleinhibit focus, class:floorp"
+        "idleinhibit focus, class:mpv"
+        "idleinhibit focus, class:^(emacs)$"
+        "idleinhibit focus, class:^(Emacs)$"
+        "idleinhibit focus, class:^(discord)$"
+        "idleinhibit focus, class:^(Discord)$"
+        "idleinhibit focus, class:^(spotify)$"
+        "float, class:polkit-kde-authentication-agent-1"
+        "float, class:^(praat)$"
+        "float, class:^(network)$"
+        "float, class:^(nm-)$"
+        "float, class:^(Network)$"
+        "float, class:Rofi"
+        "float, class:Gimp"
+        "float, class:Nautilus"
+        "float, class:notification"
+        "float, class:^(launcher)$"
+        "tile, class:Spotify"
+        "tile, title:Minecraft"
+        "workspace 2, class:KeePassXC"
+        "workspace 3, class:firefox"
+        "workspace 3, class:floorp"
+        "workspace 4, class:Spotify"
+        "workspace 6, class:discord"
+        "workspace 6, class:Signal"
+        "workspace 10, title:Minecraft"
       ];
 
       "$mainMod" = "SUPER";
