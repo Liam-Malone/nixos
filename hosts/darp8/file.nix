@@ -1,4 +1,4 @@
-{ config, pkgs, cfg, ... }:
+{ cfg, config, context, pkgs, ... }:
 
 let
   inherit (config.home) username homeDirectory;
@@ -19,11 +19,17 @@ in
       recursive = true;
     };
 
-    ".config/emacs" = {
-      source = ../../modules/non-nix_configs/emacs;
-      outOfStoreSymlink = true;
-      recursive = true;
+    ".local/share/fonts/KelmscottMono.otf" = {
+        source = ../../fonts/KelmscottMono.otf;
+        outOfStoreSymlink = true;
+        recursive = false;
     };
+
+    # ".config/emacs" = {
+    #   source = ../../modules/non-nix_configs/emacs;
+    #   outOfStoreSymlink = true;
+    #   recursive = true;
+    # };
 
     ".config/ghostty" = {
       source = ../../modules/non-nix_configs/ghostty;

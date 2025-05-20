@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ cfg, config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -29,11 +29,6 @@
 
       allowedTCPPortRanges = [
         { from = 8000; to = 8010; }
-        { from = 27031; to = 27036; }
-      ];
-      allowedUDPPortRanges = [
-        { from = 27000; to = 27036; }
-        { from = 5001; to = 65535; }
       ];
 
       allowPing = true;
@@ -46,10 +41,6 @@
         Settings.Autoconnect = true;
       };
     };
-
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
   time.timeZone = "Europe/Madrid";
@@ -71,8 +62,6 @@
   };
 
   services = {
-    libinput.enable = true;
-
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -92,11 +81,11 @@
       };
     };
 
+    libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
     auto-cpufreq.enable = true;
     thermald.enable = true;
-
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
   };
@@ -118,18 +107,25 @@
     system76.enableAll = true;
   };
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    nerd-fonts.fira-code
-    nerd-fonts.droid-sans-mono
-  ];
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+    ];
+
+    fontconfig = {
+      enable = true;
+      includeUserConf = true;
+    };
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -157,27 +153,36 @@
   };
 
   programs = {
-    dconf.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-
-    nix-ld.enable = true;
-    mtr.enable = true;
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      xwayland.enable = true;
+    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+
+    hyprlock.enable = true;
+    dconf.enable = true;
+    nix-ld.enable = true;
+    mtr.enable = true;
   };
+
+  lib.inputMethod.fcitx5.waylandFrontend = true;
 
   home-manager = {
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs; inherit cfg; };
     users = {
-      "liamm" = import ./home.nix;
+      "${cfg.username}" = import ./home.nix;
     };
+    backupFileExtension = ".bak";
   };
  
   environment.systemPackages = with pkgs; [
@@ -191,7 +196,7 @@
     discord
     uxplay
     wl-clipboard
-    alacritty
+    ghostty
     libnotify
     mesa
     libdrm
@@ -210,17 +215,14 @@
       extraPortals = with pkgs;[ 
         xdg-desktop-portal-gtk 
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-hyprland
       ];
       config = {
         common = {
-            default = [ "gtk" ];
+          default = [ "gtk" ];
         };
       };
     };
   };
-
-  # services.openssh.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,

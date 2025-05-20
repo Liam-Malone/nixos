@@ -1,8 +1,8 @@
-{ config, pkgs, lib, callPackage, inputs, ... }:
+{ cfg, config, pkgs, lib, callPackage, inputs, ... }:
 
 {
-  home.username = "liamm";
-  home.homeDirectory = "/home/liamm";
+  home.username = cfg.username;
+  home.homeDirectory = cfg.homeDirectory;
 
   imports = [
     # home.file imports
@@ -12,11 +12,10 @@
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/fastfetch.nix
-    ../../modules/home-manager/terminals/alacritty.nix
 
     # desktop
     ../../modules/desktop/bluetooth.nix
-    ../../modules/desktop/hyprland.nix
+    ../../modules/desktop/waybar.nix
   ];
 
   # You should not change this value, even if you update Home Manager. If you do
@@ -27,6 +26,7 @@
   home.packages = with pkgs; [
     audacity
     android-studio
+    bat
     brave
     brightnessctl
     btop
@@ -36,7 +36,6 @@
     filezilla
     floorp
     genymotion
-    ghostty
     gimp
     gnome-keyring
     gtk4
@@ -116,12 +115,13 @@
 
   # ENV SETTINGS
 
-  fonts.fontconfig = {
-    enable = true;
-  };
 
   xdg.enable = true;
   xdg.configFile = {
+    "emacs" = {
+      source = ../../modules/non-nix_configs/emacs;
+      recursive = true;
+    };
     "user-dirs.dirs".source = ../../modules/non-nix_configs/user-dirs.dirs;
     "user-dirs.locale".source = ../../modules/non-nix_configs/user-dirs.locale;
   };
@@ -196,6 +196,9 @@
 
   # BEGIN SERVICES
   services = {
+    hyprpaper.enable = true;
+    hypridle.enable = true;
+
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
 

@@ -27,11 +27,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      defaultCfg = rec {
+        username = "liamm";
+        homeDirectory = "/home/${username}";
+        runtimeRoot = "${homeDirectory}/personal/nixos";
+        context = self;
+      };
     in
     {
       nixosConfigurations = {
         darp8 = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = {inherit inputs; cfg = defaultCfg; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/darp8/configuration.nix
