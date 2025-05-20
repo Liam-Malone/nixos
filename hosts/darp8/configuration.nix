@@ -186,20 +186,26 @@
   };
  
   environment.systemPackages = with pkgs; [
-    vim
+    bat
+    discord
+    ghostty
+    glib
+    gnome-keyring
     fd
     file
-    ripgrep
-    wget
-    glib
-    spotify
-    discord
-    uxplay
-    wl-clipboard
-    ghostty
     libnotify
-    mesa
     libdrm
+    mesa
+    neovim
+    ripgrep
+    spotify
+    unzip
+    uxplay
+    vim
+    wget
+    wl-clipboard
+    xdg-user-dirs
+    zip
   ];
 
   zramSwap = {

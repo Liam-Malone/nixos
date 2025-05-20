@@ -6,10 +6,11 @@
 @define-color red        #C50F1F;
 @define-color orange     #FFC251;
 @define-color blue       #00FFB2;
-@define-color lightgreen #a6e3a1;
 @define-color magenta    #f5c2e7;
 @define-color archbtw    #1793d1;
 @define-color purple     #881798;
+@define-color green      #00BB00;
+@define-color lightgreen #93C863;
 
 @define-color black-transparent-1 rgba(0, 0, 0, 0.1);
 @define-color black-transparent-2 rgba(0, 0, 0, 0.2);
@@ -59,7 +60,7 @@ window#waybar {
 
 tooltip {
   background: @black-transparent-9;
-  border: 1px solid @purple;
+  border: 1px solid @lightgreen;
   border-radius: 7px;
 }
 
@@ -70,7 +71,7 @@ tooltip label {
 .modules-left {
   background: @black-transparent-8;
   border-radius: 8px;
-  border: 2px solid @purple;
+  border: 2px solid @lightgreen;
   margin-left: 2px;
   margin-right: 2px;
   padding: 2px 4px;
@@ -79,7 +80,7 @@ tooltip label {
 .modules-right {
   background: @black-transparent-8;
   border-radius: 8px;
-  border: 2px solid @purple;
+  border: 2px solid @lightgreen;
   margin-left: 2px;
   margin-right: 2px;
   padding: 2px 4px;
@@ -222,7 +223,7 @@ tooltip label {
 }
 
 #custom-wofi {
-  color: @archbtw;
+  color: @green;
   margin-left: 4px;
   margin-right: 4px;
   padding: 0px 4px;
@@ -261,7 +262,7 @@ tooltip label {
 }
 
 #battery.charging {
-  color: @lightgreen;
+  color: @green;
   margin-left: 2px;
   margin-right: 2px;
   padding: 4px 4px;

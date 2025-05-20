@@ -13,46 +13,49 @@ in
 {
   # Symlink dotfiles
   home.file = mkSymlinkAttrs {
-    ".config/hypr" = {
-      source = ../../modules/non-nix_configs/hypr;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
-
+    # Fonts
     ".local/share/fonts/KelmscottMono.otf" = {
         source = ../../fonts/KelmscottMono.otf;
         outOfStoreSymlink = true;
         recursive = false;
     };
 
+    # Configs
+    ".config/hypr" = {
+      source = ../../configs/hypr;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+    ".config/waybar" = {
+      source = ../../configs/waybar;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+    ".config/ghostty" = {
+      source = ../../configs/ghostty;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+    ".config/kitty" = {
+      source = ../../configs/kitty;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+    ".config/nvim" = {
+      source = ../../configs/nvim;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+    ".config/wofi" = {
+      source = ../../configs/wofi;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     # ".config/emacs" = {
-    #   source = ../../modules/non-nix_configs/emacs;
+    #   source = ../../configs/emacs;
     #   outOfStoreSymlink = true;
     #   recursive = true;
     # };
 
-    ".config/ghostty" = {
-      source = ../../modules/non-nix_configs/ghostty;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
-
-    ".config/kitty" = {
-      source = ../../modules/non-nix_configs/kitty;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
-
-    ".config/nvim" = {
-      source = ../../modules/non-nix_configs/nvim;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
-
-    ".config/wofi" = {
-      source = ../../modules/non-nix_configs/wofi;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
   };
 }

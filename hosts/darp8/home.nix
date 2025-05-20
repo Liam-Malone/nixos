@@ -15,7 +15,6 @@
 
     # desktop
     ../../modules/desktop/bluetooth.nix
-    ../../modules/desktop/waybar.nix
   ];
 
   # You should not change this value, even if you update Home Manager. If you do
@@ -37,12 +36,11 @@
     floorp
     genymotion
     gimp
-    gnome-keyring
     gtk4
     gvfs
-    grim
     grimblast
     htop
+    hyprpicker
     imagemagick
     kdePackages.kdenlive
     keepassxc
@@ -57,19 +55,14 @@
     pamixer
     pavucontrol
     powertop
-    praat
     prismlauncher
     protonvpn-cli
-    protonvpn-gui
     qbittorrent
     signal-desktop
+    swww
     texliveFull
     tree
-    unzip
     wev
-    wl-clipboard
-    xdg-user-dirs
-    zip
   ];
 
   home.sessionVariables = {
@@ -119,11 +112,11 @@
   xdg.enable = true;
   xdg.configFile = {
     "emacs" = {
-      source = ../../modules/non-nix_configs/emacs;
+      source = ../../configs/emacs;
       recursive = true;
     };
-    "user-dirs.dirs".source = ../../modules/non-nix_configs/user-dirs.dirs;
-    "user-dirs.locale".source = ../../modules/non-nix_configs/user-dirs.locale;
+    "user-dirs.dirs".source = ../../configs/user-dirs.dirs;
+    "user-dirs.locale".source = ../../configs/user-dirs.locale;
   };
 
   # BEGIN PROGRAMS
@@ -196,12 +189,6 @@
 
   # BEGIN SERVICES
   services = {
-    hyprpaper.enable = true;
-    hypridle.enable = true;
-
-    blueman-applet.enable = true;
-    network-manager-applet.enable = true;
-
     emacs = {
       enable = true;
       package = pkgs.emacs-gtk;
@@ -215,14 +202,15 @@
       startWithUserSession = "graphical";
     };
 
-    gnome-keyring.enable = true;
-
     gpg-agent = {
       enable = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
     };
 
+    gnome-keyring.enable = true;
+    network-manager-applet.enable = true;
     nextcloud-client.enable = true;
+    swww.enable = true;
   };
 }

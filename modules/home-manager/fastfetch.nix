@@ -5,25 +5,25 @@
     enable = true;
     settings = {
       logo = {
-        source = "nixos";
-        # source = "~/pictures/lil-penguin.png";
-        # type = "kitty";
-        width = 18;
-        height = 9;
-        color = {
-            "1" = "white";
-            "2" = "magenta";
-        };
+        # source = "nixos";
+        source = "$HOME/pictures/smol-penguin.png";
+        type = "kitty";
+        # width = 18;
+        # height = 9;
+        # color = {
+        #     "1" = "white";
+        #     "2" = "green";
+        # };
         padding = { 
-          top = 0; # put this on 2 for picture source
+          top = 1; # put this on 2 for picture source
           left = 1;
-          right = 3;
+          right = 2;
         };
       };
       display = {
         separator = " -> ";
         color = {
-            keys = "magenta";
+            keys = "green";
         };
       };
       modules = [
@@ -31,7 +31,7 @@
         {
           type = "custom";
           format = "────────── Env ──────────";
-          color = "magenta";
+          color = "green";
         }
         {
           type = "os";
