@@ -20,15 +20,12 @@ gtk-wide-tabs = true
 #macos-non-native-fullscreen = true
 
 # Font
-font-size = 14
-font-family = JetBrainsMono NF
+font-size = 16
+font-family = Kelmscott Mono
 
 # Theme
-# theme = Grape
-# theme = Bright Lights
-theme = tokyonight
-# theme = Purple Rain
-# theme = Mariana
+theme = Obsidian
+# theme = Relaxed
 
 # Cursor And Mouse
 cursor-style = block

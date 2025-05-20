@@ -24,31 +24,24 @@
   ];
 
   wayland.windowManager.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+
     xwayland.enable = true;
-    systemd = {
-      enable = true;
-      variables = [
-        "--all"
-      ];
-    };
+    systemd.enable = true;
+
+    # Tell home-manager not to manage the config file
+    extraConfig = "";
   };
 
   lib.inputMethod.fcitx5.waylandFrontend = true;
 
   programs = {
-    hyprlock = {
-      enable = true;
-    };
+    hyprlock.enable = true;
   };
 
   services = {
-    hyprpaper = {
-      enable = true;
-    };
-    hypridle = {
-      enable = true;
-    };
+    hyprpaper.enable = true;
+    hypridle.enable = true;
   };
 }

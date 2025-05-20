@@ -1,5 +1,7 @@
+local default_color = "sonokai"
+
 function ColorMyTerminal(color)
-    color = color or "tokyonight-night"
+    color = color or default_color
     vim.cmd.colorscheme(color)
 
     vim.cmd("hi ColorColumn ctermbg=0 guibg=purple")
@@ -7,4 +9,4 @@ function ColorMyTerminal(color)
     vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
 end
 
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme(default_color)
