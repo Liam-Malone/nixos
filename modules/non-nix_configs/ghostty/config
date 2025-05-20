@@ -21,6 +21,7 @@ gtk-wide-tabs = true
 
 # Font
 font-size = 14
+font-family = JetBrainsMono NF
 
 # Theme
 # theme = Grape

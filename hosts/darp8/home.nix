@@ -5,6 +5,9 @@
   home.homeDirectory = "/home/liamm";
 
   imports = [
+    # home.file imports
+    ./file.nix
+
     # general modules
     ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
@@ -70,8 +73,6 @@
     zip
   ];
 
-  home.file = {};
-
   home.sessionVariables = {
     EDITOR = "emacsclient";
     GIT_EDITOR = "nvim";
@@ -121,26 +122,6 @@
 
   xdg.enable = true;
   xdg.configFile = {
-    "emacs" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/emacs;
-    };
-    "ghostty" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/ghostty;
-    };
-    "kitty" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/kitty;
-    };
-    "nvim" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/nvim;
-    };
-    "wofi" = {
-      recursive = true;
-      source = ../../modules/non-nix_configs/wofi;
-    };
     "user-dirs.dirs".source = ../../modules/non-nix_configs/user-dirs.dirs;
     "user-dirs.locale".source = ../../modules/non-nix_configs/user-dirs.locale;
   };
