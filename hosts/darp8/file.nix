@@ -36,11 +36,6 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
-    ".config/kitty" = {
-      source = ../../configs/kitty;
-      outOfStoreSymlink = true;
-      recursive = true;
-    };
     ".config/nvim" = {
       source = ../../configs/nvim;
       outOfStoreSymlink = true;
@@ -51,11 +46,17 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/swaync" = {
+      source = ../../configs/swaync;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+
+    # I have no idea why this is an issue...
     # ".config/emacs" = {
     #   source = ../../configs/emacs;
     #   outOfStoreSymlink = true;
     #   recursive = true;
     # };
-
   };
 }

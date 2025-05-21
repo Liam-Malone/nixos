@@ -1,10 +1,16 @@
 { cfg, config, lib, pkgs, inputs, ... }:
 
+let 
+  hyprplugins = {
+    hyprexpo_dir = "${pkgs.hyprlandPlugins.hyprexpo}";
+  };
+in
 {
   imports = [
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
+
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -86,14 +92,25 @@
     gvfs.enable = true;
     auto-cpufreq.enable = true;
     thermald.enable = true;
+
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
   };
 
   security.pam.services.hyprlock = {};
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-  '';
+  environment = {
+    etc = {
+      "greetd/environments".text = ''
+        Hyprland
+      '';
+      "hyprland/plugins.conf" = {
+        mode = "0444";
+        text = ''
+          plugin = ${pkgs.hyprlandPlugins.hyprexpo}
+        '';
+      };
+    };
+  };
 
   hardware = {
     bluetooth.enable = true;
@@ -158,10 +175,17 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
+
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
+      withUWSM = true;
+      plugins = [
+        pkgs.hyprlandPlugins.hyprbars
+        pkgs.hyprlandPlugins.hyprexpo
+      ];
     };
     gnupg.agent = {
       enable = true;
@@ -178,7 +202,7 @@
 
   home-manager = {
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs; inherit cfg; };
+    extraSpecialArgs = { inherit inputs; inherit cfg; inherit hyprplugins; };
     users = {
       "${cfg.username}" = import ./home.nix;
     };

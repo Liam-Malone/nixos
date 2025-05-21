@@ -44,7 +44,7 @@ tooltip label {
   padding: 0px 6px;
   margin: 8px 4px;
   background: alpha(darker(@main-color), 0.3);
-  color: @main-color;
+  color: lighter(@main-color);
   border-radius: 10px;
 }
 

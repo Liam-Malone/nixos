@@ -8,6 +8,7 @@
       "^.*vim.*$": " Neovim",
       "^.*~$": "󱙝 Ghostty",
       "^.*Emacs": " Emacs",
+      "^Spotify.*$": "󰓇 Spotify",
       "(.*) ": " Empty"
     },
   },
@@ -58,10 +59,8 @@
   "hyprland/language": {
     "format": "{}",
     "format-en": "en",
-    "format-ru": "ru",
-    "keyboard-name": "kingston-hyperx-alloy-fps-pro-mechanical-gaming-keyboard-1",
-    // "keyboard-name":"at-translated-set-2-keyboard",
-    "on-click": "hyprctl switchxkblayout kingston-hyperx-alloy-fps-pro-mechanical-gaming-keyboard-1 next",
+    "format-jp": "jp",
+    "keyboard-name":"at-translated-set-2-keyboard"
   },
   "group/audio": {
     "orientation": "inherit",
@@ -162,7 +161,7 @@
     "format-disabled": "󰂲",
     "format-connected": "",
     "tooltip": false,
-    "on-click": "overskride"
+    "on-click": "blueman-manager"
     // "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     // "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     // "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",

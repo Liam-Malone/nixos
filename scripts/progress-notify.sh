@@ -24,13 +24,13 @@ muteToggleNotify() {
             str="Unmuted"
         fi
 
-        $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "$str" -h int:value:"$volume" -t 1500 --icon $icon
+        $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "$str" -h int:value:"$volume" -t 800 --icon $icon
 }
 
 notifyMuted() {
         volume=$(pamixer --get-volume)
         muted=$(pamixer --get-mute)
-        $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Muted" -h int:value:"$volume" -t 1500 --icon audio-volume-muted
+        $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Muted" -h int:value:"$volume" -t 800 --icon audio-volume-muted
 }
 
 notifyAudio() {
@@ -42,11 +42,11 @@ notifyAudio() {
         if [ $volume -eq 0 ]; then
                 notifyMuted "$volume"
         elif [ $volume -le 30 ]; then
-                $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-low
+                $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 800 --icon audio-volume-low
         elif [ $volume -le 70 ]; then
-                $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-medium
+                $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 800 --icon audio-volume-medium
         else
-                $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-high
+                $notify -a volume_indicator -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 800 --icon audio-volume-high
         fi
 }
 
@@ -54,13 +54,13 @@ notifyBrightness() {
     base_brightness=$(brightnessctl g)
     brightness=$(( $(( $base_brightness * 5 )) + 5 ))
         if [ $brightness -eq 0 ]; then
-                $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:$brightness -t 1500 --icon display-brightness-symbolic
+                $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:$brightness -t 800 --icon display-brightness-symbolic
         elif [ $brightness -le 30 ]; then
-                $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:$brightness -t 1500 --icon display-brightness-symbolic
+                $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:$brightness -t 800 --icon display-brightness-symbolic
         elif [ $brightness -le 70 ]; then
-          $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:"$brightness" -t 1500 --icon display-brightness-symbolic
+          $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:"$brightness" -t 800 --icon display-brightness-symbolic
         else
-                $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:$brightness -t 1500 --icon display-brightness-symbolic
+                $notify -a brightness_indicator -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:$brightness -t 800 --icon display-brightness-symbolic
         fi
 }
 

@@ -1,59 +1,54 @@
-@define-color purple     #881798;
+@import "/home/liamm/.cache/wal/colors-waybar.css";
 
-* {
-  transition: 0.2s;
-  color: #aaaaaa;
-}
+@define-color main-color @color12;
+
 #window {
-  background-color: #1e1e2e;
-/*  background: linear-gradient(27deg, rgba(249,255,150,1) 0%, rgba(113,181,120,1) 54%, rgba(21,85,165,1) 100%);*/
-/*  background-image: url("file:///home/liamm/pictures/wp-store/dystopian-cyber-city.jpg");*/
-/* background-position: 50% 30%;*/
+  background: alpha(darker(@main-color), 0.8);
   background-size: auto 200%;
-  border: 2.0px solid;
-  border-color: @purple;
-  border-color: @darkpurple;
   border-radius: 10px;
+  border: 2px;
+  border-color: lighter(@foreground);
 }
+
+#text {
+  margin: 5px;
+  border: none;
+  color: lighter(@main-color);
+} 
 
 #input {
   border-radius: 20px;
   margin: 0 20px 20px 20px;
   padding: 10px 10px;
-  background-color: #292929;
+  background: darker(@main-color);
   font-weight: 400;
-  color: #ffffffff;
   font-size: 24px;
 }
 
 #outer-box {
+  background: alpha(@background, 0.4);
+  border-color: lighter(@background);
+  border-radius: 20px;
   padding: 20px;
-  color: #000000;
-  font-family: 'Source Code Pro';
+  font-family: 'Kelmscott Mono';
   font-weight: 400;
-  
   border: 2px;
-  border-color: #00ffb2ff;
 }
 
 #expander {
-  background-color: rgba(69, 29, 50, 0.0);
-  color: #292929;
+  background: alpha(@background, 0.6);
 }
 
 #entry {
   font-size: 20px;
   font-weight: 400;
-  color: #ffffffff;
+  background: alpha(@background, 0.6);
   margin: 10px 0px;
-  padding: 10px 10px;
+  padding: 8px 8px;
   border-radius: 20px;
 }
 
-#entry:selected{
-  background-color:rgba(255,255,255,0.3);
-}
-
-#entry:hover {
-  color: #ffaa34;
+#entry:selected {
+  background: alpha(darker(@main-color), 0.8);
+  color: darker(@foreground);
 }

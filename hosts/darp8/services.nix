@@ -25,7 +25,6 @@
     mpris-proxy.enable = true;
     network-manager-applet.enable = true;
     nextcloud-client.enable = true;
-    swaync.enable = true;
     swww.enable = true;
   };
 }

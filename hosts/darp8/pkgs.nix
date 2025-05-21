@@ -45,6 +45,7 @@
     pywal
     qbittorrent
     signal-desktop
+    swaynotificationcenter
     swww
     texliveFull
     tree

@@ -35,7 +35,16 @@
       };
     in
     {
+
       nixosConfigurations = {
+        nixpkgs.overlays = [
+          (final: prev: {
+           hyprlandPlugins = prev.hyprlandPlugins // {
+           hyprexpo = inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo;
+           };
+           })
+        ];
+
         darp8 = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs; cfg = defaultCfg; };
           modules = [

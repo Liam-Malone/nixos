@@ -1,4 +1,13 @@
-{ cfg, config, pkgs, lib, callPackage, inputs, ... }:
+{
+  cfg,
+  hyprplugins,
+  config,
+  pkgs,
+  lib,
+  callPackage,
+  inputs,
+  ...
+}:
 
 {
   home.username = cfg.username;
@@ -24,6 +33,7 @@
     GIT_EDITOR = "nvim";
     NIX_SHELL_PRESERVE_PROMPT = 1;
     NIX_CONFIG_DIR = "${cfg.homeDirectory}/personal/nixos";
+    HYPR_EXPO_LIB = "${hyprplugins.hyprexpo_dir}/lib/libhyprexpo.so";
   };
 
   nix.settings.extra-trusted-substituters = [
@@ -65,6 +75,7 @@
       source = ../../configs/emacs;
       recursive = true;
     };
+
     "user-dirs.dirs".source = ../../configs/user-dirs.dirs;
     "user-dirs.locale".source = ../../configs/user-dirs.locale;
   };
