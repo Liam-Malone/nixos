@@ -90,10 +90,10 @@ in
     libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
-    auto-cpufreq.enable = true;
-    thermald.enable = true;
+    # auto-cpufreq.enable = true;
 
-    power-profiles-daemon.enable = false;
+    thermald.enable = true;
+    power-profiles-daemon.enable = true;
     pulseaudio.enable = false;
   };
 
