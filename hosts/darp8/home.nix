@@ -5,16 +5,13 @@
   home.homeDirectory = cfg.homeDirectory;
 
   imports = [
-    # home.file imports
-    ./file.nix
+    ./file.nix # config file out-of-store links
+    ./pkgs.nix # system pkgs
+    ./services.nix # system services
 
     # general modules
-    ../../modules/home-manager/dunst.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/fastfetch.nix
-
-    # desktop
-    ../../modules/desktop/bluetooth.nix
   ];
 
   # You should not change this value, even if you update Home Manager. If you do
@@ -22,62 +19,17 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    audacity
-    android-studio
-    bat
-    brave
-    brightnessctl
-    btop
-    emacs-all-the-icons-fonts
-    emacsPackages.pdf-tools
-    exfatprogs
-    filezilla
-    floorp
-    genymotion
-    gimp
-    gtk4
-    gvfs
-    grimblast
-    htop
-    hyprpicker
-    imagemagick
-    kdePackages.kdenlive
-    keepassxc
-    libsForQt5.polkit-kde-agent
-    localsend
-    mpv
-    mupdf
-    nautilus
-    networkmanagerapplet
-    nwg-look
-    openvpn
-    pamixer
-    pavucontrol
-    powertop
-    prismlauncher
-    protonvpn-cli
-    qbittorrent
-    signal-desktop
-    swww
-    texliveFull
-    tree
-    wev
-  ];
-
   home.sessionVariables = {
     EDITOR = "emacsclient";
     GIT_EDITOR = "nvim";
     NIX_SHELL_PRESERVE_PROMPT = 1;
+    NIX_CONFIG_DIR = "${cfg.homeDirectory}/personal/nixos";
   };
 
   nix.settings.extra-trusted-substituters = [
     "https://ghostty.cachix.org"
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   # THEMING
 
@@ -107,8 +59,6 @@
 
 
   # ENV SETTINGS
-
-
   xdg.enable = true;
   xdg.configFile = {
     "emacs" = {
@@ -119,98 +69,7 @@
     "user-dirs.locale".source = ../../configs/user-dirs.locale;
   };
 
-  # BEGIN PROGRAMS
-  programs = {
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      enableVteIntegration = true;
-      initExtra =''
-        if [[ -z $ORIG_SHLVL ]]; then
-            export ORIG_SHLVL=$SHLVL
-        fi;
-        if [[ $SHLVL -gt $ORIG_SHLVL ]]; then
-            export PS1='\[\e[1;m\e[1;33m\e[1;m\] ($(($SHLVL - $ORIG_SHLVL))) \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
-        else
-            export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
-        fi;
-        set -o vi
-        fastfetch
-      '';
-      shellAliases = {
-        build = "./build.sh";
-        emacsd = "emacs --daemon";
-        emacsc = "emacsclient -c -a 'emacs'";
-        gap = "git add -p";
-        gcp = "git commit -p";
-        kpx = "keepassxc-cli open";
-        ls = "ls --color=auto";
-        ll = "ls -l";
-        la = "ls -lA";
-        nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#darp8 && sudo nixos-rebuild switch --flake ~/personal/nixos#darp8";
-        nixbuild = "sudo nixos-rebuild switch --flake";
-        nixtest = "sudo nixos-rebuild test --flake";
-        new = "source $HOME/.bashrc";
-        newbar = "pkill waybar; waybar &disown";
-        ping = "ping -c 5";
-        vi = "\\vim";
-        work = "nix develop --impure";
-        ".." = "cd ..";
-      };
-    };
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-gtk;
-      extraPackages = epkgs: [
-        epkgs.pdf-tools 
-        epkgs.org-pdftools
-      ];
-    };
-    feh.enable = true;
-    git = {
-      enable = true;
-      lfs.enable = true;
-      diff-so-fancy.enable = true;
-      userEmail = "maloneliam@proton.me";
-      userName = "Liam Malone";
-    };
-    neovim = {
-      enable = true;
-      package = pkgs.neovim-unwrapped;
-      vimAlias = true;
-      vimdiffAlias = true;
-    };
-    obs-studio = {
-      enable = true;
-    };
-    wofi.enable = true;
-  };
 
-
-  # BEGIN SERVICES
-  services = {
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-gtk;
-      client = {
-        enable = true;
-        arguments = [
-          "-c"
-	      "-a emacs"
-        ];
-      };
-      startWithUserSession = "graphical";
-    };
-
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
-    };
-
-    gnome-keyring.enable = true;
-    network-manager-applet.enable = true;
-    nextcloud-client.enable = true;
-    swww.enable = true;
-  };
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }

@@ -1,0 +1,34 @@
+# The syntax is "key = value". The whitespace around the equals doesn't matter.
+
+keybind = ctrl+shift+w=close_surface
+keybind = ctrl+t=new_tab
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+shift+o=ignore
+
+# Window Stuff
+background-opacity=0.9
+confirm-close-surface = false
+window-theme = dark
+window-decoration = false
+
+# Linux Specific
+gtk-wide-tabs = true
+
+# MacOS Specific
+#macos-non-native-fullscreen = true
+
+# Font
+font-size = 16
+font-family = Kelmscott Mono
+
+# Theme
+theme = Obsidian
+# theme = Relaxed
+
+# Cursor And Mouse
+cursor-style = block
+cursor-color = #ffffff
+mouse-hide-while-typing = true
+
