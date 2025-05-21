@@ -51,6 +51,11 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/fastfetch" = {
+      source = ../../configs/fastfetch;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
 
     # I have no idea why this is an issue...
     # ".config/emacs" = {

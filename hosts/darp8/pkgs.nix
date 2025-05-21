@@ -15,6 +15,7 @@
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
+    fastfetch
     filezilla
     floorp
     genymotion
@@ -81,6 +82,7 @@
         ls = "ls --color=auto";
         ll = "ls -l";
         la = "ls -lA";
+        fastfetch = "fastfetch -c $HOME/.config/fastfetch/config.json";
         nixrebuild = "nixos-rebuild build --flake ~/personal/nixos#darp8 && sudo nixos-rebuild switch --flake ~/personal/nixos#darp8";
         nixbuild = "sudo nixos-rebuild switch --flake";
         nixtest = "sudo nixos-rebuild test --flake";

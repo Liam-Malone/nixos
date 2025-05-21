@@ -20,7 +20,6 @@
 
     # general modules
     ../../modules/home-manager/tmux.nix
-    ../../modules/home-manager/fastfetch.nix
   ];
 
   # You should not change this value, even if you update Home Manager. If you do

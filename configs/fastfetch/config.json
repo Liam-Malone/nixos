@@ -1,0 +1,55 @@
+{
+  "display": {
+    "color": {
+      "keys": "green"
+    },
+    "separator": " -> "
+  },
+  "logo": {
+    "padding": {
+      "left": 1,
+      "right": 2,
+      "top": 1
+    },
+    "source": "$HOME/pictures/smol-penguin.png",
+    "type": "kitty"
+  },
+  "modules": [
+    "title",
+    {
+      "color": "green",
+      "format": "────────── Env ──────────",
+      "type": "custom"
+    },
+    {
+      "key": "OS ",
+      "type": "os"
+    },
+    {
+      "key": "WM ",
+      "type": "wm"
+    },
+    "editor",
+    "break",
+    {
+      "format": "────────── Sys ──────────",
+      "type": "custom"
+    },
+    "cpu",
+    "gpu",
+    {
+      "key": "MEM",
+      "type": "memory"
+    },
+    "vulkan",
+    "disk",
+    "battery",
+    {
+      "format": "─────────────────────────",
+      "type": "custom"
+    },
+    "break",
+    "colors",
+    "break"
+  ]
+}

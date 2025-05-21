@@ -1,14 +1,14 @@
 @import "../../.cache/wal/colors-waybar.css";
 
 @define-color main-color @color13;
-@define-color cc-bg alpha(@main-color, 0.2);
+@define-color cc-bg alpha(@main-color, 0.3);
 @define-color border alpha(lighter(@foreground), 0.1);
 @define-color text-color @foreground;
 @define-color text-color-disabled darker(@text-color);
 @define-color noti-bg @cc-bg;
-@define-color noti-bg-hover alpha(darker(@background), 0.2);
-@define-color noti-close-bg alpha(darker(@background), 0.1);
-@define-color noti-close-bg-hover alpha(darker(@background), 0.3);
+@define-color noti-bg-hover alpha(darker(@background), 0.3);
+@define-color noti-close-bg alpha(darker(@background), 0.3);
+@define-color noti-close-bg-hover alpha(darker(@background), 0.5);
 
 @define-color noti-bg-opaque rgb(48, 48, 48);
 @define-color noti-bg-darker rgb(38, 38, 38);
