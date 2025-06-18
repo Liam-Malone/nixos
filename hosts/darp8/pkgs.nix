@@ -18,6 +18,7 @@
     fastfetch
     filezilla
     floorp
+    fzf
     genymotion
     gimp
     gtk4
@@ -49,6 +50,8 @@
     swaynotificationcenter
     swww
     texliveFull
+    xfce.thunar
+    xfce.thunar-volman
     tree
     waybar
     wev

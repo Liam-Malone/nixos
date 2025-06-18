@@ -30,7 +30,7 @@ in
       enable = true;
 
       # Open ports in the firewall.
-      allowedTCPPorts = [ 21 22 80 443 4070 ];
+      allowedTCPPorts = [ 21 22 80 443 4070 5037 ];
       allowedUDPPorts = [ 4070 ];
 
       allowedTCPPortRanges = [
@@ -85,6 +85,9 @@ in
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
         };
       };
+    };
+    udev = {
+      packages = [ pkgs.android-udev-rules ];
     };
 
     libinput.enable = true;
@@ -224,6 +227,7 @@ in
     ripgrep
     spotify
     unzip
+    usbutils
     uxplay
     vim
     wget

@@ -1,7 +1,6 @@
 local nnoremap = require("liamm.keymap").nnoremap
 
 nnoremap("<leader>pv", "<cmd>Ex<CR>")
-nnoremap("<leader>tv", "<cmd>ToggleTerm<CR>")
 nnoremap("<leader>tt", "<cmd>TSContextToggle<CR>")
 
 vim.keymap.set("v", "<leader>ss", ":CarbonNow<CR>", { silent = true })

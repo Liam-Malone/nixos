@@ -253,8 +253,9 @@
     "modules": ["battery", "power-profiles-daemon"],
   },
   "battery": {
+    "interval": 1,
     "states": {
-      "good": 95,
+      "good": 90,
       "warning": 30,
       "critical": 15
     },
