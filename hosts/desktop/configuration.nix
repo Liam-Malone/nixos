@@ -15,7 +15,7 @@
       enable = true;
       wifi.backend = "iwd";
     };
-    hostName = "nixos-laptop";
+    hostName = "nixos-desktop";
     firewall.enable = false;
     wireless.iwd = {
       enable = true;
@@ -91,7 +91,7 @@
     nvidia = {
     	modesetting.enable = true;
     	powerManagement.enable = true;
-    	open = false;
+    	open = true;
     	nvidiaSettings = true;
     };
   };
@@ -167,6 +167,7 @@
     glib
     spotify
     discord
+    discord-canary
     wl-clipboard
     alacritty
     libnotify

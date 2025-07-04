@@ -446,7 +446,7 @@
           "~/pictures/.wallpapers/iceland-winter-mountains.jpg"
         ];
         wallpaper = [
-          "eDP-1,~/pictures/.wallpapers/iceland-winter-mountains.jpg"
+          ",~/pictures/.wallpapers/iceland-winter-mountains.jpg"
         ];
       };
     };

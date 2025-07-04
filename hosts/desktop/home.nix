@@ -51,7 +51,7 @@
     mpv
     nautilus
     networkmanagerapplet
-    nvtop
+    nvtopPackages.full
     nwg-look
     openvpn
     pamixer
