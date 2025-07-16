@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ cfg, config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -6,17 +6,34 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    plymouth.enable = true;
+  };
 
   networking = {
+    hostName = "lm_desktop";
+
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
     };
-    hostName = "nixos-desktop";
-    firewall.enable = false;
+
+    firewall = {
+      enable = true;
+
+      # Open ports in the firewall.
+      allowedTCPPorts = [ 21 22 80 443 4070 5037 ];
+      allowedUDPPorts = [ 4070 ];
+
+      allowedTCPPortRanges = [
+        { from = 8000; to = 8010; }
+      ];
+
+      allowPing = true;
+    };
+
     wireless.iwd = {
       enable = true;
       settings = {
@@ -24,14 +41,6 @@
         Settings.Autoconnect = true;
       };
     };
-
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
   };
 
   time.timeZone = "Europe/Dublin";
@@ -53,7 +62,14 @@
   };
 
   services = {
-    libinput.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      publish = {
+        enable = true;
+        userServices = true;
+      };
+    };
 
     greetd = {
       enable = true;
@@ -63,16 +79,22 @@
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
         };
       };
-      
     };
-    
-    xserver.videoDrivers = [ "nvidia" ];
+
+    udev = {
+      packages = [ pkgs.android-udev-rules ];
+    };
+
+    libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
     auto-cpufreq.enable = true;
+
     thermald.enable = true;
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
+
+    xserver.videoDrivers = [ "nvidia" ];
   };
 
   security.pam.services.hyprlock = {};
@@ -85,8 +107,6 @@
     bluetooth.enable = true;
     graphics = {
       enable = true;
-      extraPackages = with pkgs;[
-      ];
     };
     nvidia = {
     	modesetting.enable = true;
@@ -96,24 +116,31 @@
     };
   };
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    nerd-fonts.fira-code
-    nerd-fonts.droid-sans-mono
-  ];
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+    ];
+
+    fontconfig = {
+      enable = true;
+      includeUserConf = true;
+    };
+  };
 
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     trusted-users = [ "root" "@wheel" ];
     allowed-users = [ "root" "@wheel" ];
   };
@@ -123,6 +150,7 @@
       dates = "weekly";
       options = "--delete-older-than 10d";
   };
+
   nix.optimise = {
     automatic = true;
     dates = [ "00:00" ];
@@ -135,44 +163,65 @@
   };
 
   programs = {
-    dconf.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
 
-    nix-ld.enable = true;
-    mtr.enable = true;
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
+      withUWSM = true;
+      plugins = [ ];
+    };
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+
+    hyprlock.enable = true;
+    dconf.enable = true;
+    nix-ld.enable = true;
+    mtr.enable = true;
   };
+
+  lib.inputMethod.fcitx5.waylandFrontend = true;
 
   home-manager = {
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs; inherit cfg; };
     users = {
       "liamm" = import ./home.nix;
     };
+    backupFileExtension = ".bak";
   };
  
   environment.systemPackages = with pkgs; [
-    vim
-    fd
-    file
-    ripgrep
-    wget
-    glib
-    spotify
+    alacritty
+    bat
     discord
     discord-canary
-    wl-clipboard
-    alacritty
+    fd
+    file
+    glib
+    gnome-keyring
+    libdrm
     libnotify
     mesa
-    libdrm
+    neovim
+    ripgrep
+    spotify
+    unzip
+    usbutils
+    uxplay
+    vim
+    wget
+    wl-clipboard
+    zip
   ];
 
   zramSwap = {

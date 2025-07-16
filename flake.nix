@@ -57,7 +57,7 @@
           ];
         };
         desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; cfg = defaultCfg; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/desktop/configuration.nix
