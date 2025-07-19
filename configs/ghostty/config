@@ -15,6 +15,7 @@ window-decoration = false
 
 # Linux Specific
 gtk-wide-tabs = true
+gtk-single-instance = true
 
 # MacOS Specific
 #macos-non-native-fullscreen = true

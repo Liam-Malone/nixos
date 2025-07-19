@@ -34,7 +34,7 @@
     # networking.firewall.allowedUDPPorts = [ ... ];
   };
 
-  time.timeZone = "Europe/Madrid";
+  time.timeZone = "Europe/Dublin";
 
   i18n= {
     defaultLocale = "en_US.UTF-8";

@@ -12,6 +12,7 @@
     brave
     brightnessctl
     btop
+    comma
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
