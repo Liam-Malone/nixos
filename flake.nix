@@ -3,12 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hyprland.url = "github:hyprwm/Hyprland";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -26,7 +32,29 @@
   outputs = { self, nixpkgs, hyprland, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            # Hyprland & Plugins Overlays
+            (final: prev: {
+               hyprlandPlugins = prev.hyprlandPlugins // {
+                 hyprexpo = inputs.hyprland-plugins.packages.${prev.system}.hyprexpo;
+               };
+            })
+            (final: prev: {
+              hyprland = inputs.hyprland.packages.${prev.system}.hyprland;
+            })
+            (final: prev: {
+              xdg-desktop-portal-hyprland = inputs.hyprland.packages.${prev.system}.xdg-desktop-portal-hyprland;
+            })
+
+            # Quickshell Overlays
+            (final: prev: {
+              quickshell = inputs.quickshell.packages.${prev.system}.quickshell;
+            })
+          ];
+      };
       defaultCfg = rec {
         username = "liamm";
         homeDirectory = "/home/${username}";
@@ -35,25 +63,12 @@
       };
     in
     {
-
       nixosConfigurations = {
-        nixpkgs.overlays = [
-          (final: prev: {
-           hyprlandPlugins = prev.hyprlandPlugins // {
-           hyprexpo = inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo;
-           };
-           })
-        ];
-
         darp8 = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs; cfg = defaultCfg; };
+          specialArgs = { inherit inputs; cfg = defaultCfg; };
           modules = [
             hyprland.nixosModules.default
             ./hosts/darp8/configuration.nix
-            {
-              environment.systemPackages = [
-              ];
-            }
           ];
         };
         desktop = nixpkgs.lib.nixosSystem {
@@ -61,10 +76,6 @@
           modules = [
             hyprland.nixosModules.default
             ./hosts/desktop/configuration.nix
-            {
-              environment.systemPackages = [
-              ];
-            }
           ];
         };
       };

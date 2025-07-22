@@ -7,7 +7,6 @@
   # BEGIN PACKAGES
   home.packages = with pkgs; [
     audacity
-    android-studio
     bat
     brave
     brightnessctl
@@ -20,7 +19,7 @@
     floorp
     fzf
     genymotion
-    gimp
+    # gimp
     gtk4
     gvfs
     grimblast
@@ -42,14 +41,19 @@
     pamixer
     pavucontrol
     powertop
-    prismlauncher
+    # prismlauncher
     protonvpn-cli
     pywal
     qbittorrent
     signal-desktop
     swaynotificationcenter
     swww
-    texliveFull
+
+    # Temporarily removing texliveFull as it currently has a dependency (xindy)
+    # with a dependency (clisp) with a broken drv
+
+    # texliveFull
+
     xfce.thunar
     xfce.thunar-volman
     tree

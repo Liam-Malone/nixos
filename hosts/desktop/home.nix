@@ -9,9 +9,6 @@
 }:
 
 {
-  home.username = "liamm";
-  home.homeDirectory = "/home/liamm";
-
   home.username = cfg.username;
   home.homeDirectory = cfg.homeDirectory;
 
@@ -73,11 +70,11 @@
   xdg.configFile = {
     "emacs" = {
       recursive = true;
-      source = ../../modules/non-nix_configs/emacs;
+      source = ../../configs/emacs;
     };
 
-    "user-dirs.dirs".source = ../../modules/non-nix_configs/user-dirs.dirs;
-    "user-dirs.locale".source = ../../modules/non-nix_configs/user-dirs.locale;
+    "user-dirs.dirs".source = ../../configs/user-dirs.dirs;
+    "user-dirs.locale".source = ../../configs/user-dirs.locale;
   };
 
   # Let Home Manager install and manage itself.

@@ -22,7 +22,7 @@ in
 
     # Configs
     ".config/hypr" = {
-      source = ../../configs/hypr;
+      source = ../../configs/hypr-desktop;
       outOfStoreSymlink = true;
       recursive = true;
     };

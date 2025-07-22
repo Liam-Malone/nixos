@@ -171,8 +171,8 @@
 
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      package = pkgs.hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
       withUWSM = true;
       plugins = [ ];
@@ -195,7 +195,7 @@
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs; inherit cfg; };
     users = {
-      "liamm" = import ./home.nix;
+      "${cfg.username}" = import ./home.nix;
     };
     backupFileExtension = ".bak";
   };
@@ -204,15 +204,16 @@
     alacritty
     bat
     discord
-    discord-canary
     fd
     file
+    ghostty
     glib
     gnome-keyring
     libdrm
     libnotify
     mesa
     neovim
+    quickshell
     ripgrep
     spotify
     unzip
@@ -237,7 +238,6 @@
       extraPortals = with pkgs;[ 
         xdg-desktop-portal-gtk 
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-hyprland
       ];
       config = {
         common = {
