@@ -19,14 +19,6 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    hyprsunset = {
-        url = "github:hyprwm/hyprsunset";
-        inputs.nixpkgs.follows = "hyprland";
-    };
-    hyprsysteminfo = {
-        url = "github:hyprwm/hyprsysteminfo";
-        inputs.nixpkgs.follows = "hyprland";
-    };
   };
 
   outputs = { self, nixpkgs, hyprland, ... }@inputs:
@@ -40,6 +32,7 @@
             (final: prev: {
                hyprlandPlugins = prev.hyprlandPlugins // {
                  hyprexpo = inputs.hyprland-plugins.packages.${prev.system}.hyprexpo;
+                 hyprbars = inputs.hyprland-plugins.packages.${prev.system}.hyprbars;
                };
             })
             (final: prev: {

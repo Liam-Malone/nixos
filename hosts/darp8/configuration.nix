@@ -2,7 +2,7 @@
 
 let 
   hyprplugins = {
-    hyprexpo_dir = "${pkgs.hyprlandPlugins.hyprexpo}";
+    # hyprexpo_dir = "${pkgs.hyprlandPlugins.hyprexpo}";
   };
 in
 {
@@ -106,12 +106,12 @@ in
       "greetd/environments".text = ''
         Hyprland
       '';
-      "hyprland/plugins.conf" = {
-        mode = "0444";
-        text = ''
-          plugin = ${pkgs.hyprlandPlugins.hyprexpo}
-        '';
-      };
+      # "hyprland/plugins.conf" = {
+      #   mode = "0444";
+      #   text = ''
+      #     plugin = ${pkgs.hyprlandPlugins.hyprexpo}
+      #   '';
+      # };
     };
   };
 
@@ -186,8 +186,7 @@ in
       xwayland.enable = true;
       withUWSM = true;
       plugins = [
-        pkgs.hyprlandPlugins.hyprbars
-        pkgs.hyprlandPlugins.hyprexpo
+        # pkgs.hyprlandPlugins.hyprexpo
       ];
     };
     gnupg.agent = {
@@ -215,15 +214,16 @@ in
   environment.systemPackages = with pkgs; [
     bat
     discord
+    fd
+    file
     ghostty
     glib
     gnome-keyring
-    fd
-    file
-    libnotify
     libdrm
+    libnotify
     mesa
     neovim
+    quickshell
     ripgrep
     spotify
     unzip
