@@ -6,11 +6,12 @@
 {
   # BEGIN PACKAGES
   home.packages = with pkgs; [
-    audacity
+    # audacity
     bat
     brave
     brightnessctl
     btop
+    comma
     emacs-all-the-icons-fonts
     emacsPackages.pdf-tools
     exfatprogs
@@ -19,10 +20,11 @@
     floorp
     fzf
     genymotion
-    # gimp
+    gimp
     gtk4
     gvfs
     grimblast
+    grim
     htop
     hyprpicker
     imagemagick
@@ -46,6 +48,7 @@
     pywal
     qbittorrent
     signal-desktop
+    slurp
     swaynotificationcenter
     swww
 

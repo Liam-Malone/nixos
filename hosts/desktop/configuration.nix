@@ -174,13 +174,16 @@
       package = pkgs.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
-      withUWSM = true;
+      withUWSM = false;
       plugins = [ ];
     };
 
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+    uwsm = {
+      enable = false;
     };
 
     hyprlock.enable = true;
