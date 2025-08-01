@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Dublin lat/long
+latitude="53.2"
+longitude="-6.2"
+
 function execs() {
   systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river && systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr
@@ -9,8 +13,22 @@ function execs() {
   quickshell &
   wl-clipboard-history -t &
   wl-paste -p --watch wl-copy -p '' &
+  wlsunset -l $longitude -L $latitude &
 }
 
+# Monitors
+function monitors() {
+  host=$1
+
+  if [ $host == "lmdesktop" ]
+  then
+    wlr-randr  --output DP-1      --mode 2560x1440@143.973007Hz  --pos 0,0       --scale 1
+    wlr-randr  --output HDMI-A-1  --mode 1920x1080@60Hz          --pos 2560,180  --scale 1
+  elif [ $host == "darp8" ]
+    wlr-randr  --output eDP-1     --mode 1920x1080@59.999001Hz   --pos 0,0       --scale 1
+  then
+  fi
+}
 
 # Inputs
 
@@ -36,6 +54,7 @@ function touchpad_apply_rules() {
 # Inputs :: General
 function inputs() {
   riverctl keyboard-layout us
+  riverctl focus-follows-cursor normal
 
   touchpads=$(riverctl list-inputs | grep '^pointer-.*Touchpad' | awk '{print $1}')
   for touchpad in $touchpads
@@ -115,6 +134,12 @@ function binds() {
   riverctl map normal $mod+Shift J swap next
   riverctl map normal $mod+Shift K swap previous
 
+  # Binds :: Controls :: Displays
+  riverctl map normal $mod       Comma  focus-output   previous
+  riverctl map normal $mod       Period focus-output   next
+  riverctl map normal $mod+Shift Comma  send-to-output previous
+  riverctl map normal $mod+Shift Period send-to-output next
+
   # Binds :: Controls :: Tags
   for i in $(seq 1 9)
   do
@@ -134,8 +159,10 @@ function colors() {
 for arg in "$@"; do declare $arg='1'; done
 
 # Run Sections
-inputs
+monitors $HOSTNAME
 layout
 colors
+inputs
 binds
+
 if ! [ -v noexec ]; then execs ; fi

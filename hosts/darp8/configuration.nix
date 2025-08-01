@@ -205,7 +205,6 @@ in
     dconf.enable = true;
     nix-ld.enable = true;
     mtr.enable = true;
-    uwsm.enable = true;
   };
 
   lib.inputMethod.fcitx5.waylandFrontend = true;

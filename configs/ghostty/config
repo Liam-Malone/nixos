@@ -11,7 +11,7 @@ keybind = ctrl+shift+o=ignore
 background-opacity=0.9
 confirm-close-surface = false
 window-theme = dark
-window-decoration = true
+window-decoration = false
 
 # Linux Specific
 gtk-wide-tabs = true

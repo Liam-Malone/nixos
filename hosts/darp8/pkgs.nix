@@ -59,6 +59,8 @@
     tree
     waybar
     wev
+    wlr-randr
+    wlsunset
   ];
 
   # BEGIN PROGRAMS

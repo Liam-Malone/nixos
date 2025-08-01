@@ -18,6 +18,7 @@
     fastfetch
     filezilla
     floorp
+    fuzzel
     fzf
     genymotion
     gimp
@@ -51,17 +52,14 @@
     slurp
     swaynotificationcenter
     swww
-
-    # Temporarily removing texliveFull as it currently has a dependency (xindy)
-    # with a dependency (clisp) with a broken drv
-
-    # texliveFull
-
+    texliveFull
     xfce.thunar
     xfce.thunar-volman
     tree
     waybar
     wev
+    wlr-randr
+    wlsunset
   ];
 
   # BEGIN PROGRAMS

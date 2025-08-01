@@ -76,7 +76,7 @@
       restart = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd river";
         };
       };
     };
@@ -101,6 +101,7 @@
 
   environment.etc."greetd/environments".text = ''
     Hyprland
+    river
   '';
 
   hardware = {
@@ -178,12 +179,14 @@
       plugins = [ ];
     };
 
+    river = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-    uwsm = {
-      enable = false;
     };
 
     hyprlock.enable = true;
@@ -204,7 +207,6 @@
   };
  
   environment.systemPackages = with pkgs; [
-    alacritty
     bat
     discord
     fd
@@ -225,6 +227,7 @@
     vim
     wget
     wl-clipboard
+    xdg-user-dirs
     zip
   ];
 
