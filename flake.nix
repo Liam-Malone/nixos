@@ -25,7 +25,7 @@
     let
       system = "x86_64-linux";
       # pkgs = nixpkgs.legacyPackages.${system};
-      pkgs = import nixpkgs {
+      pkgs = import nixpkgs.legacyPackages {
           inherit system;
           overlays = [
             # Hyprland & Plugins Overlays

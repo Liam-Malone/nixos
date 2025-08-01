@@ -26,6 +26,11 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/river" = {
+      source = ../../configs/river;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     ".config/waybar" = {
       source = ../../configs/waybar;
       outOfStoreSymlink = true;

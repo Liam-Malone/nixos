@@ -82,7 +82,7 @@ in
       restart = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd river";
         };
       };
     };
@@ -105,6 +105,7 @@ in
     etc = {
       "greetd/environments".text = ''
         Hyprland
+        river
       '';
       # "hyprland/plugins.conf" = {
       #   mode = "0444";
@@ -189,6 +190,12 @@ in
         # pkgs.hyprlandPlugins.hyprexpo
       ];
     };
+
+    river = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -198,6 +205,7 @@ in
     dconf.enable = true;
     nix-ld.enable = true;
     mtr.enable = true;
+    uwsm.enable = true;
   };
 
   lib.inputMethod.fcitx5.waylandFrontend = true;

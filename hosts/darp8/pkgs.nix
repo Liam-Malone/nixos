@@ -6,7 +6,7 @@
 {
   # BEGIN PACKAGES
   home.packages = with pkgs; [
-    audacity
+    # audacity
     android-studio
     bat
     brave
@@ -19,9 +19,11 @@
     fastfetch
     filezilla
     floorp
+    fuzzel
     fzf
     genymotion
     gimp
+    grim
     gtk4
     gvfs
     grimblast
@@ -48,6 +50,7 @@
     pywal
     qbittorrent
     signal-desktop
+    slurp
     swaynotificationcenter
     swww
     texliveFull

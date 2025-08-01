@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+
+function execs() {
+  systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+  dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river && systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr
+  rivertile -view-padding 1 -outer-padding 2 &
+  swww-daemon &
+  swaync &
+  quickshell &
+  wl-clipboard-history -t &
+  wl-paste -p --watch wl-copy -p '' &
+}
+
+
+# Inputs
+
+# Inputs :: Touchpad Settings
+function touchpad_apply_rules() {
+  touchpad=$1
+
+  riverctl input "$touchpad" drag-lock            disabled
+  riverctl input "$touchpad" drag                 enabled
+  riverctl input "$touchpad" tap                  enabled
+  riverctl input "$touchpad" natural-scroll       enabled
+  riverctl input "$touchpad" middle-emulation     enabled
+  riverctl input "$touchpad" scroll-method        two-finger
+  riverctl input "$touchpad" tap-button-map       left-right-middle
+  riverctl input "$touchpad" click-method         click-finger
+  riverctl input "$touchpad" accel-profile        flat
+  riverctl input "$touchpad" disable-while-typing disabled
+  riverctl input "$touchpad" scroll-factor        0.6
+  riverctl input "$touchpad" pointer-accel        0.3
+  riverctl input "$touchpad" scroll-method        two-finger
+}
+
+# Inputs :: General
+function inputs() {
+  riverctl keyboard-layout us
+
+  touchpads=$(riverctl list-inputs | grep '^pointer-.*Touchpad' | awk '{print $1}')
+  for touchpad in $touchpads
+  do
+    touchpad_apply_rules $touchpad
+  done
+}
+
+# Layout
+function layout() {
+  riverctl default-layout rivertile
+}
+
+# Binds
+function binds() {
+  mod="Super"
+  lock="hyprlock"
+
+  # Binds :: Modes
+  mode_reset="riverctl enter-mode normal"
+  riverctl declare-mode browser_select
+  riverctl map normal         $mod B      enter-mode browser_select
+  riverctl map browser_select None B      spawn "$mode_reset && brave"
+  riverctl map browser_select None Escape spawn "$mode_reset"
+
+  # Binds :: Progams
+  discord="discord --enable-blink-features=MiddleClickAutoscroll"
+  hyprpicker="hyprpicker -a"
+  screenshot="grim - | wl-copy"
+  screenshotarea="grim -g \"\$(slurp)\" - | wl-copy"
+  riverctl map normal Alt        Return spawn ghostty
+  riverctl map normal $mod+Shift D      spawn "$discord"
+  riverctl map normal $mod       Space  spawn fuzzel
+  riverctl map normal $mod       P      spawn "$hyprpicker"
+  riverctl map normal None       Print  spawn "$screenshotarea" 
+  riverctl map normal Shift      Print  spawn "$screenshot" 
+  
+  # Binds :: Controls
+  reload="$NIX_CONFIG_DIR/configs/river/init noexec"
+  riverctl map normal $mod         C  close
+  riverctl map normal $mod+Control Q  spawn "$lock"
+  riverctl map normal $mod+Shift   R  spawn "$reload"
+  riverctl map normal $mod         F4 exit
+  
+  # Binds :: Controls :: Floating Windows
+  riverctl map normal         $mod       F         toggle-float  # Toggle floating mode
+  riverctl map normal         $mod+Shift Space     zoom          # Focus the main window
+  riverctl map-pointer normal $mod       BTN_LEFT  move-view     # Move floating windows
+  riverctl map-pointer normal $mod       BTN_RIGHT resize-view   # Resize floating windows
+  
+  # Binds :: Controls :: rivertile :: Layout Adjustments
+  riverctl map normal $mod       H send-layout-cmd rivertile "main-ratio -0.05"  # Decrease main window size
+  riverctl map normal $mod       L send-layout-cmd rivertile "main-ratio +0.05"  # Increase main window size
+  riverctl map normal $mod+Shift H send-layout-cmd rivertile "main-count +1"  # Increase number of main windows
+  riverctl map normal $mod+Shift L send-layout-cmd rivertile "main-count -1"  # Decrease number of main windows
+
+  # Binds :: Controls :: Multimedia
+  # Binds :: Controls :: Multimedia :: Commands
+  brightness="$NIX_CONFIG_DIR/scripts/progress-notify.sh brightness"
+  brightness_up="brightnessctl set 10%+ && $brightness"
+  brightness_down="brightnessctl set 10%- && $brightness"
+  audio="$NIX_CONFIG_DIR/scripts/progress-notify.sh audio"
+  volume_up="pamixer -i 5 && $audio"
+  volume_down="pamixer -d 5 && $audio"
+  mute="$NIX_CONFIG_DIR/scripts/progress-notify.sh mute"
+  mute_toggle="pamixer -t && $mute"
+
+  riverctl map -repeat normal None XF86MonBrightnessUp   spawn "sh -c '$brightness_up'"
+  riverctl map -repeat normal None XF86MonBrightnessDown spawn "sh -c '$brightness_down'"
+  riverctl map -repeat normal None XF86AudioRaiseVolume  spawn "sh -c '$volume_up'"
+  riverctl map -repeat normal None XF86AudioLowerVolume  spawn "sh -c '$volume_down'"
+  riverctl map         normal None XF86AudioMute         spawn "sh -c '$mute_toggle'"
+
+  # Binds :: Controls :: Navigation
+  riverctl map normal $mod       J focus-view next
+  riverctl map normal $mod       K focus-view previous
+  riverctl map normal $mod+Shift J swap next
+  riverctl map normal $mod+Shift K swap previous
+
+  # Binds :: Controls :: Tags
+  for i in $(seq 1 9)
+  do
+      tags=$((1 << ($i - 1)))
+      riverctl map normal $mod       $i set-focused-tags $tags  # Focus tag
+      riverctl map normal $mod+Shift $i set-view-tags $tags     # Assign tag to window
+  done
+}
+
+function colors() {
+  # Set border colors (focused and unfocused windows)
+  riverctl border-color-focused   0x93C863  # Green for focused windows
+  riverctl border-color-unfocused 0x333333  # Gray for unfocused windows
+}
+
+# Process Script Args
+for arg in "$@"; do declare $arg='1'; done
+
+# Run Sections
+inputs
+layout
+colors
+binds
+if ! [ -v noexec ]; then execs ; fi
