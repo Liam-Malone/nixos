@@ -50,6 +50,7 @@ in
   };
 
   time.timeZone = "Europe/Dublin";
+  # time.timeZone = "America/New_York";
 
   i18n= {
     defaultLocale = "en_US.UTF-8";

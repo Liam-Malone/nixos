@@ -10,7 +10,10 @@ function execs() {
   rivertile -view-padding 1 -outer-padding 2 &
   swww-daemon &
   swaync &
-  quickshell &
+  # quickshell &
+  waybar &
+  hypridle &
+  emacs --daemon &
   wl-clipboard-history -t &
   wl-paste -p --watch wl-copy -p '' &
   wlsunset -l $longitude -L $latitude &
@@ -82,11 +85,13 @@ function binds() {
 
   # Binds :: Progams
   discord="discord --enable-blink-features=MiddleClickAutoscroll"
+  emacs="emacsclient -c -a 'emacs'"
   hyprpicker="hyprpicker -a"
   screenshot="grim - | wl-copy"
   screenshotarea="grim -g \"\$(slurp)\" - | wl-copy"
   riverctl map normal Alt        Return spawn ghostty
   riverctl map normal $mod+Shift D      spawn "$discord"
+  riverctl map normal $mod+Shift  E      spawn "$emacs"
   riverctl map normal $mod       Space  spawn fuzzel
   riverctl map normal $mod       P      spawn "$hyprpicker"
   riverctl map normal None       Print  spawn "$screenshotarea" 
@@ -144,8 +149,11 @@ function binds() {
   for i in $(seq 1 9)
   do
       tags=$((1 << ($i - 1)))
-      riverctl map normal $mod       $i set-focused-tags $tags  # Focus tag
-      riverctl map normal $mod+Shift $i set-view-tags $tags     # Assign tag to window
+      # Focus tag
+      riverctl map normal $mod       $i set-focused-tags $tags
+
+      # Assign tag to window and focus
+      riverctl map normal $mod+Shift $i spawn "sh -c 'riverctl set-view-tags $tags && riverctl set-focused-tags $tags'"
   done
 }
 

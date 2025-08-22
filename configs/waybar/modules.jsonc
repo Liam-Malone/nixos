@@ -52,6 +52,8 @@
       "10": "",
     },
   },
+  "river/tags": {
+  },
   "group/control-center": {
     "orientation": "inherit",
     "modules": ["hyprland/language", "group/audio", "group/connection"],

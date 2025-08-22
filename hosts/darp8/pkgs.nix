@@ -53,6 +53,7 @@
     slurp
     swaynotificationcenter
     swww
+    teams-for-linux
     texliveFull
     xfce.thunar
     xfce.thunar-volman
