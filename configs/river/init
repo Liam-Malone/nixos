@@ -8,7 +8,6 @@ function execs() {
   systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river && systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr
   rivertile -view-padding 1 -outer-padding 2 &
-  swww-daemon &
   swaync &
   # quickshell &
   waybar &
@@ -16,7 +15,8 @@ function execs() {
   emacs --daemon &
   wl-clipboard-history -t &
   wl-paste -p --watch wl-copy -p '' &
-  wlsunset -l $longitude -L $latitude &
+  wlsunset -l "$longitude" -L "$latitude" &
+  swww-daemon &
 }
 
 # Monitors
@@ -98,7 +98,7 @@ function binds() {
   riverctl map normal Shift      Print  spawn "$screenshot" 
   
   # Binds :: Controls
-  reload="$NIX_CONFIG_DIR/configs/river/init noexec"
+  reload="$NIX_CONFIG_DIR/configs/river/init no_execs"
   riverctl map normal $mod         C  close
   riverctl map normal $mod+Control Q  spawn "$lock"
   riverctl map normal $mod+Shift   R  spawn "$reload"
@@ -173,4 +173,4 @@ colors
 inputs
 binds
 
-if ! [ -v noexec ]; then execs ; fi
+if ! [ -v no_execs ]; then execs ; fi
