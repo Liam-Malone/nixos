@@ -143,8 +143,8 @@ function binds() {
   # Binds :: Controls :: Displays
   riverctl map normal $mod       Comma  focus-output   previous
   riverctl map normal $mod       Period focus-output   next
-  riverctl map normal $mod+Shift Comma  send-to-output previous
-  riverctl map normal $mod+Shift Period send-to-output next
+  riverctl map normal $mod+Shift Comma  spawn "sh -c 'riverctl send-to-output previous && riverctl focus-output previous'"
+  riverctl map normal $mod+Shift Period spawn "sh -c 'riverctl send-to-output next     && riverctl focus-output next'"
 
   # Binds :: Controls :: Tags
   for i in $(seq 1 9)
