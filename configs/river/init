@@ -29,8 +29,8 @@ function monitors() {
     wlr-randr  --output DP-1      --mode 2560x1440@143.973007Hz  --pos 0,0       --scale 1
     wlr-randr  --output HDMI-A-1  --mode 1920x1080@60Hz          --pos 2560,180  --scale 1
   elif [ $host == "darp8" ]
-    wlr-randr  --output eDP-1     --mode 1920x1080@59.999001Hz   --pos 0,0       --scale 1
   then
+    wlr-randr  --output eDP-1     --mode 1920x1080@59.999001Hz   --pos 0,0       --scale 1
   fi
 }
 
