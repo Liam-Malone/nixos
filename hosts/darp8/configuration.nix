@@ -238,6 +238,7 @@ in
     usbutils
     uxplay
     vim
+    waypipe
     wget
     wl-clipboard
     xdg-user-dirs

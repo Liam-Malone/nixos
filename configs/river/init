@@ -17,6 +17,7 @@ function execs() {
   wl-paste -p --watch wl-copy -p '' &
   wlsunset -l "$longitude" -L "$latitude" &
   swww-daemon &
+  hyprlock &
 }
 
 # Monitors
