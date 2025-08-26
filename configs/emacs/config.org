@@ -367,63 +367,64 @@ Defining the various fonts emacs will use
     ;; are not right unless I also add this method of setting the default font.
     (add-to-list 'default-frame-alist '(font . "FiraCodeNerdFontMono-15"))
 
-    ;; UNCOMMENT THE FOLLOWING LINE IF LINE SPACING NEEDS ADJUSTING.
-    ;; (SETQ-DEFAULT LINE-SPACING 0.12)
+    ;; uncomment the following line if line spacing needs adjusting.
+    ;; (setq-default line-spacing 0.12)
 
-#+END_SRC
+#+end_src
 
-** ZOOM IN/OUT
-ENABLE ZOOM IN/OUT WITH C-=/- AND ALSO FOR C-SCRL-UP/DOWN
-#+BEGIN_SRC EMACS-LISP
-(GLOBAL-SET-KEY (KBD "C-=") 'TEXT-SCALE-INCREASE) 
-(GLOBAL-SET-KEY (KBD "C--") 'TEXT-SCALE-DECREASE)
-(GLOBAL-SET-KEY (KBD "<C-WHEEL-UP>") 'TEXT-SCALE-INCREASE)
-(GLOBAL-SET-KEY (KBD "<C-WHEEL-DOWN>") 'TEXT-SCALE-DECREASE)
-#+END_SRC
+** Zoom In/Out
+Enable zoom in/out with c-=/- and also for c-scrl-up/down
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-=") 'text-scale-increase) 
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<c-wheel-down>") 'text-scale-decrease)
+#+end_src
 
 * GNUPLOT
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE GNUPLOT-MODE)
-  ;; AUTOMATICALLY OPEN FILES ENDING WITH .GP OR .GNUPLOT IN GNUPLOT MODE
-  ;; (SETQ AUTO-MODE-ALIST 
-  ;; (APPEND '(("\\.\\(GP\\|GNUPLOT\\)$" . GNUPLOT-MODE)) AUTO-MODE-ALIST)))
+#+begin_src emacs-lisp
+  (use-package gnuplot-mode)
+  ;; automatically open files ending with .gp or .gnuplot in gnuplot mode
+  ;; (setq auto-mode-alist 
+  ;; (append '(("\\.\\(gp\\|gnuplot\\)$" . gnuplot-mode)) auto-mode-alist)))
 
-#+END_SRC
+#+end_src
 
 * IMAGE DIR-ED
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE IMAGE-DIRED+)
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package image-dired+)
+#+end_src
+
 * INDENTING/TABS
-#+BEGIN_SRC EMACS-LISP
-  (SETQ-DEFAULT INDENT-TABS-MODE NIL)
-  (SETQ-DEFAULT TAB-WIDTH 2)
-  (SETQ-DEFAULT INDENT-LINE-FUNCTION 'INSERT-TAB)
-  (SETQ-DEFAULT C-DEFAULT-STYLE "LINUX"
-                C-BASIC-OFFSET 2)
- ;; IF INDENT-TABS-MODE IS OFF, UNTABIFY BEFORE SAVING
- ;;(ADD-HOOK 'WRITE-FILE-HOOKS 
- ;;         (LAMBDA () (IF (NOT INDENT-TABS-MODE)
- ;;                        (UNTABIFY (POINT-MIN) (POINT-MAX)))))
-#+END_SRC
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 2)
+  (setq-default indent-line-function 'insert-tab)
+  (setq-default c-default-style "linux"
+                c-basic-offset 2)
+ ;; if indent-tabs-mode is off, untabify before saving
+ ;;(add-hook 'write-file-hooks 
+ ;;         (lambda () (if (not indent-tabs-mode)
+ ;;                        (untabify (point-min) (point-max)))))
+#+end_src
 
 * LIGATURES
-#+BEGIN_SRC EMACS-LISP
-;; THIS ASSUMES YOU'VE INSTALLED THE PACKAGE VIA MELPA.
-(USE-PACKAGE LIGATURE
-  :CONFIG
-  ;; ENABLE THE "WWW" LIGATURE IN EVERY POSSIBLE MAJOR MODE
-  (LIGATURE-SET-LIGATURES 'T '("WWW"))
-  ;; ENABLE TRADITIONAL LIGATURE SUPPORT IN EWW-MODE, IF THE
-  ;; `VARIABLE-PITCH' FACE SUPPORTS IT
-  (LIGATURE-SET-LIGATURES 'EWW-MODE '("FF" "FI" "FFI"))
-  ;; ENABLE ALL CASCADIA CODE LIGATURES IN PROGRAMMING MODES
-  (LIGATURE-SET-LIGATURES 'PROG-MODE '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+#+begin_src emacs-lisp
+;; this assumes you've installed the package via melpa.
+(use-package ligature
+  :config
+  ;; enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; enable all cascadia code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
                                        ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
                                        "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
                                        "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
                                        "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                                       "..." "+++" "/==" "///" "_|_" "WWW" "&&" "^=" "~~" "~@" "~="
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
                                        "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
                                        "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
                                        ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
@@ -431,300 +432,300 @@ ENABLE ZOOM IN/OUT WITH C-=/- AND ALSO FOR C-SCRL-UP/DOWN
                                        "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
                                        "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                                        "\\\\" "://"))
-  ;; ENABLES LIGATURE CHECKS GLOBALLY IN ALL BUFFERS. YOU CAN ALSO DO IT
-  ;; PER MODE WITH `LIGATURE-MODE'.
-  (GLOBAL-LIGATURE-MODE T))
-#+END_SRC
+  ;; enables ligature checks globally in all buffers. you can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+#+end_src
 
 * MARKDOWN MODE
-#+BEGIN_SRC EMACS-LISP
-(USE-PACKAGE MARKDOWN-MODE
-  :ENSURE T
-  :MODE ("README\\.MD\\'" . GFM-MODE)
-  :INIT (SETQ MARKDOWN-COMMAND "MULTIMARKDOWN"))
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :mode ("readme\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
 
-#+END_SRC
+#+end_src
 
 * ORG DOWNLOAD
-#+BEGIN_SRC EMACS-LISP
-(USE-PACKAGE ORG-DOWNLOAD
-  :AFTER ORG
-  :DEFER NIL
-  :CUSTOM
-  (ORG-DOWNLOAD-METHOD 'DIRECTORY)
-  (ORG-DOWNLOAD-IMAGE-DIR "~/EMACS/IMAGES/")
-  (ORG-DOWNLOAD-HEADING-LVL 0)
-  (ORG-DOWNLOAD-TIMESTAMP "ORG_%Y%M%D-%H%M%S_")
-  (ORG-IMAGE-ACTUAL-WIDTH 400)
-  (ORG-DOWNLOAD-SCREENSHOT-METHOD "WAYLAND_DISPLAY=WAYLAND-1 WL-PASTE -T IMAGE/PNG > '%S'.PNG")
-  :BIND
-  ("C-M-Y" . ORG-DOWNLOAD-SCREENSHOT)
-  :CONFIG
-  (REQUIRE 'ORG-DOWNLOAD))
-#+END_SRC
+#+begin_src emacs-lisp
+(use-package org-download
+  :after org
+  :defer nil
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir "~/emacs/images/")
+  (org-download-heading-lvl 0)
+  (org-download-timestamp "org_%y%m%d-%h%m%s_")
+  (org-image-actual-width 400)
+  (org-download-screenshot-method "wayland_display=wayland-1 wl-paste -t image/png > '%s'.png")
+  :bind
+  ("C-M-y" . org-download-screenshot)
+  :config
+  (require 'org-download))
+#+end_src
 
 * PULSE
-PULSE HIGHLIGHT A LINE ON CERTAIN ACTIONS
+Pulse highlight a line on certain actions
 
-# #+BEGIN_SRC EMACS-LISP
-#   (USE-PACKAGE PULSE
-#     :ENSURE NIL
-#     :DEFER
-#     :INIT
-#     (DEFUN PULSE-LINE (&REST _)
-#       "PULSE THE CURRENT LINE"
-#       (PULSE-MOMENTARY-HIGHLIGHT-ONE-LINE (POINT)))
+#+begin_src emacs-lisp
+  (use-package pulse
+    :ensure nil
+    :defer
+    :init
+    (defun pulse-line (&rest _)
+      "pulse the current line"
+      (pulse-momentary-highlight-one-line (point)))
 
-#     (DOLIST (COMMAND '(SCROLL-UP-COMMAND
-#                        SCROLL-DOWN-COMMAND
-#                        WINDMOVE-LEFT
-#                        WINDMOVE-RIGHT
-#                        WINDMOVE-UP
-#                        WINDMOVE-DOWN
-#                        MOVE-TO-WINDOW-LINE-TOP-BOTTOM
-#                        RECENTER-TOP-BOTTOM
-#                        OTHER-WINDOW))
-#     (ADVICE-ADD COMMAND :AFTER #'PULSE-LINE)))
-# #+END_SRC
+    (dolist (command '(scroll-up-command
+                       scroll-down-command
+                       windmove-left
+                       windmove-right
+                       windmove-up
+                       windmove-down
+                       move-to-window-line-top-bottom
+                       recenter-top-bottom
+                       other-window))
+    (advice-add command :after #'pulse-line)))
+#+end_src
 
 * PDF TOOLS
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE PDF-TOOLS)
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package pdf-tools)
+#+end_src
 
 
 * PROJECTILE
-[[HTTPS://GITHUB.COM/BBATSOV/PROJECTILE][PROJECTILE]] IS A PROJECT INTERACTION LIBRARY FOR EMACS.
+[[HTTPS://GITHUB.COM/BBATSOV/PROJECTILE][Projectile]] is a project interaction library for emacs.
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE PROJECTILE
-    :DIMINISH
-    :CONFIG
-    (PROJECTILE-MODE 1))
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package projectile
+    :diminish
+    :config
+    (projectile-mode 1))
+#+end_src
 
 * RAINBOW MODE
-DISPLAY THE ACTUAL COLOR AS A BACKGROUND FOR ANY HEX COLOR VALUE (EX. #FFFFFF).  THE CODE BLOCK BELOW ENABLES RAINBOW-MODE IN ALL PROGRAMMING MODES (PROG-MODE) AS WELL AS ORG-MODE, WHICH IS WHY RAINBOW WORKS IN THIS DOCUMENT.  
+Display the actual color as a background for any hex color value (ex. #ffffff).  The code block below enables rainbow-mode in all programming modes (prog-mode) as well as org-mode, which is why rainbow works in this document.  
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE RAINBOW-MODE
-    :DIMINISH
-    :HOOK 
-    ((ORG-MODE PROG-MODE) . RAINBOW-MODE))
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :diminish
+    :hook 
+    ((org-mode prog-mode) . rainbow-mode))
+#+end_src
 
 * RELOAD EMACS
-THIS IS JUST AN EXAMPLE OF HOW TO CREATE A SIMPLE FUNCTION IN EMACS.  USE THIS FUNCTION TO RELOAD EMACS AFTER ADDING CHANGES TO THE CONFIG.  YES, I AM LOADING THE USER-INIT-FILE TWICE IN THIS FUNCTION, WHICH IS A HACK BECAUSE FOR SOME REASON, JUST LOADING THE USER-INIT-FILE ONCE DOES NOT WORK PROPERLY.
+This is just an example of how to create a simple function in emacs. Use this function to reload emacs after adding changes to the config. Yes, i am loading the user-init-file twice in this function, which is a hack because for some reason, just loading the user-init-file once does not work properly.
 
-#+BEGIN_SRC EMACS-LISP
-  (DEFUN RELOAD-INIT-FILE ()
-    (INTERACTIVE)
-    (LOAD-FILE USER-INIT-FILE)
-    (LOAD-FILE USER-INIT-FILE))
-#+END_SRC
+#+begin_src emacs-lisp
+  (defun reload-init-file ()
+    (interactive)
+    (load-file user-init-file)
+    (load-file user-init-file))
+#+end_src
 
 * SHELLS AND TERMINALS
 
 ** ESHELL
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE ESHELL-SYNTAX-HIGHLIGHTING
-      :AFTER ESH-MODE
-      :CONFIG
-      (ESHELL-SYNTAX-HIGHLIGHTING-GLOBAL-MODE +1))
+#+begin_src emacs-lisp
+  (use-package eshell-syntax-highlighting
+      :after esh-mode
+      :config
+      (eshell-syntax-highlighting-global-mode +1))
 
-      (SETQ ESHELL-RC-SCRIPT (CONCAT USER-EMACS-DIRECTORY "ESHELL/PROFILE")
-        ESHELL-ALIASES-FILE (CONCAT USER-EMACS-DIRECTORY "ESHELL/ALIASES")
-        ESHELL-HISTORY-SIZE 5000
-        ESHELL-BUFFER-MAXIMUM-LINES 5000
-        ESHELL-HIST-IGNOREDUPS T
-        ESHELL-SCROLL-TO-BOTTOM-ON-INPUT T
-        ESHELL-DESTROY-BUFFER-WHEN-PROCESS-DIES T
-        ESHELL-VISUAL-COMMANDS'("BASH" "FISH" "HTOP" "SSH" "TOP" "ZSH"))
-#+END_SRC
+      (setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
+        eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
+        eshell-history-size 5000
+        eshell-buffer-maximum-lines 5000
+        eshell-hist-ignoredups t
+        eshell-scroll-to-bottom-on-input t
+        eshell-destroy-buffer-when-process-dies t
+        eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
+#+end_src
 
 * SUDO EDIT
-ENABLE EDITING OF PRIVILEGED FILES
+Enable editing of privileged files
 
-#+BEGIN_SRC EMACS-LISP
-(USE-PACKAGE SUDO-EDIT
-    :CONFIG
-      (LM/LEADER-KEYS
-          "FU" '(SUDO-EDIT-FIND-FILE :WK "SUDO FIND FILE")
-          "FU" '(SUDO-EDIT :WK "SUDO EDIT FILE"))) 
+#+begin_src emacs-lisp
+(use-package sudo-edit
+    :config
+      (lm/leader-keys
+          "fu" '(sudo-edit-find-file :wk "sudo find file")
+          "fu" '(sudo-edit :wk "sudo edit file"))) 
 
-#+END_SRC
+#+end_src
 
 * THEME
-SET THEMES DIR, LOAD CHOSEN THEME - THEME MADE WITH [[HTTPS://EMACSFODDER.GITHUB.IO/EMACS-THEME-EDITOR/][EMACS THEME EDITOR]].
-#+BEGIN_SRC EMACS-LISP
-  ;;(ADD-TO-LIST 'CUSTOM-THEME-LOAD-PATH "~/.CONFIG/EMACS/THEMES")
-  ;;(LOAD-THEME 'SOFT-CHARCOAL T)
+Set themes dir, load chosen theme - theme made with [[https://emacsfodder.github.io/emacs-theme-editor/][emacs theme editor]].
+#+begin_src emacs-lisp
+  ;;(add-to-list 'custom-theme-load-path "~/.config/emacs/themes")
+  ;;(load-theme 'soft-charcoal t)
 
-  (USE-PACKAGE DOOM-THEMES
-  :ENSURE T
-  :CONFIG
-  ;; GLOBAL SETTINGS (DEFAULTS)
-  (SETQ DOOM-THEMES-ENABLE-BOLD T    ; IF NIL, BOLD IS UNIVERSALLY DISABLED
-    DOOM-THEMES-ENABLE-ITALIC T) ; IF NIL, ITALICS IS UNIVERSALLY DISABLED
-  (LOAD-THEME 'DOOM-MONOKAI-SPECTRUM T)
-    ;; (LOAD-THEME 'DOOM-MONOKAI-MACHINE T)
+  (use-package doom-themes
+  :ensure t
+  :config
+  ;; global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+    doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-monokai-spectrum t)
+    ;; (load-theme 'doom-monokai-machine t)
 
-  ;; ENABLE FLASHING MODE-LINE ON ERRORS
-  (DOOM-THEMES-VISUAL-BELL-CONFIG)
-  ;; ENABLE CUSTOM NEOTREE THEME (ALL-THE-ICONS MUST BE INSTALLED!)
-  (DOOM-THEMES-NEOTREE-CONFIG)
-  ;; OR FOR TREEMACS USERS
-  (SETQ DOOM-THEMES-TREEMACS-THEME "DOOM-COLORS") ; USE "DOOM-COLORS" FOR LESS MINIMAL ICON THEME
-  (DOOM-THEMES-TREEMACS-CONFIG)
-  ;; CORRECTS (AND IMPROVES) ORG-MODE'S NATIVE FONTIFICATION.
-  (DOOM-THEMES-ORG-CONFIG))  
-#+END_SRC
+  ;; enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config)
+  ;; corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))  
+#+end_src
 
 * TRANSPARENCY
-TRUE TRANSPARENCY SUPPORT AS OF EMACS 29
-#+BEGIN_SRC EMACS-LISP
-  (ADD-TO-LIST 'DEFAULT-FRAME-ALIST '(ALPHA-BACKGROUND . 90)) ;; FOR ALL NEW FRAMES
-#+END_SRC
+True transparency support as of emacs 29
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; for all new frames
+#+end_src
 
 
 * GUI TWEAKS
-MAKING THE UI LOOK NICER
+Making the ui look nicer
 
-** DISABLE MENUBAR, TOOLBARS AND SCROLLBARS
+** Disable menubar, toolbars and scrollbars
 
-#+BEGIN_SRC EMACS-LISP
-  (MENU-BAR-MODE -1)
-  (TOOL-BAR-MODE -1)
-  (SCROLL-BAR-MODE -1)
-#+END_SRC
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+end_src
 
-** DISPLAY LINE NUMBERS AND TRUNCATED LINES
+** Display line numbers and truncated lines
 
-#+BEGIN_SRC EMACS-LISP
-  (GLOBAL-DISPLAY-LINE-NUMBERS-MODE 0)
-  (MENU-BAR--DISPLAY-LINE-NUMBERS-MODE-RELATIVE)
-  ;; (SETQ DISPLAY-LINE-NUMBERS-MODE-RELATIVE 'T)
+#+begin_src emacs-lisp
+  (global-display-line-numbers-mode 0)
+  (menu-bar--display-line-numbers-mode-relative)
+  ;; (setq display-line-numbers-mode-relative 't)
 
-  (GLOBAL-VISUAL-LINE-MODE T)
-#+END_SRC
+  (global-visual-line-mode t)
+#+end_src
 
 * IVY (COUNSEL)
-+ IVY, A GENERIC COMPLETION MECHANISM FOR EMACS.
-+ COUNSEL, A COLLECTION OF IVY-ENHANCED VERSIONS OF COMMON EMACS COMMANDS.
-+ IVY-RICH ALLOWS US TO ADD DESCRIPTIONS ALONGSIDE THE COMMANDS IN M-X.
++ Ivy, a generic completion mechanism for emacs.
++ Counsel, a collection of ivy-enhanced versions of common emacs commandS.
++ Ivy-rich allows us to add descriptions alongside the commands in m-x.
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE COUNSEL
-    :AFTER IVY
-    :DIMINISH
-    :CONFIG (COUNSEL-MODE))
+#+begin_src emacs-lisp
+  (use-package counsel
+    :after ivy
+    :diminish
+    :config (counsel-mode))
 
-  (USE-PACKAGE IVY
-    :BIND
-    ;; IVY-RESUME RESUMES THE LAST IVY-BASED COMPLETION.
-    (("C-C C-R" . IVY-RESUME)
-     ("C-X B" . IVY-SWITCH-BUFFER-OTHER-WINDOW))
-    :DIMINISH
-    :CUSTOM
-    (SETQ IVY-USE-VIRTUAL-BUFFERS T)
-    (SETQ IVY-COUNT-FORMAT "(%D/%D) ")
-    (SETQ ENABLE-RECURSIVE-MINIBUFFERS T)
-    :CONFIG
-    (IVY-MODE))
+  (use-package ivy
+    :bind
+    ;; ivy-resume resumes the last ivy-based completion.
+    (("C-c C-r" . ivy-resume)
+     ("C-x b" . ivy-switch-buffer-other-window))
+    :diminish
+    :custom
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (setq enable-recursive-minibuffers t)
+    :config
+    (ivy-mode))
 
-  (USE-PACKAGE ALL-THE-ICONS-IVY-RICH
-    :ENSURE T
-    :DIMINISH
-    :INIT (ALL-THE-ICONS-IVY-RICH-MODE 1))
+  (use-package all-the-icons-ivy-rich
+    :ensure t
+    :diminish
+    :init (all-the-icons-ivy-rich-mode 1))
 
-  (USE-PACKAGE IVY-RICH
-    :AFTER IVY
-    :DIMINISH
-    :ENSURE T
-    :INIT (IVY-RICH-MODE 1) ;; THIS GETS US DESCRIPTIONS IN M-X.
-    :CUSTOM
-    (IVY-VIRTUAL-ABBREVIATE 'FULL
-     IVY-RICH-SWITCH-BUFFER-ALIGN-VIRTUAL-BUFFER T
-     IVY-RICH-PATH-STYLE 'ABBREV)
-    :CONFIG
-    (IVY-SET-DISPLAY-TRANSFORMER 'IVY-SWITCH-BUFFER
-                                 'IVY-RICH-SWITCH-BUFFER-TRANSFORMER))
+  (use-package ivy-rich
+    :after ivy
+    :diminish
+    :ensure t
+    :init (ivy-rich-mode 1) ;; this gets us descriptions in m-x.
+    :custom
+    (ivy-virtual-abbreviate 'full
+     ivy-rich-switch-buffer-align-virtual-buffer t
+     ivy-rich-path-style 'abbrev)
+    :config
+    (ivy-set-display-transformer 'ivy-switch-buffer
+                                 'ivy-rich-switch-buffer-transformer))
 
-#+END_SRC
+#+end_src
 
 * LANGUAGE SUPPORT
-EMACS HAS BUILT-IN PROGRAMMING LANGUAGE MODES FOR LISP, SCHEME, DSSSL, ADA, ASM, AWK, C, C++, FORTRAN, ICON, IDL (CORBA), IDLWAVE, JAVA, JAVASCRIPT, M4, MAKEFILES, METAFONT, MODULA2, OBJECT PASCAL, OBJECTIVE-C, OCTAVE, PASCAL, PERL, PIKE, POSTSCRIPT, PROLOG, PYTHON, RUBY, SIMULA, SQL, TCL, VERILOG, AND VHDL.  OTHER LANGUAGES WILL REQUIRE YOU TO INSTALL ADDITIONAL MODES.
+Emacs has built-in programming language modes for lisp, scheme, dsssl, ada, asm, awk, c, c++, fortran, icon, idl (corba), idlwave, java, javascript, m4, makefiles, metafont, modula2, object pascal, objective-c, octave, pascal, perl, pike, postscript, prolog, python, ruby, simula, sql, tcl, verilog, and vhdl.  Other languages will require you to install additional modes.
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE ZIG-MODE)
-  (USE-PACKAGE NIX-MODE)
-  ;; (USE-PACKAGE JAI-MODE)
-  (USE-PACKAGE RUST-MODE)
-  (USE-PACKAGE CARGO-MODE)
-  (USE-PACKAGE LUA-MODE)
-  (ADD-TO-LIST 'LOAD-PATH "~/.CONFIG/EMACS/MANUAL-PACKAGES")
-  (REQUIRE 'ODIN-MODE)
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package zig-mode)
+  (use-package nix-mode)
+  ;; (use-package jai-mode)
+  (use-package rust-mode)
+  (use-package cargo-mode)
+  (use-package lua-mode)
+  (add-to-list 'load-path "~/.config/emacs/manual-packages")
+  (require 'odin-mode)
+#+end_src
 
 
 * ORG MODE
-** ENABLING TABLE OF CONTENTS
+** Enabling table of contents
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE TOC-ORG
-      :COMMANDS TOC-ORG-ENABLE
-      :INIT (ADD-HOOK 'ORG-MODE-HOOK 'TOC-ORG-ENABLE))
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package toc-org
+      :commands toc-org-enable
+      :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
 
-** ENABLING ORG BULLETS
-ORG-BULLETS GIVE BULLET POINTS INSTEAD OF ASTERISKS
+** Enabling org bullets
+Org-bullets give bullet points instead of asterisks
 
-#+BEGIN_SRC EMACS-LISP
-  (ADD-HOOK 'ORG-MODE-HOOK 'ORG-INDENT-MODE)
-  ;;(SETQ (SETQ ORG-RETURN-FOLLOWS-LINK  T)
-  (USE-PACKAGE ORG-BULLETS)
-  (ADD-HOOK 'ORG-MODE-HOOK (LAMBDA () (ORG-BULLETS-MODE 1)))
-#+END_SRC
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  ;;(setq (setq org-return-follows-link  t)
+  (use-package org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
 
 ** SOURCE CODE BLOCK TAG EXPANSION
-ORG-TEMPO IS NOT A SEPARATE PACKAGE BUT A MODULE WITHIN ORG THAT CAN BE ENABLED.  ORG-TEMPO ALLOWS FOR '<S' FOLLOWED BY TAB TO EXPAND TO A BEGIN_SRC TAG.  OTHER EXPANSIONS AVAILABLE INCLUDE:
+Org-tempo is not a separate package but a module within org that can be enabled. Org-tempo allows for '<s' followed by tab to expand to a begin_src tag. Other expansions available include:
 
-| TYPING THE BELOW + TAB | EXPANDS TO ...                          |
+| typing the below + tab | expands to ...                          |
 |------------------------+-----------------------------------------|
-| <A                     | '#+BEGIN_EXPORT ASCII' … '#+END_EXPORT  |
-| <C                     | '#+BEGIN_CENTER' … '#+END_CENTER'       |
-| <C                     | '#+BEGIN_COMMENT' … '#+END_COMMENT'     |
-| <E                     | '#+BEGIN_EXAMPLE' … '#+END_EXAMPLE'     |
-| <E                     | '#+BEGIN_EXPORT' … '#+END_EXPORT'       |
-| <H                     | '#+BEGIN_EXPORT HTML' … '#+END_EXPORT'  |
-| <L                     | '#+BEGIN_EXPORT LATEX' … '#+END_EXPORT' |
-| <Q                     | '#+BEGIN_QUOTE' … '#+END_QUOTE'         |
-| <S                     | '#+BEGIN_SRC' … '#+END_SRC'             |
-| <V                     | '#+BEGIN_VERSE' … '#+END_VERSE'         |
+| <a                     | '#+begin_export ascii' … '#+end_export  |
+| <c                     | '#+begin_center' … '#+end_center'       |
+| <c                     | '#+begin_comment' … '#+end_comment'     |
+| <e                     | '#+begin_example' … '#+end_example'     |
+| <e                     | '#+begin_export' … '#+end_export'       |
+| <h                     | '#+begin_export html' … '#+end_export'  |
+| <l                     | '#+begin_export latex' … '#+end_export' |
+| <q                     | '#+begin_quote' … '#+end_quote'         |
+| <s                     | '#+begin_src' … '#+end_src'             |
+| <v                     | '#+begin_verse' … '#+end_verse'         |
 
-#+BEGIN_SRC EMACS-LISP
-  (REQUIRE 'ORG-TEMPO)
-#+END_SRC
+#+begin_src emacs-lisp
+  (require 'org-tempo)
+#+end_src
 
 * WHICH-KEY
 
-#+BEGIN_SRC EMACS-LISP
-  (USE-PACKAGE WHICH-KEY
-    :INIT
-        (WHICH-KEY-MODE 1)
-    :DIMINISH
-    :CONFIG
-    (SETQ WHICH-KEY-SIDE-WINDOW-LOCATION 'BOTTOM
-          WHICH-KEY-SORT-ORDER #'WHICH-KEY-KEY-ORDER-ALPHA
-          WHICH-KEY-SORT-UPPERCASE-FIRST NIL
-          WHICH-KEY-ADD-COLUMN-PADDING 1
-          WHICH-KEY-MAX-DISPLAY-COLUMNS NIL
-          WHICH-KEY-MIN-DISPLAY-LINES 6
-          WHICH-KEY-SIDE-WINDOW-SLOT -10
-          WHICH-KEY-SIDE-WINDOW-MAX-HEIGHT 0.25
-          WHICH-KEY-IDE-DELAY 0.8
-          WHICH-KEY-MAX-DESCRIPTION-LENGTH 25
-          WHICH-KEY-ALLOW-IMPRECISE-WINDOW-FIT NIL
-          WHICH-KEY-SEPARATOR " -> " ))
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package which-key
+    :init
+        (which-key-mode 1)
+    :diminish
+    :config
+    (setq which-key-side-window-location 'bottom
+          which-key-sort-order #'which-key-key-order-alpha
+          which-key-sort-uppercase-first nil
+          which-key-add-column-padding 1
+          which-key-max-display-columns nil
+          which-key-min-display-lines 6
+          which-key-side-window-slot -10
+          which-key-side-window-max-height 0.25
+          which-key-ide-delay 0.8
+          which-key-max-description-length 25
+          which-key-allow-imprecise-window-fit nil
+          which-key-separator " -> " ))
+#+end_src
