@@ -13,7 +13,7 @@
   };
 
   networking = {
-    hostName = "lm_desktop";
+    hostName = "lmdesktop";
 
     networkmanager = {
       enable = true;
