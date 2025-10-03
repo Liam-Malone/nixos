@@ -83,7 +83,7 @@ in
       restart = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd river";
+          command = "${pkgs.tuigreet}/bin/tuigreet --cmd Hyprland";
         };
       };
     };
@@ -108,12 +108,6 @@ in
         Hyprland
         river
       '';
-      # "hyprland/plugins.conf" = {
-      #   mode = "0444";
-      #   text = ''
-      #     plugin = ${pkgs.hyprlandPlugins.hyprexpo}
-      #   '';
-      # };
     };
   };
 
@@ -192,7 +186,7 @@ in
       ];
     };
 
-    river = {
+    river-classic = {
       enable = true;
       xwayland.enable = true;
     };

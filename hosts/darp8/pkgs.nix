@@ -18,7 +18,7 @@
     exfatprogs
     fastfetch
     filezilla
-    floorp
+    floorp-bin
     fuzzel
     fzf
     genymotion
@@ -31,8 +31,9 @@
     hyprpicker
     imagemagick
     kdePackages.kdenlive
+    kdePackages.polkit-kde-agent-1
     keepassxc
-    libsForQt5.polkit-kde-agent
+    libreoffice
     localsend
     mpv
     mupdf
@@ -79,6 +80,7 @@
         else
             export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
         fi;
+        export PATH="$HOME/.local/bin:$PATH"
         set -o vi
         fastfetch
       '';
@@ -103,6 +105,9 @@
         work = "nix develop --impure";
         ".." = "cd ..";
       };
+    };
+    dankMaterialShell = {
+      enable = true;
     };
     emacs = {
       enable = true;

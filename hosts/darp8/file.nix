@@ -26,6 +26,11 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/DankMaterialShell" = {
+      source = ../../configs/DankMaterialShell;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     ".config/river" = {
       source = ../../configs/river;
       outOfStoreSymlink = true;

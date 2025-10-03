@@ -18,6 +18,7 @@ function execs() {
   wlsunset -l "$longitude" -L "$latitude" &
   swww-daemon &
   hyprlock &
+  fcitx5 -d &
 }
 
 # Monitors
@@ -93,7 +94,7 @@ function binds() {
   riverctl map normal Alt        Return spawn ghostty
   riverctl map normal $mod+Shift D      spawn "$discord"
   riverctl map normal $mod+Shift  E      spawn "$emacs"
-  riverctl map normal $mod       Space  spawn fuzzel
+  riverctl map normal $mod       Space  spawn wofi
   riverctl map normal $mod       P      spawn "$hyprpicker"
   riverctl map normal None       Print  spawn "$screenshotarea" 
   riverctl map normal Shift      Print  spawn "$screenshot" 

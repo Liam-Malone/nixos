@@ -10,8 +10,8 @@ keybind = ctrl+shift+o=ignore
 # Window Stuff
 background-opacity=0.9
 confirm-close-surface = false
-window-theme = dark
-window-decoration = false
+window-theme = system
+window-decoration = true
 
 # Linux Specific
 gtk-wide-tabs = true
@@ -33,3 +33,5 @@ cursor-style = block
 cursor-color = #ffffff
 mouse-hide-while-typing = true
 
+config-file = ./config-dankcolors
+app-notifications = no-clipboard-copy,no-config-reload

@@ -84,5 +84,13 @@ return {
         automatic_enable = false,
       })
     end,
-  }
+  },
+
+  -- cats
+  -- {
+  --   "Panda-d3v/cute-cat.nvim",
+  --   opts = {
+  --     status = false,
+  --   },
+  -- }
 }

@@ -10,9 +10,9 @@
 @define-color noti-close-bg alpha(darker(@background), 0.3);
 @define-color noti-close-bg-hover alpha(darker(@background), 0.5);
 
-@define-color noti-bg-opaque rgb(48, 48, 48);
-@define-color noti-bg-darker rgb(38, 38, 38);
-@define-color noti-bg-focus rgba(68, 68, 68, 0.6);
+@define-color noti-bg-opaque rgb(48, 48, 48, 0.5);
+@define-color noti-bg-darker rgb(38, 38, 38, 0.5);
+@define-color noti-bg-focus  rgba(68, 68, 68, 0.2);
 
 .notification-row {
   outline: none;

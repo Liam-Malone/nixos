@@ -11,7 +11,8 @@
   ],
   
   "modules-center": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "river/tags"
   ],
 
   "modules-right": [

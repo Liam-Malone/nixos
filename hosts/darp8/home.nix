@@ -20,6 +20,8 @@
 
     # general modules
     ../../modules/home-manager/tmux.nix
+
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
   ];
 
   # You should not change this value, even if you update Home Manager. If you do
@@ -32,7 +34,6 @@
     GIT_EDITOR = "nvim";
     NIX_SHELL_PRESERVE_PROMPT = 1;
     NIX_CONFIG_DIR = "${cfg.homeDirectory}/personal/nixos";
-    # HYPR_EXPO_LIB = "${hyprplugins.hyprexpo_dir}/lib/libhyprexpo.so";
   };
 
   nix.settings.extra-trusted-substituters = [
