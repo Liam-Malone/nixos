@@ -12,6 +12,8 @@ background-opacity=0.9
 confirm-close-surface = false
 window-theme = system
 window-decoration = true
+window-inherit-working-directory = false
+working-directory = home
 
 # Linux Specific
 gtk-wide-tabs = true

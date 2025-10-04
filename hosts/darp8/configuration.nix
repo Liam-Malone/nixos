@@ -99,6 +99,7 @@ in
     thermald.enable = true;
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
+    upower.enable = true;
   };
 
   security.pam.services.hyprlock = {};

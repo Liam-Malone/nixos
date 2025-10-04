@@ -17,6 +17,7 @@
     emacsPackages.pdf-tools
     exfatprogs
     fastfetch
+    ffmpeg
     filezilla
     floorp-bin
     fuzzel

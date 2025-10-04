@@ -4,6 +4,7 @@
 latitude="53.2"
 longitude="-6.2"
 
+# Startup
 function execs() {
   systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river && systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr
@@ -175,4 +176,5 @@ colors
 inputs
 binds
 
+# Don't run execs on reload
 if ! [ -v no_execs ]; then execs ; fi

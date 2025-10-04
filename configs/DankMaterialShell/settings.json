@@ -75,9 +75,9 @@
       "width": 50
     }
   ],
-  "showWorkspaceIndex": true,
+  "showWorkspaceIndex": false,
   "showWorkspacePadding": false,
-  "showWorkspaceApps": true,
+  "showWorkspaceApps": false,
   "maxWorkspaceIcons": 3,
   "workspacesPerMonitor": true,
   "workspaceNameIcons": {},
