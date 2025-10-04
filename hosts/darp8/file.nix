@@ -22,12 +22,12 @@ in
 
     # Configs
     ".config/hypr" = {
-      source = ../../configs/hypr;
+      source = ../../configs/hypr-darp8;
       outOfStoreSymlink = true;
       recursive = true;
     };
     ".config/DankMaterialShell" = {
-      source = ../../configs/DankMaterialShell;
+      source = ../../configs/dms-darp8;
       outOfStoreSymlink = true;
       recursive = true;
     };
