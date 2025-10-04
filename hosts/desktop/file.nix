@@ -27,7 +27,7 @@ in
       recursive = true;
     };
     ".config/DankMaterialShell" = {
-      source = ../../configs/DankMaterialShell;
+      source = ../../configs/dms-desktop;
       outOfStoreSymlink = true;
       recursive = true;
     };
