@@ -2,9 +2,9 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -76,7 +76,7 @@
       restart = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd river";
+          command = "${pkgs.tuigreet}/bin/tuigreet --cmd Hyprland";
         };
       };
     };
@@ -85,6 +85,7 @@
       packages = [ pkgs.android-udev-rules ];
     };
 
+    upower.enable = true;
     libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
@@ -179,7 +180,7 @@
       plugins = [ ];
     };
 
-    river = {
+    river-classic = {
       enable = true;
       xwayland.enable = true;
     };
@@ -214,7 +215,6 @@
     ghostty
     glib
     gnome-keyring
-    inputs.caelestia-shell.packages.${system}."with-cli"
     libdrm
     libnotify
     mesa

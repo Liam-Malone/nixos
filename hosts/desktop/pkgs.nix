@@ -16,8 +16,9 @@
     emacsPackages.pdf-tools
     exfatprogs
     fastfetch
+    ffmpeg
     filezilla
-    floorp
+    floorp-bin
     fuzzel
     fzf
     genymotion
@@ -32,6 +33,8 @@
     kdePackages.kdenlive
     keepassxc
     kdePackages.polkit-kde-agent-1
+    keepassxc
+    libreoffice
     localsend
     mpv
     mupdf
@@ -44,7 +47,7 @@
     pamixer
     pavucontrol
     powertop
-    # prismlauncher
+    prismlauncher
     protonvpn-cli
     pywal
     qbittorrent
@@ -52,6 +55,7 @@
     slurp
     swaynotificationcenter
     swww
+    teams-for-linux
     texliveFull
     xfce.thunar
     xfce.thunar-volman
@@ -102,26 +106,9 @@
         ".." = "cd ..";
       };
     };
-    # caelestia = {
-    #   enable = true;
-    #   systemd = {
-    #     enable = false;
-    #     target = "graphical-session.target";
-    #     environment = [ ];
-    #   };
-    #   settings = {
-    #     bar.status = {
-    #       showBattery = false;
-    #     };
-    #     paths.wallpaperDir = "~/pictures/.wallpapers";
-    #   };
-    #   cli = {
-    #     enable = true;
-    #     settings = {
-    #       theme.enableGtk = false;
-    #     };
-    #   };
-    # };
+    dankMaterialShell = {
+      enable = true;
+    };
     emacs = {
       enable = true;
       package = pkgs.emacs-gtk;

@@ -1,4 +1,4 @@
-{
+{  
   cfg,
   config,
   pkgs,
@@ -19,6 +19,8 @@
 
     # general modules
     ../../modules/home-manager/tmux.nix
+
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
   ];
 
   # You should not change this value, even if you update Home Manager. If you do

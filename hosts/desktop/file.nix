@@ -14,15 +14,20 @@ in
   # Symlink dotfiles
   home.file = mkSymlinkAttrs {
     # Fonts
-    ".local/share/fonts/KelmscottMono.otf" = {
-        source = ../../fonts/KelmscottMono.otf;
+    ".local/share/fonts" = {
+        source = ../../fonts;
         outOfStoreSymlink = true;
-        recursive = false;
+        recursive = true;
     };
 
     # Configs
     ".config/hypr" = {
       source = ../../configs/hypr-desktop;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
+    ".config/DankMaterialShell" = {
+      source = ../../configs/DankMaterialShell;
       outOfStoreSymlink = true;
       recursive = true;
     };
