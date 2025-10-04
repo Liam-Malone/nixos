@@ -14,10 +14,10 @@ in
   # Symlink dotfiles
   home.file = mkSymlinkAttrs {
     # Fonts
-    ".local/share/fonts/KelmscottMono.otf" = {
-        source = ../../fonts/KelmscottMono.otf;
+    ".local/share/fonts" = {
+        source = ../../fonts;
         outOfStoreSymlink = true;
-        recursive = false;
+        recursive = true;
     };
 
     # Configs
