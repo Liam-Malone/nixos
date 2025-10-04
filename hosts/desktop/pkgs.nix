@@ -31,7 +31,7 @@
     imagemagick
     kdePackages.kdenlive
     keepassxc
-    libsForQt5.polkit-kde-agent
+    kdePackages.polkit-kde-agent-1
     localsend
     mpv
     mupdf
@@ -102,6 +102,26 @@
         ".." = "cd ..";
       };
     };
+    # caelestia = {
+    #   enable = true;
+    #   systemd = {
+    #     enable = false;
+    #     target = "graphical-session.target";
+    #     environment = [ ];
+    #   };
+    #   settings = {
+    #     bar.status = {
+    #       showBattery = false;
+    #     };
+    #     paths.wallpaperDir = "~/pictures/.wallpapers";
+    #   };
+    #   cli = {
+    #     enable = true;
+    #     settings = {
+    #       theme.enableGtk = false;
+    #     };
+    #   };
+    # };
     emacs = {
       enable = true;
       package = pkgs.emacs-gtk;

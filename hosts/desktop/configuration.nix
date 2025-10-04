@@ -214,6 +214,7 @@
     ghostty
     glib
     gnome-keyring
+    inputs.caelestia-shell.packages.${system}."with-cli"
     libdrm
     libnotify
     mesa
@@ -225,6 +226,7 @@
     usbutils
     uxplay
     vim
+    waypipe
     wget
     wl-clipboard
     xdg-user-dirs
@@ -253,7 +255,13 @@
     };
   };
 
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,

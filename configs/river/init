@@ -6,20 +6,26 @@ longitude="-6.2"
 
 # Startup
 function execs() {
-  systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-  dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river && systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr
+  host=$1
+
+  systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+  dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river && systemctl --user restart xdg-desktop-portal xdg-desktop-portal-wlr &
   rivertile -view-padding 1 -outer-padding 2 &
   swaync &
-  # quickshell &
-  waybar &
-  hypridle &
   emacs --daemon &
   wl-clipboard-history -t &
   wl-paste -p --watch wl-copy -p '' &
   wlsunset -l "$longitude" -L "$latitude" &
   swww-daemon &
-  hyprlock &
-  fcitx5 -d &
+
+  if [ $host == "lmdesktop" ]; then
+    # TODO: find alternative screenlocker/idle manager
+    quickshell &
+  elif [ $host == "darp8" ]; then
+    waybar &
+    hypridle &
+    hyprlock &
+  fi
 }
 
 # Monitors
@@ -28,7 +34,7 @@ function monitors() {
 
   if [ $host == "lmdesktop" ]
   then
-    wlr-randr  --output DP-1      --mode 2560x1440@143.973007Hz  --pos 0,0       --scale 1
+    wlr-randr  --output DP-1      --mode 2560x1440@143.973007Hz  --pos 0,0       --scale 1 &&
     wlr-randr  --output HDMI-A-1  --mode 1920x1080@60Hz          --pos 2560,180  --scale 1
   elif [ $host == "darp8" ]
   then
@@ -170,11 +176,11 @@ function colors() {
 for arg in "$@"; do declare $arg='1'; done
 
 # Run Sections
-monitors $HOSTNAME
-layout
+binds
 colors
 inputs
-binds
+layout
+monitors $HOSTNAME
 
 # Don't run execs on reload
 if ! [ -v no_execs ]; then execs ; fi

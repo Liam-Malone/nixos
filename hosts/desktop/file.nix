@@ -31,6 +31,11 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
+    ".config/emacs" = {
+      source = ../../configs/emacs;
+      outOfStoreSymlink = true;
+      recursive = true;
+    };
     ".config/waybar" = {
       source = ../../configs/waybar;
       outOfStoreSymlink = true;
@@ -61,12 +66,5 @@ in
       outOfStoreSymlink = true;
       recursive = true;
     };
-
-    # I have no idea why this is an issue...
-    # ".config/emacs" = {
-    #   source = ../../configs/emacs;
-    #   outOfStoreSymlink = true;
-    #   recursive = true;
-    # };
   };
 }
