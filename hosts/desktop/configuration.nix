@@ -85,7 +85,6 @@
       packages = [ pkgs.android-udev-rules ];
     };
 
-    upower.enable = true;
     libinput.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
@@ -94,16 +93,21 @@
     thermald.enable = true;
     power-profiles-daemon.enable = false;
     pulseaudio.enable = false;
+    upower.enable = true;
 
     xserver.videoDrivers = [ "nvidia" ];
   };
 
   security.pam.services.hyprlock = {};
 
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-    river
-  '';
+  environment = {
+    etc = {
+      "greetd/environments".text = ''
+        Hyprland
+        river
+      '';
+    };
+  };
 
   hardware = {
     bluetooth.enable = true;
