@@ -81,6 +81,7 @@
         else
             export PS1='\[\e[1;m\e[1;33m\e[1;m\] \W\[\e[m\e[m\] 🐧 \[\e[1;32m\]~> \[\e[m\e[m\]'
         fi;
+        export PATH="$HOME/.local/bin:$PATH"
         set -o vi
         fastfetch
       '';
@@ -103,6 +104,7 @@
         ping = "ping -c 5";
         vi = "\\vim";
         work = "nix develop --impure";
+        hyprLockRestore = "hyprctl --instance $1 'keyword misc:allow_session_lock_restore 1' && dms ipc call lock lock";
         ".." = "cd ..";
       };
     };
