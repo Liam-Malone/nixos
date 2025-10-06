@@ -12,6 +12,7 @@
       "top": 1
     },
     "source": "$HOME/pictures/smol-penguin.png",
+    "width": 40,
     "type": "kitty"
   },
   "modules": [

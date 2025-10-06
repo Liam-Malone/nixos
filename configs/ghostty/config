@@ -23,7 +23,7 @@ gtk-single-instance = true
 #macos-non-native-fullscreen = true
 
 # Font
-font-size = 16
+font-size = 14
 font-family = Kelmscott Mono
 
 # Theme
