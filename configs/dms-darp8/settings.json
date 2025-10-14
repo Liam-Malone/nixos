@@ -101,7 +101,6 @@
   ],
   "dankBarRightWidgets": [
     "systemTray",
-    "clipboard",
     "cpuUsage",
     "memUsage",
     "notificationButton",

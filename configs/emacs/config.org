@@ -18,7 +18,7 @@
 - [[#flycheck][FLYCHECK]]
 - [[#fonts][FONTS]]
   - [[#setting-the-font-face][Setting The Font Face]]
-  - [[#zoom-inout][ZOOM IN/OUT]]
+  - [[#zoom-inout][Zoom In/Out]]
 - [[#gnuplot][GNUPLOT]]
 - [[#image-dir-ed][IMAGE DIR-ED]]
 - [[#indentingtabs][INDENTING/TABS]]
@@ -36,13 +36,13 @@
 - [[#theme][THEME]]
 - [[#transparency][TRANSPARENCY]]
 - [[#gui-tweaks][GUI TWEAKS]]
-  - [[#disable-menubar-toolbars-and-scrollbars][DISABLE MENUBAR, TOOLBARS AND SCROLLBARS]]
-  - [[#display-line-numbers-and-truncated-lines][DISPLAY LINE NUMBERS AND TRUNCATED LINES]]
+  - [[#disable-menubar-toolbars-and-scrollbars][Disable menubar, toolbars and scrollbars]]
+  - [[#display-line-numbers-and-truncated-lines][Display line numbers and truncated lines]]
 - [[#ivy-counsel][IVY (COUNSEL)]]
 - [[#language-support][LANGUAGE SUPPORT]]
 - [[#org-mode][ORG MODE]]
-  - [[#enabling-table-of-contents][ENABLING TABLE OF CONTENTS]]
-  - [[#enabling-org-bullets][ENABLING ORG BULLETS]]
+  - [[#enabling-table-of-contents][Enabling table of contents]]
+  - [[#enabling-org-bullets][Enabling org bullets]]
   - [[#source-code-block-tag-expansion][SOURCE CODE BLOCK TAG EXPANSION]]
 - [[#which-key][WHICH-KEY]]
 
@@ -365,7 +365,7 @@ Defining the various fonts emacs will use
     ;; This sets the default font on all graphical frames created after restarting Emacs.
     ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
     ;; are not right unless I also add this method of setting the default font.
-    (add-to-list 'default-frame-alist '(font . "FiraCodeNerdFontMono-15"))
+    (add-to-list 'default-frame-alist '(font . "FiraCodeNerdFontMono-12"))
 
     ;; uncomment the following line if line spacing needs adjusting.
     ;; (setq-default line-spacing 0.12)
