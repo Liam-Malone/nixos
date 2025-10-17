@@ -170,7 +170,7 @@
       (lm/leader-keys
           "SPC" '(counsel-M-x :wk "Counsel M-x")
           "." '(find-file :wk "Find file")
-          "f c" '((lambda () (interactive) (find-file "~/personal/nixos/configs/emacs/config.org")) :wk "Edit emacs config")
+          "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
           "f r" '(counsel-recentf :wk "Find recent files")
           "TAB TAB" '(comment-line :wk "Comment lines"))
 
@@ -400,8 +400,7 @@ Enable zoom in/out with c-=/- and also for c-scrl-up/down
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 2)
   (setq-default indent-line-function 'insert-tab)
-  (setq-default c-default-style "linux"
-                c-basic-offset 2)
+  (setq-default c-basic-offset 2)
  ;; if indent-tabs-mode is off, untabify before saving
  ;;(add-hook 'write-file-hooks 
  ;;         (lambda () (if (not indent-tabs-mode)
@@ -585,7 +584,7 @@ Set themes dir, load chosen theme - theme made with [[https://emacsfodder.github
 * TRANSPARENCY
 True transparency support as of emacs 29
 #+begin_src emacs-lisp
-  (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; for all new frames
+  (add-to-list 'default-frame-alist '(alpha-background . 100)) ;; for all new frames
 #+end_src
 
 
